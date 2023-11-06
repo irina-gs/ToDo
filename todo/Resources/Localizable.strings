@@ -1,0 +1,10 @@
+"auth.title" = "Авторизация";
+"auth.email-text-field" = "E-mail";
+"auth.password-text-field" = "Пароль";
+"auth.sign-in-button" = "Войти";
+"auth.sign-up-button" = "Еще нет аккаунта";
+
+"main.title" = "Список дел";
+"main.profile-button" = "Профиль";
+"main.empty-label" = "Пока здесь нет ни одной записи.\n Создайте новую!";
+"main.empty-button" = "Новая запись";
