@@ -8,16 +8,72 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                <viewController id="Y6W-OH-hqX" customClass="SignUpViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kvH-TM-Vbv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svF-z5-fdl">
+                                <rect key="frame" x="16" y="94" width="361" height="724"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="398-vn-lgf">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="724"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="S74-Gp-ONg">
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="200"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="361" placeholderIntrinsicHeight="56" translatesAutoresizingMaskIntoConstraints="NO" id="xZ7-vY-Eg3" customClass="TextInput" customModule="todo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="56"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="361" placeholderIntrinsicHeight="56" translatesAutoresizingMaskIntoConstraints="NO" id="wPp-hD-uHX" customClass="TextInput" customModule="todo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="72" width="361" height="56"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="361" placeholderIntrinsicHeight="56" id="Acy-xj-1ii" customClass="TextInput" customModule="todo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="144" width="361" height="56"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <viewLayoutGuide key="safeArea" id="JOP-qK-AKe"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="blN-6f-YV5">
+                                                <rect key="frame" x="0.0" y="689.66666666666663" width="361" height="34.333333333333371"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFd-zI-6BI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34.333333333333336"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTabSignUp" destination="Y6W-OH-hqX" eventType="touchUpInside" id="J4R-LH-vCJ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SL7-3v-khX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="svF-z5-fdl" firstAttribute="top" secondItem="SL7-3v-khX" secondAttribute="top" constant="35" id="4HR-di-MgF"/>
+                            <constraint firstItem="svF-z5-fdl" firstAttribute="leading" secondItem="SL7-3v-khX" secondAttribute="leading" constant="16" id="Mmb-MY-alK"/>
+                            <constraint firstItem="SL7-3v-khX" firstAttribute="bottom" secondItem="svF-z5-fdl" secondAttribute="bottom" id="dxw-pg-8xI"/>
+                            <constraint firstItem="SL7-3v-khX" firstAttribute="trailing" secondItem="svF-z5-fdl" secondAttribute="trailing" constant="16" id="oB2-it-1Qd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="wPp-hD-uHX" id="jGP-xO-aKA"/>
+                        <outlet property="passwordTextField" destination="Acy-xj-1ii" id="skX-30-bb8"/>
+                        <outlet property="signUpButton" destination="bFd-zI-6BI" id="Uyf-o1-zMk"/>
+                        <outlet property="usernameTextField" destination="xZ7-vY-Eg3" id="PWV-Rg-hn7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
