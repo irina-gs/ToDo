@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svF-z5-fdl">
-                                <rect key="frame" x="16" y="94" width="361" height="724"/>
+                                <rect key="frame" x="16" y="94" width="361" height="708"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="398-vn-lgf">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="724"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="708"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="S74-Gp-ONg">
                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="200"/>
@@ -42,7 +42,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="blN-6f-YV5">
-                                                <rect key="frame" x="0.0" y="689.66666666666663" width="361" height="34.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="673.66666666666663" width="361" height="34.333333333333371"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFd-zI-6BI">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="34.333333333333336"/>
@@ -64,7 +64,7 @@
                         <constraints>
                             <constraint firstItem="svF-z5-fdl" firstAttribute="top" secondItem="SL7-3v-khX" secondAttribute="top" constant="35" id="4HR-di-MgF"/>
                             <constraint firstItem="svF-z5-fdl" firstAttribute="leading" secondItem="SL7-3v-khX" secondAttribute="leading" constant="16" id="Mmb-MY-alK"/>
-                            <constraint firstItem="SL7-3v-khX" firstAttribute="bottom" secondItem="svF-z5-fdl" secondAttribute="bottom" id="dxw-pg-8xI"/>
+                            <constraint firstItem="SL7-3v-khX" firstAttribute="bottom" secondItem="svF-z5-fdl" secondAttribute="bottom" constant="16" id="dxw-pg-8xI"/>
                             <constraint firstItem="SL7-3v-khX" firstAttribute="trailing" secondItem="svF-z5-fdl" secondAttribute="trailing" constant="16" id="oB2-it-1Qd"/>
                         </constraints>
                     </view>

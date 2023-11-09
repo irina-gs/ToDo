@@ -18,7 +18,7 @@ final class AuthViewController: ParentViewController {
         super.viewDidLoad()
         
         navigationItem.title = L10n.Auth.title
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.prefersLargeTitles = true
 
         emailTextField.setup(placeholder: L10n.Auth.emailTextField, text: nil)

@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGA-Wm-WZQ">
-                                <rect key="frame" x="16" y="138" width="361" height="680"/>
+                                <rect key="frame" x="16" y="138" width="361" height="664"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="hSf-be-7hy">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="680"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="664"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Qsy-Cf-YDT">
                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
@@ -38,7 +38,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eob-Z5-Ez9">
-                                                <rect key="frame" x="0.0" y="611.33333333333337" width="361" height="68.666666666666629"/>
+                                                <rect key="frame" x="0.0" y="595.33333333333337" width="361" height="68.666666666666629"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdQ-2L-kTr">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="34.333333333333336"/>
@@ -70,7 +70,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YGA-Wm-WZQ" secondAttribute="trailing" constant="16" id="9N2-mb-kaT"/>
                             <constraint firstItem="YGA-Wm-WZQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="fTM-yo-mez"/>
                             <constraint firstItem="YGA-Wm-WZQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="hZ9-y4-DIz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YGA-Wm-WZQ" secondAttribute="bottom" id="kUX-Au-Omx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YGA-Wm-WZQ" secondAttribute="bottom" constant="16" id="kUX-Au-Omx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5TI-SZ-rQR"/>

@@ -8,7 +8,6 @@
 import UIKit
 
 final class SignUpViewController: ParentViewController {
-    
     @IBOutlet private var usernameTextField: TextInput!
     @IBOutlet private var emailTextField: TextInput!
     @IBOutlet private var passwordTextField: TextInput!
