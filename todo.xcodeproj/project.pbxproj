@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843090E42AF90B590098BEC6 /* SignUpViewController.swift */; };
 		847F66382AF166B2002E0C53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 847F66372AF166B2002E0C53 /* Localizable.strings */; };
 		847F663A2AF1673F002E0C53 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66392AF1673F002E0C53 /* L10n.swift */; };
 		847F663C2AF168EB002E0C53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F663B2AF168EB002E0C53 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		843090E42AF90B590098BEC6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		847F66372AF166B2002E0C53 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		847F66392AF1673F002E0C53 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		847F663B2AF168EB002E0C53 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -100,11 +102,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		843090E32AF90AD60098BEC6 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				843090E42AF90B590098BEC6 /* SignUpViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		847F66322AF1655C002E0C53 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				847F66412AF3F265002E0C53 /* Parent */,
 				847F66342AF1656F002E0C53 /* Auth */,
+				843090E32AF90AD60098BEC6 /* SignUp */,
 				847F66332AF16565002E0C53 /* Main */,
 			);
 			path = Modules;
@@ -382,9 +393,11 @@
 				847F663A2AF1673F002E0C53 /* L10n.swift in Sources */,
 				84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
+				84ABA4732AFD7B0600B446A6 /* UIViewController+Keyboard.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
 				847F66462AF3F366002E0C53 /* TextField.swift in Sources */,
 				84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */,
+				843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */,
 				84D5C99B2AEAB8E30051BF6B /* AppDelegate.swift in Sources */,
 				84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */,
 				847F663E2AF1692C002E0C53 /* MainViewController.swift in Sources */,

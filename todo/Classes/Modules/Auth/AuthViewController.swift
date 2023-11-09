@@ -8,8 +8,8 @@
 import UIKit
 
 final class AuthViewController: ParentViewController {
-    @IBOutlet weak var emailTextField: TextInput!
-    @IBOutlet weak var passwordTextField: TextInput!
+    @IBOutlet private var emailTextField: TextInput!
+    @IBOutlet private var passwordTextField: TextInput!
 
     @IBOutlet private var signInButton: UIButton!
     @IBOutlet private var signUpButton: UIButton!
@@ -18,6 +18,7 @@ final class AuthViewController: ParentViewController {
         super.viewDidLoad()
         
         navigationItem.title = L10n.Auth.title
+        navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.prefersLargeTitles = true
 
         emailTextField.setup(placeholder: L10n.Auth.emailTextField, text: nil)
