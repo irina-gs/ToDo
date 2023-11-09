@@ -16,7 +16,7 @@
 		847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66422AF3F27E002E0C53 /* ParentViewController.swift */; };
 		847F66462AF3F366002E0C53 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66452AF3F366002E0C53 /* TextField.swift */; };
 		847F664B2AF3FE82002E0C53 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F664A2AF3FE82002E0C53 /* TextInput.swift */; };
-		847F664E2AF40721002E0C53 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F664D2AF40721002E0C53 /* UIViewController+Keyboard.swift */; };
+		84ABA4732AFD7B0600B446A6 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA4722AFD7B0600B446A6 /* UIViewController+Keyboard.swift */; };
 		84D5C99B2AEAB8E30051BF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C99A2AEAB8E30051BF6B /* AppDelegate.swift */; };
 		84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C99C2AEAB8E30051BF6B /* SceneDelegate.swift */; };
 		84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C99E2AEAB8E30051BF6B /* AuthViewController.swift */; };
@@ -55,7 +55,7 @@
 		847F66422AF3F27E002E0C53 /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		847F66452AF3F366002E0C53 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		847F664A2AF3FE82002E0C53 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
-		847F664D2AF40721002E0C53 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Keyboard.swift"; path = "../../../../Downloads/UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		84ABA4722AFD7B0600B446A6 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		84D5C9972AEAB8E30051BF6B /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D5C99A2AEAB8E30051BF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D5C99C2AEAB8E30051BF6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		847F664C2AF406E1002E0C53 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				847F664D2AF40721002E0C53 /* UIViewController+Keyboard.swift */,
+				84ABA4722AFD7B0600B446A6 /* UIViewController+Keyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,10 +373,10 @@
 			files = (
 				847F663A2AF1673F002E0C53 /* L10n.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
+				84ABA4732AFD7B0600B446A6 /* UIViewController+Keyboard.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
 				847F66462AF3F366002E0C53 /* TextField.swift in Sources */,
 				843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */,
-				847F664E2AF40721002E0C53 /* UIViewController+Keyboard.swift in Sources */,
 				84D5C99B2AEAB8E30051BF6B /* AppDelegate.swift in Sources */,
 				84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */,
 				847F663E2AF1692C002E0C53 /* MainViewController.swift in Sources */,
