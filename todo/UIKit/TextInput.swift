@@ -87,6 +87,10 @@ final class TextInput: UIView {
         ])
     }
     
+    var text: String? {
+        textField.text
+    }
+    
     @objc
     private func didBeginEditing() {
         hideError()

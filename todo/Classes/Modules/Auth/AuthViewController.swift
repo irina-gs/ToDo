@@ -32,9 +32,12 @@ final class AuthViewController: ParentViewController {
     }
     
     @IBAction private func didTabSignIn() {
-//        passwordTextField.show(error: "Ошибка")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
-        view.window?.rootViewController = vc
+        if ValidationManager.isValid(email: emailTextField.text) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
+            view.window?.rootViewController = vc
+        } else {
+            emailTextField.show(error: "Емейл некоррекный")
+        }
     }
 }

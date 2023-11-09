@@ -16,6 +16,9 @@
 		847F66462AF3F366002E0C53 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66452AF3F366002E0C53 /* TextField.swift */; };
 		847F664B2AF3FE82002E0C53 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F664A2AF3FE82002E0C53 /* TextInput.swift */; };
 		847F664E2AF40721002E0C53 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F664D2AF40721002E0C53 /* UIViewController+Keyboard.swift */; };
+		84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF237F2AFD2BB90085B7D0 /* MainButton.swift */; };
+		84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */; };
+		84BF23872AFD357C0085B7D0 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF23862AFD357C0085B7D0 /* ValidationManager.swift */; };
 		84D5C99B2AEAB8E30051BF6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C99A2AEAB8E30051BF6B /* AppDelegate.swift */; };
 		84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C99C2AEAB8E30051BF6B /* SceneDelegate.swift */; };
 		84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C99E2AEAB8E30051BF6B /* AuthViewController.swift */; };
@@ -54,6 +57,9 @@
 		847F66452AF3F366002E0C53 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		847F664A2AF3FE82002E0C53 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
 		847F664D2AF40721002E0C53 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Keyboard.swift"; path = "../../../../Downloads/UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		84BF237F2AFD2BB90085B7D0 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		84BF23862AFD357C0085B7D0 /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		84D5C9972AEAB8E30051BF6B /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D5C99A2AEAB8E30051BF6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D5C99C2AEAB8E30051BF6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +162,8 @@
 			children = (
 				847F66452AF3F366002E0C53 /* TextField.swift */,
 				847F664A2AF3FE82002E0C53 /* TextInput.swift */,
+				84BF237F2AFD2BB90085B7D0 /* MainButton.swift */,
+				84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -166,6 +174,14 @@
 				847F664D2AF40721002E0C53 /* UIViewController+Keyboard.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84BF23852AFD355A0085B7D0 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				84BF23862AFD357C0085B7D0 /* ValidationManager.swift */,
+			);
+			path = Business;
 			sourceTree = "<group>";
 		};
 		84D5C98E2AEAB8E30051BF6B = {
@@ -221,6 +237,7 @@
 		84F703CE2AF163F800CFCC55 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				84BF23852AFD355A0085B7D0 /* Business */,
 				847F66322AF1655C002E0C53 /* Modules */,
 			);
 			path = Classes;
@@ -360,10 +377,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84BF23872AFD357C0085B7D0 /* ValidationManager.swift in Sources */,
 				847F663A2AF1673F002E0C53 /* L10n.swift in Sources */,
+				84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
 				847F66462AF3F366002E0C53 /* TextField.swift in Sources */,
+				84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */,
 				847F664E2AF40721002E0C53 /* UIViewController+Keyboard.swift in Sources */,
 				84D5C99B2AEAB8E30051BF6B /* AppDelegate.swift in Sources */,
 				84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */,
