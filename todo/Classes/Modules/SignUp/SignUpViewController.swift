@@ -9,9 +9,9 @@ import UIKit
 
 final class SignUpViewController: ParentViewController {
     
-    @IBOutlet weak var usernameTextField: TextInput!
-    @IBOutlet weak var emailTextField: TextInput!
-    @IBOutlet weak var passwordTextField: TextInput!
+    @IBOutlet private var usernameTextField: TextInput!
+    @IBOutlet private var emailTextField: TextInput!
+    @IBOutlet private var passwordTextField: TextInput!
     
     @IBOutlet private var signUpButton: UIButton!
     

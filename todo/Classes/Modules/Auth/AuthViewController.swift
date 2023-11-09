@@ -8,9 +8,8 @@
 import UIKit
 
 final class AuthViewController: ParentViewController {
-    
-    @IBOutlet weak var emailTextField: TextInput!
-    @IBOutlet weak var passwordTextField: TextInput!
+    @IBOutlet private var emailTextField: TextInput!
+    @IBOutlet private var passwordTextField: TextInput!
 
     @IBOutlet private var signInButton: UIButton!
     @IBOutlet private var signUpButton: UIButton!
