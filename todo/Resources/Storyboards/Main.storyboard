@@ -38,7 +38,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8v-AX-cwb">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8v-AX-cwb" customClass="PrimaryButton" customModule="todo" customModuleProvider="target">
                                         <rect key="frame" x="16" y="643" width="361" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="3vt-ag-0ym"/>

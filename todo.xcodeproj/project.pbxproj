@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8413485F2AFF6FAB00809876 /* TextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413485E2AFF6FAB00809876 /* TextButton.swift */; };
 		843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843090E42AF90B590098BEC6 /* SignUpViewController.swift */; };
 		847F66382AF166B2002E0C53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 847F66372AF166B2002E0C53 /* Localizable.strings */; };
 		847F663A2AF1673F002E0C53 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66392AF1673F002E0C53 /* L10n.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8413485E2AFF6FAB00809876 /* TextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextButton.swift; sourceTree = "<group>"; };
 		843090E42AF90B590098BEC6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		847F66372AF166B2002E0C53 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		847F66392AF1673F002E0C53 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				847F664A2AF3FE82002E0C53 /* TextInput.swift */,
 				84BF237F2AFD2BB90085B7D0 /* MainButton.swift */,
 				84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */,
+				8413485E2AFF6FAB00809876 /* TextButton.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -390,10 +393,10 @@
 			files = (
 				84BF23872AFD357C0085B7D0 /* ValidationManager.swift in Sources */,
 				84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */,
+				8413485F2AFF6FAB00809876 /* TextButton.swift in Sources */,
 				847F663A2AF1673F002E0C53 /* L10n.swift in Sources */,
 				84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
-				84ABA4732AFD7B0600B446A6 /* UIViewController+Keyboard.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
 				847F66462AF3F366002E0C53 /* TextField.swift in Sources */,
 				84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */,

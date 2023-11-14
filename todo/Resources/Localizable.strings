@@ -2,7 +2,7 @@
 "auth.email-text-field" = "E-mail";
 "auth.password-text-field" = "Пароль";
 "auth.sign-in-button" = "Войти";
-"auth.sign-up-button" = "Еще нет аккаунта";
+"auth.sign-up-button" = "Еще нет аккаунта?";
 
 "main.title" = "Список дел";
 "main.profile-button" = "Профиль";
@@ -14,3 +14,8 @@
 "sign-up.email-text-field" = "E-mail";
 "sign-up.password-text-field" = "Пароль";
 "sign-up.sign-up-button" = "Зарегистрироваться";
+
+"error-validation.empty-field" = "Поле должно быть заполнено";
+"error-validation.email" = "Введите корректный email";
+"error-validation.username" = "Имя должно быть до 70 символов длиной";
+"error-validation.password" = "Пароль должен быть до 256 символов";

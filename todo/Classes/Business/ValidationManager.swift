@@ -8,6 +8,10 @@
 import Foundation
 
 enum ValidationManager {
+    static func isValid(commonText: String?) -> Bool {
+        (commonText ?? "").count != 0
+    }
+    
     static func isValid(email: String?) -> Bool {
         let emailParameters = ".+@.+\\..+"
         return NSPredicate(format: "SELF MATCHES %@", emailParameters).evaluate(with: email)

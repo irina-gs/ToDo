@@ -10,7 +10,7 @@ import UIKit
 final class MainViewController: ParentViewController {
     @IBOutlet private var emptyImageView: UIImageView!
     @IBOutlet private var emptyLabel: UILabel!
-    @IBOutlet private var emptyButton: UIButton!
+    @IBOutlet private var emptyButton: PrimaryButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

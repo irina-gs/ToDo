@@ -23,4 +23,11 @@ enum L10n {
         static let passwordTextField = NSLocalizedString("sign-up.password-text-field", comment: "")
         static let signUpButton = NSLocalizedString("sign-up.sign-up-button", comment: "")
     }
+    
+    enum ErrorValidation {
+        static let emptyField = NSLocalizedString("error-validation.empty-field", comment: "")
+        static let email = NSLocalizedString("error-validation.email", comment: "")
+        static let username = NSLocalizedString("error-validation.username", comment: "")
+        static let password = NSLocalizedString("error-validation.password", comment: "")
+    }  
 }
