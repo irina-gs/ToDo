@@ -43,7 +43,7 @@ final class AuthViewController: ParentViewController {
     }
     
     private func emailTFValidation() -> Bool {
-        if ValidationManager.isValid(commonText: emailTextField.text) {
+        if !ValidationManager.isValid(commonText: emailTextField.text, symbolsCount: 0) {
             if ValidationManager.isValid(email: emailTextField.text) {
                 return true
             } else {
@@ -57,7 +57,7 @@ final class AuthViewController: ParentViewController {
     }
     
     private func passwordTFValidation() -> Bool {
-        if ValidationManager.isValid(commonText: passwordTextField.text) {
+        if !ValidationManager.isValid(commonText: passwordTextField.text, symbolsCount: 0) {
             return true
         } else {
             passwordTextField.show(error: L10n.ErrorValidation.emptyField)
