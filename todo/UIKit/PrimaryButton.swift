@@ -44,7 +44,7 @@ final class PrimaryButton: MainButton {
         case .small:
             style = Style(
                 cornerRadius: 8,
-                insets: 256,
+                insets: 44,
                 height: 34,
                 bgColor: .Color.primary,
                 highlightedBgColor: .Color.primary.withAlphaComponent(0.5),

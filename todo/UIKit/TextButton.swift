@@ -35,7 +35,6 @@ final class TextButton: MainButton {
         case .normal:
             style = Style(
                 font: .systemFont(ofSize: 16, weight: .bold),
-                insets: 218,
                 height: 22,
                 titleColor: .Color.black,
                 highlightedTitleColor: .Color.black.withAlphaComponent(0.5)
@@ -43,7 +42,6 @@ final class TextButton: MainButton {
         case .destructive:
             style = Style(
                 font: .systemFont(ofSize: 16, weight: .bold),
-                insets: 320,
                 height: 22,
                 titleColor: .Color.exit,
                 highlightedTitleColor: .Color.exit.withAlphaComponent(0.5)

@@ -54,7 +54,7 @@
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                         <connections>
-                                                            <segue destination="oPD-KS-DwC" kind="push" id="7N8-2g-JbU"/>
+                                                            <segue destination="oPD-KS-DwC" kind="show" id="7N8-2g-JbU"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
