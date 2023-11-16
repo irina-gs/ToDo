@@ -11,16 +11,22 @@ final class EmptyViewController: ParentViewController {
     enum State {
         case empty, error(Error)
     }
-
+    
+    @IBOutlet private var emptyImageView: UIImageView!
+    @IBOutlet private var emptyLabel: UILabel!
+    @IBOutlet private var emptyButton: PrimaryButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        emptyButton.setTitle(L10n.Main.emptyButton, for: .normal)
+        
         emptyImageView.image = UIImage.Main.empty
         updateState()
     }
-
+    
     var action: (() -> Void)?
-
+    
     var state: State = .empty {
         didSet {
             guard view.window != nil else {
@@ -29,11 +35,7 @@ final class EmptyViewController: ParentViewController {
             updateState()
         }
     }
-
-    @IBOutlet private var emptyImageView: UIImageView!
-    @IBOutlet private var emptyLabel: UILabel!
-    @IBOutlet private var emptyButton: UIButton!
-
+    
     private func updateState() {
         switch state {
         case .empty:
@@ -42,9 +44,8 @@ final class EmptyViewController: ParentViewController {
             break
         }
     }
-
+    
     @IBAction private func didTapEmptyButton() {
         action?()
     }
 }
-
