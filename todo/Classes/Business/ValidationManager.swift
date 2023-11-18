@@ -14,13 +14,6 @@ enum ValidationManager {
     }
     
     static func isValid(commonText: String?, symbolsCount: Int) -> Bool {
-//        if let commonText {
-//            return commonText.count <= symbolsCount
-//        }
-//        return false
-//
-//        (commonText?.count ?? 0) <= symbolsCount
-
         (commonText ?? "").count <= symbolsCount
     }
 }

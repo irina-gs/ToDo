@@ -12,12 +12,13 @@ final class SignUpViewController: ParentViewController {
     @IBOutlet private var emailTextField: TextInput!
     @IBOutlet private var passwordTextField: TextInput!
     
-    @IBOutlet private var signUpButton: UIButton!
+    @IBOutlet private var signUpButton: PrimaryButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = L10n.SignUp.title
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         usernameTextField.setup(placeholder: L10n.SignUp.usernameTextField, text: nil)
         emailTextField.setup(placeholder: L10n.SignUp.emailTextField, text: nil)
@@ -31,8 +32,56 @@ final class SignUpViewController: ParentViewController {
     }
     
     @IBAction private func didTabSignUp() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
-        view.window?.rootViewController = vc
+        let usernameTFIsValid = usernameTFValidation()
+        let emailTFIsValid = emailTFValidation()
+        let passwordTFIsValid = passwordTFValidation()
+        
+        if usernameTFIsValid && emailTFIsValid && passwordTFIsValid {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
+            view.window?.rootViewController = vc
+        }
+    }
+    
+    private func usernameTFValidation() -> Bool {
+        if !ValidationManager.isValid(commonText: usernameTextField.text, symbolsCount: 0) {
+            if ValidationManager.isValid(commonText: usernameTextField.text, symbolsCount: 70) {
+                return true
+            } else {
+                usernameTextField.show(error: L10n.ErrorValidation.username)
+                return false
+            }
+        } else {
+            usernameTextField.show(error: L10n.ErrorValidation.emptyField)
+            return false
+        }
+    }
+    
+    private func emailTFValidation() -> Bool {
+        if !ValidationManager.isValid(commonText: emailTextField.text, symbolsCount: 0) {
+            if ValidationManager.isValid(email: emailTextField.text) {
+                return true
+            } else {
+                emailTextField.show(error: L10n.ErrorValidation.email)
+                return false
+            }
+        } else {
+            emailTextField.show(error: L10n.ErrorValidation.emptyField)
+            return false
+        }
+    }
+    
+    private func passwordTFValidation() -> Bool {
+        if !ValidationManager.isValid(commonText: passwordTextField.text, symbolsCount: 0) {
+            if ValidationManager.isValid(commonText: passwordTextField.text, symbolsCount: 256) {
+                return true
+            } else {
+                passwordTextField.show(error: L10n.ErrorValidation.password)
+                return false
+            }
+        } else {
+            passwordTextField.show(error: L10n.ErrorValidation.emptyField)
+            return false
+        }
     }
 }

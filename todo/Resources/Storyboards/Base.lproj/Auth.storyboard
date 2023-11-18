@@ -48,7 +48,7 @@
                                                             <action selector="didTabSignIn" destination="BYZ-38-t0r" eventType="touchUpInside" id="1yp-CK-Zea"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="TcA-4q-ooT">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="TcA-4q-ooT" customClass="TextButton" customModule="todo" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="34.333333333333258" width="361" height="34.333333333333343"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>

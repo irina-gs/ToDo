@@ -43,6 +43,7 @@ final class TextField: UITextField {
         let button = UIButton(type: .custom, primaryAction: UIAction(handler: {[weak self] _ in
             self?.toggleSecureMode()
         }))
+        button.frame = CGRect(origin: .zero, size: CGSize(width: 24, height: 24))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 24).isActive = true
         button.setImage(UIImage.TextInput.eyeOpen, for: .normal)
