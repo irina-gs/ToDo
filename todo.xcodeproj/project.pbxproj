@@ -33,6 +33,8 @@
 		84F9DCAF2B03DB6F00F39E46 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCAE2B03DB6F00F39E46 /* EmptyViewController.swift */; };
 		84F9DCB22B03DDC000F39E46 /* MainItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F9DCB12B03DDC000F39E46 /* MainItemCell.xib */; };
 		84F9DCB42B03DDCE00F39E46 /* MainItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCB32B03DDCE00F39E46 /* MainItemCell.swift */; };
+		84F9DCB72B06686100F39E46 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCB62B06686100F39E46 /* NewItemViewController.swift */; };
+		84F9DCB92B06689000F39E46 /* NewItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9DCB82B06689000F39E46 /* NewItem.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		84F9DCAE2B03DB6F00F39E46 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		84F9DCB12B03DDC000F39E46 /* MainItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainItemCell.xib; sourceTree = "<group>"; };
 		84F9DCB32B03DDCE00F39E46 /* MainItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemCell.swift; sourceTree = "<group>"; };
+		84F9DCB62B06686100F39E46 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
+		84F9DCB82B06689000F39E46 /* NewItem.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewItem.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 		847F66322AF1655C002E0C53 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				84F9DCB52B06684900F39E46 /* NewItem */,
 				84F9DCAD2B03DB5800F39E46 /* Empty */,
 				847F66412AF3F265002E0C53 /* Parent */,
 				847F66342AF1656F002E0C53 /* Auth */,
@@ -167,6 +172,7 @@
 				847F663B2AF168EB002E0C53 /* Main.storyboard */,
 				847F663F2AF16D75002E0C53 /* SignUp.storyboard */,
 				84F9DCAB2B03DADC00F39E46 /* Empty.storyboard */,
+				84F9DCB82B06689000F39E46 /* NewItem.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -282,6 +288,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		84F9DCB52B06684900F39E46 /* NewItem */ = {
+			isa = PBXGroup;
+			children = (
+				84F9DCB62B06686100F39E46 /* NewItemViewController.swift */,
+			);
+			path = NewItem;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -390,6 +404,7 @@
 				84F9DCAC2B03DADC00F39E46 /* Empty.storyboard in Resources */,
 				847F663C2AF168EB002E0C53 /* Main.storyboard in Resources */,
 				847F66402AF16D75002E0C53 /* SignUp.storyboard in Resources */,
+				84F9DCB92B06689000F39E46 /* NewItem.storyboard in Resources */,
 				847F66382AF166B2002E0C53 /* Localizable.strings in Resources */,
 				84F9DCB22B03DDC000F39E46 /* MainItemCell.xib in Resources */,
 				84D5C9A42AEAB8E70051BF6B /* Assets.xcassets in Resources */,
@@ -432,6 +447,7 @@
 				84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */,
 				847F663E2AF1692C002E0C53 /* MainViewController.swift in Sources */,
 				84F9DCAF2B03DB6F00F39E46 /* EmptyViewController.swift in Sources */,
+				84F9DCB72B06686100F39E46 /* NewItemViewController.swift in Sources */,
 				847F664B2AF3FE82002E0C53 /* TextInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

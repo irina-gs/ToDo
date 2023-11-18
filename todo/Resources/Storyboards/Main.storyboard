@@ -55,6 +55,7 @@
                     <connections>
                         <outlet property="collectionView" destination="dCV-fQ-Nrj" id="WPe-2o-NdD"/>
                         <outlet property="emptyView" destination="kVX-P6-81K" id="hqs-XS-qe5"/>
+                        <segue destination="F7c-eZ-sNV" kind="show" identifier="new-item" id="d3d-2x-mdS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -68,6 +69,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DeY-v9-E3D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1589" y="4"/>
+        </scene>
+        <!--NewItem-->
+        <scene sceneID="A77-P0-vtu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewItem" id="F7c-eZ-sNV" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="U5F-eh-YQ0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NAh-7s-XCF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WLq-0d-GjS">
