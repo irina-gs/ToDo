@@ -19,9 +19,9 @@ final class EmptyViewController: ParentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emptyImageView.image = UIImage.Main.empty
         emptyButton.setTitle(L10n.Main.emptyButton, for: .normal)
         
-        emptyImageView.image = UIImage.Main.empty
         updateState()
     }
     
@@ -39,7 +39,7 @@ final class EmptyViewController: ParentViewController {
     private func updateState() {
         switch state {
         case .empty:
-            emptyLabel.text = "Пустое состояние"
+            emptyLabel.text = L10n.Main.emptyLabel
         case let .error(error):
             break
         }

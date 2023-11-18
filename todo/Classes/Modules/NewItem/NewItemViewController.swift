@@ -18,10 +18,10 @@ protocol NewItemViewControllerDelegate: AnyObject {
 }
 
 final class NewItemViewController: ParentViewController {
-    @IBOutlet private var textView1: UIView!
-    @IBOutlet private var textView2: UIView!
-    @IBOutlet private var label: UILabel!
-    @IBOutlet private var datePicker: UIDatePicker!
+    @IBOutlet private var titleTextView: UIView!
+    @IBOutlet private var descriptionTextView: UIView!
+    @IBOutlet private var deadlineLabel: UILabel!
+    @IBOutlet private var deadlineDatePicker: UIDatePicker!
     @IBOutlet private var createButton: UIButton!
     
     weak var delegate: NewItemViewControllerDelegate?
@@ -33,7 +33,7 @@ final class NewItemViewController: ParentViewController {
     }
     
     @IBAction private func didTab() {
-        delegate?.didSelect(self, data: NewItemData(title: "textView1.text", description: "textView2.text", deadline: datePicker.date))
+        delegate?.didSelect(self, data: NewItemData(title: "titleTextView.text", description: "descriptionTextView.text", deadline: deadlineDatePicker.date))
         navigationController?.popViewController(animated: true)
     }
 }

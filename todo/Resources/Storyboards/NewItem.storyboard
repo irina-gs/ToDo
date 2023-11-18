@@ -118,10 +118,10 @@
                     </view>
                     <connections>
                         <outlet property="createButton" destination="OZJ-ca-EEH" id="6NZ-Nq-Pea"/>
-                        <outlet property="datePicker" destination="6NS-L8-QeW" id="sT5-ZE-5kR"/>
-                        <outlet property="label" destination="cbc-8O-tSB" id="BWA-fw-jSB"/>
-                        <outlet property="textView1" destination="QkI-al-aNQ" id="I6B-9D-UQA"/>
-                        <outlet property="textView2" destination="IfD-ak-DN0" id="sVn-VY-AXO"/>
+                        <outlet property="deadlineDatePicker" destination="6NS-L8-QeW" id="AdH-Kj-gIE"/>
+                        <outlet property="deadlineLabel" destination="cbc-8O-tSB" id="qiV-1O-hce"/>
+                        <outlet property="descriptionTextView" destination="RWb-dI-ES6" id="SAq-VG-jV0"/>
+                        <outlet property="titleTextView" destination="iaU-Du-kFX" id="TpO-TO-f3i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
