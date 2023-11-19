@@ -4,11 +4,6 @@
 "auth.sign-in-button" = "Войти";
 "auth.sign-up-button" = "Еще нет аккаунта?";
 
-"main.title" = "Список дел";
-"main.profile-button" = "Профиль";
-"main.empty-label" = "Пока здесь нет ни одной записи.\n Создайте новую!";
-"main.empty-button" = "Новая запись";
-
 "sign-up.title" = "Регистрация";
 "sign-up.username-text-field" = "Имя пользователя";
 "sign-up.email-text-field" = "E-mail";
@@ -19,3 +14,13 @@
 "error-validation.email" = "Введите корректный email";
 "error-validation.username" = "Имя должно быть до 70 символов длиной";
 "error-validation.password" = "Пароль должен быть до 256 символов";
+
+"main.title" = "Список дел";
+"main.profile-button" = "Профиль";
+"main.empty-label" = "Пока здесь нет ни одной записи.\n Создайте новую!";
+"main.empty-button" = "Новая запись";
+"main.date-format" = "Дедлайн: dd MMMM y в HH:mm";
+
+"new-item.title" = "Новая запись";
+"new-item.deadline-label" = "Дедлайн";
+"new-item.create-button" = "Создать";

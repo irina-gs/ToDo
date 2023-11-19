@@ -94,7 +94,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="feW-gW-oaq"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="0mr-DE-RHu"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-ca-EEH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-ca-EEH" customClass="PrimaryButton" customModule="todo" customModuleProvider="target">
                                 <rect key="frame" x="16" y="767.66666666666663" width="361" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
