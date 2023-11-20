@@ -41,19 +41,19 @@ final class MainItemCell: UICollectionViewCell {
         deadlineLabel.font = UIFont.systemFont(ofSize: 14)
     }
     
-    private func updateDeadlineTextColor() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = L10n.Main.dateFormat
-        let deadlineDate = dateFormatter.date(from: deadlineLabel.text ?? "") ?? .now
-
-        deadlineLabel.textColor = deadlineDate > Date() ? UIColor.Color.black : UIColor.Color.exit
+    private func updateDeadlineTextColor(deadline: Date) {
+        deadlineLabel.textColor = deadline > Date() ? UIColor.Color.black : UIColor.Color.exit
     }
         
     func setup(item: MainDataItem) {
         titleLabel.text = item.title
-        deadlineLabel.text = item.deadline
-        updateDeadlineTextColor()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = L10n.Main.dateFormat
+        deadlineLabel.text = dateFormatter.string(from: item.deadline)
+        
+        updateDeadlineTextColor(deadline: item.deadline)
     }
     
     private func updateColor() {

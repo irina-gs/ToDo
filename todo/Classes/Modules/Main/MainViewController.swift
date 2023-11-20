@@ -9,7 +9,7 @@ import UIKit
 
 struct MainDataItem {
     let title: String
-    let deadline: String
+    let deadline: Date
 }
 
 final class MainViewController: ParentViewController {
@@ -80,13 +80,8 @@ extension MainViewController: UICollectionViewDelegate {}
 
 extension MainViewController: NewItemViewControllerDelegate {
     func didSelect(_ vc: NewItemViewController, data: NewItemData) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = L10n.Main.dateFormat
-        
-        self.data = [.init(title: data.title, deadline: dateFormatter.string(from: data.deadline))]
-//        self.data.append(<#T##newElement: MainDataItem##MainDataItem#>)
-        
+        self.data = [.init(title: data.title, deadline: data.deadline)]
+//         self.data.append(<#T##newElement: MainDataItem##MainDataItem#>)
         reloadData()
     }
 }

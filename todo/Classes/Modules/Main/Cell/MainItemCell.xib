@@ -10,20 +10,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainItemCell" id="Rmz-DB-S7c" customClass="MainItemCell" customModule="todo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="355" height="97"/>
+            <rect key="frame" x="0.0" y="0.0" width="363" height="101"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5q8-fo-vKa">
-                <rect key="frame" x="0.0" y="0.0" width="355" height="97"/>
+                <rect key="frame" x="0.0" y="0.0" width="363" height="101"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AWo-7v-ocF">
-                        <rect key="frame" x="16" y="16" width="323" height="65"/>
+                        <rect key="frame" x="16" y="16" width="331" height="69"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4Z-1u-cVN">
-                                <rect key="frame" x="0.0" y="0.0" width="323" height="24"/>
+                                <rect key="frame" x="0.0" y="0.0" width="331" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xs7-Bn-GX2">
-                                        <rect key="frame" x="0.0" y="0.0" width="299" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="307" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="fe5-p6-hIa"/>
                                         </constraints>
@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7dc-aW-qkr">
-                                        <rect key="frame" x="299" y="0.0" width="24" height="24"/>
+                                        <rect key="frame" x="307" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="bmb-Ve-AIK"/>
                                             <constraint firstAttribute="height" constant="24" id="hN3-sZ-99P"/>
@@ -41,7 +41,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9o7-FV-fK9">
-                                <rect key="frame" x="0.0" y="41" width="323" height="24"/>
+                                <rect key="frame" x="0.0" y="45" width="331" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="4rb-Bn-GKR"/>
                                 </constraints>
@@ -53,19 +53,19 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="AWo-7v-ocF" firstAttribute="leading" secondItem="5q8-fo-vKa" secondAttribute="leading" constant="16" id="F0U-gw-bQg"/>
-                    <constraint firstAttribute="bottom" secondItem="AWo-7v-ocF" secondAttribute="bottom" constant="16" id="XlU-QV-tU2"/>
-                    <constraint firstAttribute="trailing" secondItem="AWo-7v-ocF" secondAttribute="trailing" constant="16" id="avr-Ci-btC"/>
-                    <constraint firstItem="AWo-7v-ocF" firstAttribute="top" secondItem="5q8-fo-vKa" secondAttribute="top" constant="16" id="z51-VU-ixz"/>
+                    <constraint firstAttribute="bottom" secondItem="AWo-7v-ocF" secondAttribute="bottom" constant="16" id="4gb-jg-NeI"/>
+                    <constraint firstItem="AWo-7v-ocF" firstAttribute="top" secondItem="5q8-fo-vKa" secondAttribute="top" constant="16" id="Gl3-bV-5Qb"/>
+                    <constraint firstItem="AWo-7v-ocF" firstAttribute="leading" secondItem="5q8-fo-vKa" secondAttribute="leading" constant="16" id="WxI-rY-QY7"/>
+                    <constraint firstAttribute="trailing" secondItem="AWo-7v-ocF" secondAttribute="trailing" constant="16" id="reb-DF-nsA"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="355" height="97"/>
+            <size key="customSize" width="363" height="101"/>
             <connections>
                 <outlet property="deadlineLabel" destination="9o7-FV-fK9" id="6NV-Gs-SP2"/>
                 <outlet property="iconView" destination="7dc-aW-qkr" id="HRV-ic-f2e"/>
                 <outlet property="titleLabel" destination="xs7-Bn-GX2" id="nHA-K9-NYX"/>
             </connections>
-            <point key="canvasLocation" x="167.17557251908397" y="-53.87323943661972"/>
+            <point key="canvasLocation" x="168.70229007633588" y="-63.028169014084511"/>
         </collectionViewCell>
     </objects>
 </document>
