@@ -20,6 +20,9 @@
 "main.empty-label" = "Пока здесь нет ни одной записи.\n Создайте новую!";
 "main.empty-button" = "Новая запись";
 "main.date-format" = "Дедлайн: dd MMMM y в HH:mm";
+"main.error-no-connection-label" = "Нет соединения";
+"main.error-something-went-wrong-label" = "Что-то пошло не так";
+"main.error-update-button" = "Обновить";
 
 "new-item.title" = "Новая запись";
 "new-item.deadline-label" = "Дедлайн";

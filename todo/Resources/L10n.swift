@@ -30,6 +30,9 @@ enum L10n {
         static let emptyLabel = NSLocalizedString("main.empty-label", comment: "")
         static let emptyButton = NSLocalizedString("main.empty-button", comment: "")
         static let dateFormat = NSLocalizedString("main.date-format", comment: "")
+        static let errorNoConnectionLabel = NSLocalizedString("main.error-no-connection-label", comment: "")
+        static let errorSomethingWentWrongLabel = NSLocalizedString("main.error-something-went-wrong-label", comment: "")
+        static let errorUpdateButton = NSLocalizedString("main.error-update-button", comment: "")
     }
     
     enum NewItem {

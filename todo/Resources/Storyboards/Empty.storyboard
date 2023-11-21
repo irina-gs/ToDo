@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2rE-mg-V1W">
-                                        <rect key="frame" x="16" y="0.0" width="361" height="687"/>
+                                        <rect key="frame" x="16" y="0.0" width="361" height="708.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="b04-Qh-91n">
-                                                <rect key="frame" x="0.0" y="283.66666666666669" width="361" height="119.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="269.33333333333331" width="361" height="170"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="UoY-eO-yUL">
                                                         <rect key="frame" x="136" y="0.0" width="89" height="82"/>
@@ -31,18 +32,23 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdZ-1V-Qr6">
                                                         <rect key="frame" x="158.66666666666666" y="98" width="43.666666666666657" height="21.666666666666671"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="Color/black"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SdO-tD-qS2" customClass="PrimaryButton" customModule="todo" customModuleProvider="target">
+                                                        <rect key="frame" x="143" y="135.66666666666669" width="75" height="34.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTapUpdateButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Nr6-xS-i4c"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcm-0i-rka" customClass="PrimaryButton" customModule="todo" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="687" width="361" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="cUX-F7-nWB"/>
-                                        </constraints>
+                                        <rect key="frame" x="16" y="708.66666666666663" width="361" height="34.333333333333371"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
@@ -66,6 +72,7 @@
                         <outlet property="emptyButton" destination="xcm-0i-rka" id="J0q-Y6-n5g"/>
                         <outlet property="emptyImageView" destination="UoY-eO-yUL" id="Nj6-KI-VX5"/>
                         <outlet property="emptyLabel" destination="pdZ-1V-Qr6" id="LBE-MG-Y1h"/>
+                        <outlet property="updateButton" destination="SdO-tD-qS2" id="ELT-Zx-cMU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -74,6 +81,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="Color/black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
