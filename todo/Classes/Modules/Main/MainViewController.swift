@@ -28,6 +28,7 @@ final class MainViewController: ParentViewController {
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 16
             return section
         })
         
@@ -80,8 +81,7 @@ extension MainViewController: UICollectionViewDelegate {}
 
 extension MainViewController: NewItemViewControllerDelegate {
     func didSelect(_ vc: NewItemViewController, data: NewItemData) {
-        self.data = [.init(title: data.title, deadline: data.deadline)]
-//         self.data.append(<#T##newElement: MainDataItem##MainDataItem#>)
+         self.data.append(.init(title: data.title, deadline: data.deadline))
         reloadData()
     }
 }
