@@ -36,6 +36,7 @@
 		84F9DCB42B03DDCE00F39E46 /* MainItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCB32B03DDCE00F39E46 /* MainItemCell.swift */; };
 		84F9DCB72B06686100F39E46 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCB62B06686100F39E46 /* NewItemViewController.swift */; };
 		84F9DCB92B06689000F39E46 /* NewItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9DCB82B06689000F39E46 /* NewItem.storyboard */; };
+		84F9DCAA2B038F5D00F39E46 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCA92B038F5D00F39E46 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		84F9DCB32B03DDCE00F39E46 /* MainItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemCell.swift; sourceTree = "<group>"; };
 		84F9DCB62B06686100F39E46 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		84F9DCB82B06689000F39E46 /* NewItem.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewItem.storyboard; sourceTree = "<group>"; };
+		84F9DCA92B038F5D00F39E46 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 				84BF237F2AFD2BB90085B7D0 /* MainButton.swift */,
 				84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */,
 				8413485E2AFF6FAB00809876 /* TextButton.swift */,
+				84F9DCA92B038F5D00F39E46 /* TextView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */,
 				8413485F2AFF6FAB00809876 /* TextButton.swift in Sources */,
 				847F663A2AF1673F002E0C53 /* L10n.swift in Sources */,
+				84F9DCAA2B038F5D00F39E46 /* TextView.swift in Sources */,
 				84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
