@@ -23,7 +23,6 @@ final class TextView: UIView, UITextViewDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.Color.black
         label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 1
         return label
     }()
     
@@ -54,8 +53,12 @@ final class TextView: UIView, UITextViewDelegate {
         return label
     }()
     
+    func setup(label: String?) {
+        titleLabel.text = label
+    }
+    
     override var intrinsicContentSize: CGSize {
-        let height: CGFloat = titleLabel.intrinsicContentSize.height + 56
+        let height: CGFloat = titleLabel.intrinsicContentSize.height + heightTVConstraint.constant + 8
         if errorLabel.isHidden {
             return CGSize(width: UIView.noIntrinsicMetric, height: height)
         }
@@ -63,66 +66,62 @@ final class TextView: UIView, UITextViewDelegate {
         return CGSize(width: UIView.noIntrinsicMetric, height: height + rect.height + 4)
     }
         
-    private lazy var bottomConstraint = textView.bottomAnchor.constraint(equalTo: bottomAnchor)
+    private lazy var bottomTVConstraint = textView.bottomAnchor.constraint(equalTo: bottomAnchor)
+    private lazy var heightTVConstraint = textView.heightAnchor.constraint(equalToConstant: 56)
+    private lazy var topErrorConstraint = errorLabel.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4)
 
     private func setup() {
         addSubview(titleLabel)
         addSubview(textView)
         addSubview(errorLabel)
-        
+
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            textView.leadingAnchor.constraint(equalTo: leadingAnchor),
+
             textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            textView.leadingAnchor.constraint(equalTo: leadingAnchor),
             textView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bottomConstraint,
-            textView.heightAnchor.constraint(equalToConstant: 56),
-            
+            heightTVConstraint,
+            bottomTVConstraint,
+
             errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            errorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
+            ])
+        }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        let height = min(max(estimatedSize.height, 56), 200)
+        heightTVConstraint.constant = height
+        textView.isScrollEnabled = (height == 200)
+        invalidateIntrinsicContentSize()
     }
     
-    func showError(error: String) {
+    func show(error: String) {
         errorLabel.text = error
-        bottomConstraint.isActive = false
+        bottomTVConstraint.isActive = false
+        topErrorConstraint.isActive = true
         errorLabel.isHidden = false
         invalidateIntrinsicContentSize()
     }
     
     func hideError() {
         errorLabel.isHidden = true
-        bottomConstraint.isActive = true
+        bottomTVConstraint.isActive = true
+        topErrorConstraint.isActive = false
         invalidateIntrinsicContentSize()
-    }
-    
-    func setup(label: String?) {
-        titleLabel.text = label
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        let size = CGSize(width: frame.width, height: .infinity)
-        let estimatedSize = textView.sizeThatFits(size)
-        
-        textView.constraints.forEach { (constraint) in
-            if constraint.firstAttribute == .height {
-                let height = min(max(estimatedSize.height, 56), 200)
-                constraint.constant = height
-                if height == 200 {
-                    textView.isScrollEnabled = true
-                }
-            }
-        }
     }
     
     @objc
     private func didBeginEditing() {
         hideError()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        didBeginEditing()
     }
 }
