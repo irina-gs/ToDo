@@ -17,12 +17,12 @@ final class MainItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
-        updateColor()
+        updateRadioButton()
     }
     
     override var isSelected: Bool {
         didSet {
-            updateColor()
+            updateRadioButton()
         }
     }
     
@@ -56,7 +56,7 @@ final class MainItemCell: UICollectionViewCell {
         updateDeadlineTextColor(deadline: item.deadline)
     }
     
-    private func updateColor() {
+    private func updateRadioButton() {
         iconView.image = isSelected ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
     }
 }

@@ -24,7 +24,7 @@ final class EmptyViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emptyLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        emptyLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         updateState()
     }
     
@@ -42,24 +42,23 @@ final class EmptyViewController: ParentViewController {
     private func updateState() {
         switch state {
         case .empty:
+            emptyButton.isHidden = false
             updateButton.isHidden = true
             emptyImageView.image = UIImage.Main.empty
             emptyLabel.text = L10n.Main.emptyLabel
             emptyButton.setTitle(L10n.Main.emptyButton, for: .normal)
         case let .error(error):
+            updateButton.isHidden = false
+            emptyButton.isHidden = true
+            updateButton.setTitle(L10n.Main.errorUpdateButton, for: .normal)
+            updateButton.setMode(mode: .small)
             switch error {
             case .noConnection:
-                emptyButton.isHidden = true
                 emptyImageView.image = UIImage.Main.errorNoConnection
                 emptyLabel.text = L10n.Main.errorNoConnectionLabel
-                updateButton.setTitle(L10n.Main.errorUpdateButton, for: .normal)
-                updateButton.setMode(mode: .small)
             case .somethingWentWrong:
-                emptyButton.isHidden = true
                 emptyImageView.image = UIImage.Main.errorSomethingWentWrong
                 emptyLabel.text = L10n.Main.errorSomethingWentWrongLabel
-                updateButton.setTitle(L10n.Main.errorUpdateButton, for: .normal)
-                updateButton.setMode(mode: .small)
             }
         }
     }
@@ -69,6 +68,6 @@ final class EmptyViewController: ParentViewController {
     }
     
     @IBAction private func didTapUpdateButton() {
-        action?()
+        state = .empty
     }
 }
