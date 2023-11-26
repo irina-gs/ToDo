@@ -1,0 +1,12 @@
+//
+//  Base.xcconfig
+//  todo
+//
+//  Created by admin on 23.11.2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+HTTP = htttp:/
+API_BASE_URL = $(HTTP)/45.144.64.179
