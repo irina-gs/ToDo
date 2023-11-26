@@ -9,13 +9,6 @@ enum L10n {
         static let signUpButton = NSLocalizedString("auth.sign-up-button", comment: "")
     }
     
-    enum Main {
-        static let title = NSLocalizedString("main.title", comment: "")
-        static let profileButton = NSLocalizedString("main.profile-button", comment: "")
-        static let emptyLabel = NSLocalizedString("main.empty-label", comment: "")
-        static let emptyButton = NSLocalizedString("main.empty-button", comment: "")
-    }
-    
     enum SignUp {
         static let title = NSLocalizedString("sign-up.title", comment: "")
         static let usernameTextField = NSLocalizedString("sign-up.username-text-field", comment: "")
@@ -30,4 +23,21 @@ enum L10n {
         static let username = NSLocalizedString("error-validation.username", comment: "")
         static let password = NSLocalizedString("error-validation.password", comment: "")
     }  
+    
+    enum Main {
+        static let title = NSLocalizedString("main.title", comment: "")
+        static let profileButton = NSLocalizedString("main.profile-button", comment: "")
+        static let emptyLabel = NSLocalizedString("main.empty-label", comment: "")
+        static let emptyButton = NSLocalizedString("main.empty-button", comment: "")
+        static let dateFormat = NSLocalizedString("main.date-format", comment: "")
+        static let errorNoConnectionLabel = NSLocalizedString("main.error-no-connection-label", comment: "")
+        static let errorSomethingWentWrongLabel = NSLocalizedString("main.error-something-went-wrong-label", comment: "")
+        static let errorUpdateButton = NSLocalizedString("main.error-update-button", comment: "")
+    }
+    
+    enum NewItem {
+        static let title = NSLocalizedString("new-item.title", comment: "")
+        static let deadlineLabel = NSLocalizedString("new-item.deadline-label", comment: "")
+        static let createButton = NSLocalizedString("new-item.create-button", comment: "")
+    }
 }

@@ -10,25 +10,48 @@ import UIKit
 final class MainItemCell: UICollectionViewCell {
     static let reuseID = String(describing: MainItemCell.self)
     
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var iconView: UIImageView!
+    @IBOutlet private var deadlineLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        updateColor()
+        setup()
+        updateRadioButton()
     }
     
     override var isSelected: Bool {
         didSet {
-            updateColor()
+            updateRadioButton()
         }
     }
     
-    func setup(item: MainDataItem) {
-        titleLabel.text = item.title
+    override var isHighlighted: Bool {
+        didSet {
+            alpha = isHighlighted ? 0.5 : 1
+        }
     }
     
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var iconView: UIImageView!
+    private func setup() {
+        backgroundColor = UIColor.Color.BackgroundAndSurfaces.mainItemCell
+        layer.cornerRadius = 16
+        titleLabel.textColor = UIColor.Color.black
+        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        deadlineLabel.textColor = UIColor.Color.black
+        deadlineLabel.font = UIFont.systemFont(ofSize: 14)
+    }
     
-    private func updateColor() {
-        iconView.backgroundColor = isSelected ? UIColor.Color.primary : UIColor.Color.BackgroundAndSurfaces.surfaceSecondary
+    private func updateDeadlineTextColor(deadline: Date) {
+        deadlineLabel.textColor = deadline > Date() ? UIColor.Color.black : UIColor.Color.exit
+    }
+        
+    func setup(item: MainDataItem) {
+        titleLabel.text = item.title
+        deadlineLabel.text = DateFormatter.default.string(from: item.deadline)
+        updateDeadlineTextColor(deadline: item.deadline)
+    }
+    
+    private func updateRadioButton() {
+        iconView.image = isSelected ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
     }
 }

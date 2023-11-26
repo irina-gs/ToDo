@@ -22,14 +22,17 @@ final class NewItemViewController: ParentViewController {
     @IBOutlet private var descriptionTextView: UIView!
     @IBOutlet private var deadlineLabel: UILabel!
     @IBOutlet private var deadlineDatePicker: UIDatePicker!
-    @IBOutlet private var createButton: UIButton!
+    @IBOutlet private var createButton: PrimaryButton!
     
     weak var delegate: NewItemViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Новая запись"
+        navigationItem.title = L10n.NewItem.title
+        
+        deadlineLabel.text = L10n.NewItem.deadlineLabel
+        createButton.setTitle(L10n.NewItem.createButton, for: .normal)
     }
     
     @IBAction private func didTab() {
