@@ -17,6 +17,7 @@
 		847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66422AF3F27E002E0C53 /* ParentViewController.swift */; };
 		847F66462AF3F366002E0C53 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66452AF3F366002E0C53 /* TextField.swift */; };
 		847F664B2AF3FE82002E0C53 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F664A2AF3FE82002E0C53 /* TextInput.swift */; };
+		849EA6452B13E759003E0168 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EA6442B13E759003E0168 /* DateFormatter.swift */; };
 		84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */; };
 		84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF237F2AFD2BB90085B7D0 /* MainButton.swift */; };
 		84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */; };
@@ -66,6 +67,7 @@
 		847F66422AF3F27E002E0C53 /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		847F66452AF3F366002E0C53 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		847F664A2AF3FE82002E0C53 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
+		849EA6442B13E759003E0168 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		84BF237F2AFD2BB90085B7D0 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */,
+				849EA6442B13E759003E0168 /* DateFormatter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849EA6452B13E759003E0168 /* DateFormatter.swift in Sources */,
 				84BF23872AFD357C0085B7D0 /* ValidationManager.swift in Sources */,
 				84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */,
 				8413485F2AFF6FAB00809876 /* TextButton.swift in Sources */,

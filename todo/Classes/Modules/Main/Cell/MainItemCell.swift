@@ -47,12 +47,7 @@ final class MainItemCell: UICollectionViewCell {
         
     func setup(item: MainDataItem) {
         titleLabel.text = item.title
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = L10n.Main.dateFormat
-        deadlineLabel.text = dateFormatter.string(from: item.deadline)
-        
+        deadlineLabel.text = DateFormatter.default.string(from: item.deadline)
         updateDeadlineTextColor(deadline: item.deadline)
     }
     
