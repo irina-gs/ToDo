@@ -21,6 +21,7 @@ final class NewItemViewController: ParentViewController {
     @IBOutlet private var titleTextView: TextView!
     @IBOutlet private var descriptionTextView: TextView!
     @IBOutlet private var deadlineLabel: UILabel!
+    @IBOutlet private var datePickerView: UIView!
     @IBOutlet private var deadlineDatePicker: UIDatePicker!
     @IBOutlet private var createButton: PrimaryButton!
     
@@ -55,8 +56,10 @@ final class NewItemViewController: ParentViewController {
         deadlineDatePicker.calendar.firstWeekday = 1
         deadlineDatePicker.locale = NSLocale(localeIdentifier: "en_US") as Locale
         
-        deadlineDatePicker.layer.cornerRadius = 13
-        deadlineDatePicker.clipsToBounds = true
+        datePickerView.layer.cornerRadius = 13
+        datePickerView.layer.shadowColor = UIColor.Color.black.cgColor
+        datePickerView.layer.shadowOpacity = 0.1
+        datePickerView.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
     @IBAction private func didTab() {

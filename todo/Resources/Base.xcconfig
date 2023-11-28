@@ -8,5 +8,5 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-HTTP = htttp:/
+HTTP = http:/
 API_BASE_URL = $(HTTP)/45.144.64.179
