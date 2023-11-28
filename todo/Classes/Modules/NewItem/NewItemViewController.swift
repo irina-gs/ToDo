@@ -24,7 +24,6 @@ final class NewItemViewController: ParentViewController {
     @IBOutlet private var deadlineDatePicker: UIDatePicker!
     @IBOutlet private var createButton: PrimaryButton!
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     weak var delegate: NewItemViewControllerDelegate?

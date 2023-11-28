@@ -85,7 +85,6 @@
                         <outlet property="deadlineDatePicker" destination="6NS-L8-QeW" id="AdH-Kj-gIE"/>
                         <outlet property="deadlineLabel" destination="cbc-8O-tSB" id="qiV-1O-hce"/>
                         <outlet property="descriptionTextView" destination="IfD-ak-DN0" id="L8w-yp-hnC"/>
-                        <outlet property="scrollView" destination="nci-Z1-vnE" id="NqC-oE-skr"/>
                         <outlet property="titleTextView" destination="QkI-al-aNQ" id="NzW-lw-o16"/>
                     </connections>
                 </viewController>
