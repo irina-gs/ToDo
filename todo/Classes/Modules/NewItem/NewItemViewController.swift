@@ -18,11 +18,14 @@ protocol NewItemViewControllerDelegate: AnyObject {
 }
 
 final class NewItemViewController: ParentViewController {
-    @IBOutlet private var titleTextView: UIView!
-    @IBOutlet private var descriptionTextView: UIView!
+    @IBOutlet private var titleTextView: TextView!
+    @IBOutlet private var descriptionTextView: TextView!
     @IBOutlet private var deadlineLabel: UILabel!
     @IBOutlet private var deadlineDatePicker: UIDatePicker!
     @IBOutlet private var createButton: PrimaryButton!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     weak var delegate: NewItemViewControllerDelegate?
     
@@ -31,12 +34,71 @@ final class NewItemViewController: ParentViewController {
         
         navigationItem.title = L10n.NewItem.title
         
+        titleTextView.setup(label: L10n.NewItem.titleTextViewLabel)
+        descriptionTextView.setup(label: L10n.NewItem.descriptionTextViewLabel)
+        
         deadlineLabel.text = L10n.NewItem.deadlineLabel
+        setupDatePicker()
+        
         createButton.setTitle(L10n.NewItem.createButton, for: .normal)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+                
+        addTapToHideKeyboardGesture()
+    }
+    
+    private func setupDatePicker() {
+        deadlineDatePicker.tintColor = UIColor.Color.Default.SystemRed.light
+        deadlineDatePicker.calendar.firstWeekday = 1
+        deadlineDatePicker.locale = NSLocale(localeIdentifier: "en_US") as Locale
+        
+        deadlineDatePicker.layer.cornerRadius = 13
+        deadlineDatePicker.clipsToBounds = true
     }
     
     @IBAction private func didTab() {
-        delegate?.didSelect(self, data: NewItemData(title: "titleTextView.text", description: "descriptionTextView.text", deadline: deadlineDatePicker.date))
-        navigationController?.popViewController(animated: true)
+        if titleTVValidation() {
+            delegate?.didSelect(self, data: NewItemData(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", deadline: deadlineDatePicker.date))
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func titleTVValidation() -> Bool {
+        if !ValidationManager.isValid(commonText: titleTextView.text, symbolsCount: 0) {
+            return true
+        } else {
+            titleTextView.show(error: L10n.ErrorValidation.emptyField)
+            return false
+        }
+    }
+    
+    @objc
+    private func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            bottomConstraint.constant = keyboardHeight - self.view.safeAreaInsets.bottom + 16
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+            
+        }
+    }
+
+    @objc
+    private func keyboardWillHide(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            _ = keyboardSize.height
+            bottomConstraint.constant = 16
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }

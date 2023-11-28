@@ -23,7 +23,7 @@ enum NetworkError: LocalizedError {
     }
 }
 
-struct SignInRequuestBody: Encodable {
+struct SignInRequestBody: Encodable {
     let email: String
     let password: String
 }
@@ -46,7 +46,7 @@ final class NetworkManager {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = try JSONEncoder().encode(SignInRequuestBody(email: email, password: password))
+        request.httpBody = try JSONEncoder().encode(SignInRequestBody(email: email, password: password))
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")

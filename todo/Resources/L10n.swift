@@ -37,6 +37,8 @@ enum L10n {
     
     enum NewItem {
         static let title = NSLocalizedString("new-item.title", comment: "")
+        static let titleTextViewLabel = NSLocalizedString("new-item.title-text-view-label", comment: "")
+        static let descriptionTextViewLabel = NSLocalizedString("new-item.description-text-view-label", comment: "")
         static let deadlineLabel = NSLocalizedString("new-item.deadline-label", comment: "")
         static let createButton = NSLocalizedString("new-item.create-button", comment: "")
     }
