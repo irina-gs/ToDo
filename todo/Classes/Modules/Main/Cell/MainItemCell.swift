@@ -49,6 +49,7 @@ final class MainItemCell: UICollectionViewCell {
         titleLabel.text = item.title
         deadlineLabel.text = DateFormatter.default.string(from: item.deadline)
         updateDeadlineTextColor(deadline: item.deadline)
+        iconView.image = item.isCompleted ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
     }
     
     private func updateRadioButton() {

@@ -37,9 +37,21 @@ final class SignUpViewController: ParentViewController {
         let passwordTFIsValid = passwordTFValidation()
         
         if usernameTFIsValid && emailTFIsValid && passwordTFIsValid {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
-            view.window?.rootViewController = vc
+            Task {
+                do {
+                    let response = try await NetworkManager.shared.signUp(name: usernameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+                    log.debug("\(response.accessToken)")
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
+                    view.window?.rootViewController = vc
+                    
+                } catch {
+                    let alertVC = UIAlertController(title: "Ошибка!", message: error.localizedDescription, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "Закрыть", style: .cancel))
+                    present(alertVC, animated: true)
+                }
+            }
         }
     }
     

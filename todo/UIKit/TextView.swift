@@ -116,8 +116,8 @@ final class TextView: UIView, UITextViewDelegate {
     
     func hideError() {
         errorLabel.isHidden = true
-        bottomTVConstraint.isActive = true
         topErrorConstraint.isActive = false
+        bottomTVConstraint.isActive = true
         invalidateIntrinsicContentSize()
     }
     

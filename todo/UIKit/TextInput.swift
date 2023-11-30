@@ -60,8 +60,8 @@ final class TextInput: UIView {
     
     func hideError() {
         errorLabel.isHidden = true
-        bottomTFConstraint.isActive = true
         topErrorConstraint.isActive = false
+        bottomTFConstraint.isActive = true
         invalidateIntrinsicContentSize()
     }
     

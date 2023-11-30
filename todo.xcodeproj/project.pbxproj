@@ -23,6 +23,7 @@
 		848D86EC2B0FA6BE008FE7AB /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86EB2B0FA6BE008FE7AB /* EmptyResponse.swift */; };
 		848D86EE2B0FA6E2008FE7AB /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */; };
 		848D86F02B0FA710008FE7AB /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86EF2B0FA710008FE7AB /* DataResponse.swift */; };
+		8492060F2B17FF87005AB042 /* TodoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8492060E2B17FF87005AB042 /* TodoResponse.swift */; };
 		849D675B2B1689B00080975D /* NewItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849D675A2B1689B00080975D /* NewItem.storyboard */; };
 		849EA6452B13E759003E0168 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EA6442B13E759003E0168 /* DateFormatter.swift */; };
 		84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */; };
@@ -81,6 +82,7 @@
 		848D86EB2B0FA6BE008FE7AB /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		848D86EF2B0FA710008FE7AB /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
+		8492060E2B17FF87005AB042 /* TodoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoResponse.swift; sourceTree = "<group>"; };
 		849D675A2B1689B00080975D /* NewItem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewItem.storyboard; sourceTree = "<group>"; };
 		849EA6442B13E759003E0168 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				848D86EB2B0FA6BE008FE7AB /* EmptyResponse.swift */,
 				848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */,
 				848D86EF2B0FA710008FE7AB /* DataResponse.swift */,
+				8492060E2B17FF87005AB042 /* TodoResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 			files = (
 				849EA6452B13E759003E0168 /* DateFormatter.swift in Sources */,
 				84BF23872AFD357C0085B7D0 /* ValidationManager.swift in Sources */,
+				8492060F2B17FF87005AB042 /* TodoResponse.swift in Sources */,
 				84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */,
 				8413485F2AFF6FAB00809876 /* TextButton.swift in Sources */,
 				848D86E82B0FA27A008FE7AB /* NetworkManager.swift in Sources */,
@@ -697,7 +701,7 @@
 				INFOPLIST_FILE = todo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Auth;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -724,7 +728,7 @@
 				INFOPLIST_FILE = todo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Auth;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

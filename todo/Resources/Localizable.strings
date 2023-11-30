@@ -29,3 +29,7 @@
 "new-item.description-text-view-label" = "Описание";
 "new-item.deadline-label" = "Дедлайн";
 "new-item.create-button" = "Создать";
+
+"network-error.wrong-status-code" = "Упс! Что-то пошло не так.1";
+"network-error.wrong-url" = "Упс! Что-то пошло не так.2";
+"network-error.wrong-response" = "Упс! Что-то пошло не так.3";

@@ -42,9 +42,6 @@ final class NewItemViewController: ParentViewController {
         
         createButton.setTitle(L10n.NewItem.createButton, for: .normal)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
                 
@@ -56,16 +53,32 @@ final class NewItemViewController: ParentViewController {
         deadlineDatePicker.calendar.firstWeekday = 1
         deadlineDatePicker.locale = NSLocale(localeIdentifier: "en_US") as Locale
         
-        datePickerView.layer.cornerRadius = 13
-        datePickerView.layer.shadowColor = UIColor.Color.black.cgColor
-        datePickerView.layer.shadowOpacity = 0.1
-        datePickerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        let cornerRadius: CGFloat = 13
+        datePickerView.layer.cornerRadius = cornerRadius
+        
+        let shadowPath = UIBezierPath(roundedRect: datePickerView.bounds, cornerRadius: cornerRadius)
+        datePickerView.layer.shadowPath = shadowPath.cgPath
+        datePickerView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+        datePickerView.layer.shadowOpacity = 1
+        datePickerView.layer.shadowRadius = 60
+        datePickerView.layer.shadowOffset = CGSize(width: 0, height: 10)
     }
     
-    @IBAction private func didTab() {
+    @IBAction private func didTabCreateButton() {
         if titleTVValidation() {
-            delegate?.didSelect(self, data: NewItemData(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", deadline: deadlineDatePicker.date))
-            navigationController?.popViewController(animated: true)
+            Task {
+                do {
+                    let response = try await NetworkManager.shared.newTodo(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", date: deadlineDatePicker.date)
+                    
+                    delegate?.didSelect(self, data: NewItemData(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", deadline: deadlineDatePicker.date))
+                    navigationController?.popViewController(animated: true)
+                    
+                } catch {
+                    let alertVC = UIAlertController(title: "Ошибка!", message: error.localizedDescription, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: "Закрыть", style: .cancel))
+                    present(alertVC, animated: true)
+                }
+            }
         }
     }
     
@@ -85,18 +98,14 @@ final class NewItemViewController: ParentViewController {
             bottomConstraint.constant = keyboardHeight - self.view.safeAreaInsets.bottom + 16
             self.view.setNeedsLayout()
             self.view.layoutIfNeeded()
-            
         }
     }
 
     @objc
     private func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            _ = keyboardSize.height
-            bottomConstraint.constant = 16
-            self.view.setNeedsLayout()
-            self.view.layoutIfNeeded()
-        }
+        bottomConstraint.constant = 16
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
     }
 
     @objc

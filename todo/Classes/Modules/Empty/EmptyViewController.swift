@@ -8,13 +8,13 @@
 import UIKit
 
 final class EmptyViewController: ParentViewController {
-    enum ConnectionError: Error {
+    enum CustomError: Error {
         case noConnection
         case somethingWentWrong
     }
     
     enum State {
-        case empty, error(ConnectionError)
+        case empty, error(CustomError)
     }
     
     @IBOutlet private var emptyImageView: UIImageView!
@@ -68,6 +68,6 @@ final class EmptyViewController: ParentViewController {
     }
     
     @IBAction private func didTapUpdateButton() {
-        state = .empty
+        action?()
     }
 }

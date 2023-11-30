@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-fQ-Nrj">
-                                <rect key="frame" x="16" y="119" width="361" height="683"/>
+                                <rect key="frame" x="16" y="119" width="361" height="632.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9TB-EF-AKQ">
                                     <size key="itemSize" width="128" height="128"/>
@@ -37,6 +37,14 @@
                                     <segue destination="MUf-uH-MYh" kind="embed" id="HMi-dV-QcS"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGB-B6-Y3P" customClass="PrimaryButton" customModule="todo" customModuleProvider="target">
+                                <rect key="frame" x="16" y="767.66666666666663" width="361" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="didTapNewEntryButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aYf-b4-QIZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -44,17 +52,21 @@
                             <constraint firstItem="dCV-fQ-Nrj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="4gi-Zk-q2g"/>
                             <constraint firstItem="kVX-P6-81K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AaH-Tl-G3E"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dCV-fQ-Nrj" secondAttribute="trailing" constant="16" id="Bqw-le-bkA"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="dCV-fQ-Nrj" secondAttribute="bottom" constant="16" id="Lgw-X1-tNN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kVX-P6-81K" secondAttribute="trailing" id="RpC-SA-eYH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qGB-B6-Y3P" secondAttribute="trailing" constant="16" id="TpY-QM-lyN"/>
                             <constraint firstItem="dCV-fQ-Nrj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="gDk-fV-k7v"/>
                             <constraint firstItem="kVX-P6-81K" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="gNB-IG-czR"/>
+                            <constraint firstItem="qGB-B6-Y3P" firstAttribute="top" secondItem="dCV-fQ-Nrj" secondAttribute="bottom" constant="16" id="ji6-e8-YQ3"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="qGB-B6-Y3P" secondAttribute="bottom" constant="16" id="tJb-EN-oa9"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="kVX-P6-81K" secondAttribute="bottom" id="tn9-cM-R5G"/>
+                            <constraint firstItem="qGB-B6-Y3P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="xWZ-ug-LhD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6DO-Xd-h00"/>
                     <connections>
                         <outlet property="collectionView" destination="dCV-fQ-Nrj" id="WPe-2o-NdD"/>
                         <outlet property="emptyView" destination="kVX-P6-81K" id="hqs-XS-qe5"/>
+                        <outlet property="newEntryButton" destination="qGB-B6-Y3P" id="my8-Ep-c0p"/>
                         <segue destination="F7c-eZ-sNV" kind="show" identifier="new-item" id="d3d-2x-mdS"/>
                     </connections>
                 </viewController>
