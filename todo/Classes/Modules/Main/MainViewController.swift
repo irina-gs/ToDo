@@ -10,18 +10,20 @@ import UIKit
 struct MainDataItem {
     let title: String
     let deadline: Date
+    let isCompleted: Bool = true
 }
 
 final class MainViewController: ParentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        (view as? StatefullView)?.delegate = self
+        
         navigationItem.title = L10n.Main.title
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Main.profileButton, style: .plain, target: self, action: nil)
         
         collectionView.register(UINib(nibName: "MainItemCell", bundle: nil), forCellWithReuseIdentifier: MainItemCell.reuseID)
-        collectionView.allowsMultipleSelection = true
         
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { _, _ in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(93))
@@ -38,25 +40,26 @@ final class MainViewController: ParentViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         switch segue.destination {
-        case let destination as EmptyViewController:
-            destination.state = .empty
-            destination.action = { [weak self] in
-                self?.performSegue(withIdentifier: "new-item", sender: nil)
-            }
         case let destination as NewItemViewController:
             destination.delegate = self
+            destination.selectedItem = selectedItem
+            selectedItem = nil
         default:
             break
         }
     }
     
-    private var data: [MainDataItem] = []
+    private var data: [MainDataItem] = [.init(title: "Заголовок", deadline: Date())]
+    private var selectedItem: MainDataItem?
     
     @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet private var emptyView: UIView!
     
     private func reloadData() {
-        emptyView.isHidden = !data.isEmpty
+        (view as? StatefullView)?.state = .loading
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            (self?.view as? StatefullView)?.state = .empty()
+        }
+
         if !data.isEmpty {
             collectionView.reloadData()
         }
@@ -77,11 +80,31 @@ extension MainViewController: UICollectionViewDataSource {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate {}
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        selectedItem = data[indexPath.row]
+        performSegue(withIdentifier: "new-item", sender: nil)
+    }
+}
 
 extension MainViewController: NewItemViewControllerDelegate {
     func didSelect(_ vc: NewItemViewController, data: NewItemData) {
          self.data.append(.init(title: data.title, deadline: data.deadline))
         reloadData()
+    }
+}
+
+extension MainViewController: StatefullViewDelegate {
+    func statefullViewReloadData(_: StatefullView) {}
+
+    func statefullViewDidTapEmptyButton(_: StatefullView) {}
+
+    func statefullView(_: StatefullView, addChild controller: UIViewController) {
+        addChild(controller)
+    }
+
+    func statefullView(_: StatefullView, didMoveToParent controller: UIViewController) {
+        controller.didMove(toParent: self)
     }
 }

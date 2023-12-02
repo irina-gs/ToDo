@@ -18,13 +18,15 @@ protocol NewItemViewControllerDelegate: AnyObject {
 }
 
 final class NewItemViewController: ParentViewController {
-    @IBOutlet private var titleTextView: UIView!
-    @IBOutlet private var descriptionTextView: UIView!
+    @IBOutlet private var titleTextView: TextView!
+    @IBOutlet private var descriptionTextView: TextView!
     @IBOutlet private var deadlineLabel: UILabel!
     @IBOutlet private var deadlineDatePicker: UIDatePicker!
     @IBOutlet private var createButton: PrimaryButton!
     
     weak var delegate: NewItemViewControllerDelegate?
+    
+    var selectedItem: MainDataItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,10 @@ final class NewItemViewController: ParentViewController {
         
         deadlineLabel.text = L10n.NewItem.deadlineLabel
         createButton.setTitle(L10n.NewItem.createButton, for: .normal)
+        
+        if let selectedItem {
+            titleTextView.setupTextView(text: selectedItem.title)
+        }
     }
     
     @IBAction private func didTab() {

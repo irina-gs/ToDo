@@ -17,13 +17,6 @@ final class MainItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
-        updateRadioButton()
-    }
-    
-    override var isSelected: Bool {
-        didSet {
-            updateRadioButton()
-        }
     }
     
     override var isHighlighted: Bool {
@@ -49,9 +42,6 @@ final class MainItemCell: UICollectionViewCell {
         titleLabel.text = item.title
         deadlineLabel.text = DateFormatter.default.string(from: item.deadline)
         updateDeadlineTextColor(deadline: item.deadline)
-    }
-    
-    private func updateRadioButton() {
-        iconView.image = isSelected ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
+        iconView.image = item.isCompleted ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
     }
 }

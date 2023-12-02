@@ -12,7 +12,7 @@
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="MainVC" id="Y6W-OH-hqX" customClass="MainViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc" customClass="StatefullView" customModule="todo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -31,44 +31,25 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="h43-6h-emt"/>
                                 </connections>
                             </collectionView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVX-P6-81K">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
-                                <connections>
-                                    <segue destination="MUf-uH-MYh" kind="embed" id="HMi-dV-QcS"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dCV-fQ-Nrj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="4gi-Zk-q2g"/>
-                            <constraint firstItem="kVX-P6-81K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AaH-Tl-G3E"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dCV-fQ-Nrj" secondAttribute="trailing" constant="16" id="Bqw-le-bkA"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="dCV-fQ-Nrj" secondAttribute="bottom" constant="16" id="Lgw-X1-tNN"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kVX-P6-81K" secondAttribute="trailing" id="RpC-SA-eYH"/>
                             <constraint firstItem="dCV-fQ-Nrj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="gDk-fV-k7v"/>
-                            <constraint firstItem="kVX-P6-81K" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="gNB-IG-czR"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="kVX-P6-81K" secondAttribute="bottom" id="tn9-cM-R5G"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6DO-Xd-h00"/>
                     <connections>
                         <outlet property="collectionView" destination="dCV-fQ-Nrj" id="WPe-2o-NdD"/>
-                        <outlet property="emptyView" destination="kVX-P6-81K" id="hqs-XS-qe5"/>
                         <segue destination="F7c-eZ-sNV" kind="show" identifier="new-item" id="d3d-2x-mdS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="912.2137404580152" y="3.5211267605633805"/>
-        </scene>
-        <!--Empty-->
-        <scene sceneID="LAt-he-TzX">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Empty" storyboardName="Empty" id="MUf-uH-MYh" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DeY-v9-E3D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1589" y="4"/>
         </scene>
         <!--NewItem-->
         <scene sceneID="A77-P0-vtu">

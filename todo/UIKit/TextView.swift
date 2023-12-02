@@ -53,8 +53,12 @@ final class TextView: UIView, UITextViewDelegate {
         return label
     }()
     
-    func setup(label: String?) {
+    func setupLabel(label: String?) {
         titleLabel.text = label
+    }
+    
+    func setupTextView(text: String?) {
+        textView.text = text
     }
     
     override var intrinsicContentSize: CGSize {
@@ -103,16 +107,16 @@ final class TextView: UIView, UITextViewDelegate {
     
     func show(error: String) {
         errorLabel.text = error
+        errorLabel.isHidden = false
         bottomTVConstraint.isActive = false
         topErrorConstraint.isActive = true
-        errorLabel.isHidden = false
         invalidateIntrinsicContentSize()
     }
     
     func hideError() {
         errorLabel.isHidden = true
-        bottomTVConstraint.isActive = true
         topErrorConstraint.isActive = false
+        bottomTVConstraint.isActive = true
         invalidateIntrinsicContentSize()
     }
     

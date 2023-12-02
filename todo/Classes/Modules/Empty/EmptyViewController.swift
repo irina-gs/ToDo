@@ -8,13 +8,8 @@
 import UIKit
 
 final class EmptyViewController: ParentViewController {
-    enum ConnectionError: Error {
-        case noConnection
-        case somethingWentWrong
-    }
-    
     enum State {
-        case empty, error(ConnectionError)
+        case empty, error(Error)
     }
     
     @IBOutlet private var emptyImageView: UIImageView!
@@ -52,14 +47,14 @@ final class EmptyViewController: ParentViewController {
             emptyButton.isHidden = true
             updateButton.setTitle(L10n.Main.errorUpdateButton, for: .normal)
             updateButton.setMode(mode: .small)
-            switch error {
-            case .noConnection:
-                emptyImageView.image = UIImage.Main.errorNoConnection
-                emptyLabel.text = L10n.Main.errorNoConnectionLabel
-            case .somethingWentWrong:
-                emptyImageView.image = UIImage.Main.errorSomethingWentWrong
-                emptyLabel.text = L10n.Main.errorSomethingWentWrongLabel
-            }
+//            switch error {
+//            case .noConnection:
+//                emptyImageView.image = UIImage.Main.errorNoConnection
+//                emptyLabel.text = L10n.Main.errorNoConnectionLabel
+//            case .somethingWentWrong:
+//                emptyImageView.image = UIImage.Main.errorSomethingWentWrong
+//                emptyLabel.text = L10n.Main.errorSomethingWentWrongLabel
+//            }
         }
     }
     
