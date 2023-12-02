@@ -49,7 +49,7 @@ final class MainViewController: ParentViewController {
         }
     }
     
-    private var data: [MainDataItem] = [.init(title: "Заголовок", deadline: Date())]
+    private var data: [MainDataItem] = []
     private var selectedItem: MainDataItem?
     
     @IBOutlet private var collectionView: UICollectionView!
@@ -98,7 +98,9 @@ extension MainViewController: NewItemViewControllerDelegate {
 extension MainViewController: StatefullViewDelegate {
     func statefullViewReloadData(_: StatefullView) {}
 
-    func statefullViewDidTapEmptyButton(_: StatefullView) {}
+    func statefullViewDidTapEmptyButton(_: StatefullView) {
+        performSegue(withIdentifier: "new-item", sender: nil)
+    }
 
     func statefullView(_: StatefullView, addChild controller: UIViewController) {
         addChild(controller)

@@ -38,7 +38,7 @@ final class SignUpViewController: ParentViewController {
         
         if usernameTFIsValid && emailTFIsValid && passwordTFIsValid {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
+            let vc = storyboard.instantiateInitialViewController()
             view.window?.rootViewController = vc
         }
     }

@@ -63,6 +63,6 @@ final class EmptyViewController: ParentViewController {
     }
     
     @IBAction private func didTapUpdateButton() {
-        state = .empty
+        action?()
     }
 }
