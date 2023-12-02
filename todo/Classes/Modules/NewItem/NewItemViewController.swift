@@ -7,14 +7,8 @@
 
 import UIKit
 
-struct NewItemData {
-    let title: String
-    let description: String
-    let deadline: Date
-}
-
 protocol NewItemViewControllerDelegate: AnyObject {
-    func didSelect(_ vc: NewItemViewController, data: NewItemData)
+    func didSelect(_ vc: NewItemViewController)
 }
 
 final class NewItemViewController: ParentViewController {
@@ -24,9 +18,7 @@ final class NewItemViewController: ParentViewController {
     @IBOutlet private var datePickerView: UIView!
     @IBOutlet private var deadlineDatePicker: UIDatePicker!
     @IBOutlet private var createButton: PrimaryButton!
-    
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+        
     weak var delegate: NewItemViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -41,10 +33,7 @@ final class NewItemViewController: ParentViewController {
         setupDatePicker()
         
         createButton.setTitle(L10n.NewItem.createButton, for: .normal)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-                
+
         addTapToHideKeyboardGesture()
     }
     
@@ -68,15 +57,19 @@ final class NewItemViewController: ParentViewController {
         if titleTVValidation() {
             Task {
                 do {
-                    let response = try await NetworkManager.shared.newTodo(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", date: deadlineDatePicker.date)
+                    _ = try await NetworkManager.shared.newTodo(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", date: deadlineDatePicker.date)
                     
-                    delegate?.didSelect(self, data: NewItemData(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", deadline: deadlineDatePicker.date))
+                    delegate?.didSelect(self)
+                    
                     navigationController?.popViewController(animated: true)
                     
                 } catch {
-                    let alertVC = UIAlertController(title: "Ошибка!", message: error.localizedDescription, preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: "Закрыть", style: .cancel))
-                    present(alertVC, animated: true)
+                    let alertVC = UIAlertController(title: L10n.Alert.title, message: error.localizedDescription, preferredStyle: .alert)
+                    alertVC.addAction(UIAlertAction(title: L10n.Alert.closeButton, style: .cancel))
+                    
+                    DispatchQueue.main.async {
+                        self.present(alertVC, animated: true)
+                    }
                 }
             }
         }
@@ -89,27 +82,5 @@ final class NewItemViewController: ParentViewController {
             titleTextView.show(error: L10n.ErrorValidation.emptyField)
             return false
         }
-    }
-    
-    @objc
-    private func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height
-            bottomConstraint.constant = keyboardHeight - self.view.safeAreaInsets.bottom + 16
-            self.view.setNeedsLayout()
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    @objc
-    private func keyboardWillHide(notification: Notification) {
-        bottomConstraint.constant = 16
-        self.view.setNeedsLayout()
-        self.view.layoutIfNeeded()
-    }
-
-    @objc
-    func dismissKeyboard() {
-        self.view.endEditing(true)
     }
 }

@@ -16,7 +16,6 @@ struct MainDataItem {
 
 final class MainViewController: ParentViewController {
     private var data: [MainDataItem] = []
-    private var error: Error?
     private var emptyVC: EmptyViewController?
     
     @IBOutlet private var collectionView: UICollectionView!
@@ -42,12 +41,9 @@ final class MainViewController: ParentViewController {
             return section
         })
         
+        emptyView.isHidden = true
         newEntryButton.setTitle(L10n.Main.emptyButton, for: .normal)
-        newEntryButton.isHidden = false
 
-        Task {
-            await getData()
-        }
         reloadData()
     }
     
@@ -67,44 +63,44 @@ final class MainViewController: ParentViewController {
         }
     }
     
-    private func getData() async {
+    private func reloadData() {
         Task {
             do {
                 let response = try await NetworkManager.shared.getTodos()
-                data = response.map{
-                    MainDataItem(id: $0.id, title: $0.title, deadline: $0.date, isCompleted: $0.isCompleted)
+                
+                data = []
+                for item in response {
+                    data.append(.init(
+                        id: item.id,
+                        title: item.title,
+                        deadline: item.date,
+                        isCompleted: item.isCompleted
+                    ))
                 }
-                error = nil
-            } catch let fetchError{
-                error = fetchError
-            }
-            DispatchQueue.main.async {
-                self.reloadData()
-            }
-        }
-    }
-    
-    private func reloadData() {
-        if let error {
-            let customError: EmptyViewController.CustomError = error is NetworkError ? .noConnection : .somethingWentWrong
-            
-            newEntryButton.isHidden = true
-            emptyVC?.state = .empty
-            emptyVC?.action = { [weak self] in
-                Task {
-                    await self?.getData()
+                
+                DispatchQueue.main.async {
+                    self.emptyView.isHidden = !self.data.isEmpty
+                    self.newEntryButton.isHidden = self.data.isEmpty
                 }
-            }
-        } else {
-            newEntryButton.isHidden = true
-            emptyVC?.state = .error(.somethingWentWrong)
-            emptyVC?.action = { [weak self] in
-                self?.performSegue(withIdentifier: "new-item", sender: nil)
-            }
-            emptyView.isHidden = !data.isEmpty
-            if !data.isEmpty {
-                newEntryButton.isHidden = false
-                collectionView.reloadData()
+                
+                if !data.isEmpty {
+                    collectionView.reloadData()
+                } else {
+                    emptyVC?.state = .empty
+                    emptyVC?.action = { [weak self] in
+                        self?.performSegue(withIdentifier: "new-item", sender: nil)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.emptyView.isHidden = false
+                    self.newEntryButton.isHidden = true
+                }
+                
+//                emptyVC?.state = .error(error)
+//                emptyVC?.action = { [weak self] in
+//                    self?.reloadData()
+//                }
             }
         }
     }
@@ -116,9 +112,9 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainItemCell.reuseID, for: indexPath) as? MainItemCell {
-            cell.setup(item: data[indexPath.row])
-            return cell
+        if let item = collectionView.dequeueReusableCell(withReuseIdentifier: MainItemCell.reuseID, for: indexPath) as? MainItemCell {
+            item.setup(item: data[indexPath.row])
+            return item
         }
         fatalError("\(#function) error in cell creation")
     }
@@ -126,24 +122,24 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedItemCell = data[indexPath.row]
+        let selectedItem = data[indexPath.row]
         Task {
             do {
-                let response = try await NetworkManager.shared.changeMark(id: selectedItemCell.id)
-                await getData()
+                _ = try await NetworkManager.shared.changeMark(id: selectedItem.id)
+                reloadData()
             } catch {
-                let alertVC = UIAlertController(title: "Ошибка!", message: error.localizedDescription, preferredStyle: .alert)
-                alertVC.addAction(UIAlertAction(title: "Закрыть", style: .cancel))
-                present(alertVC, animated: true)
+                let alertVC = UIAlertController(title: L10n.Alert.title, message: error.localizedDescription, preferredStyle: .alert)
+                alertVC.addAction(UIAlertAction(title: L10n.Alert.closeButton, style: .cancel))
+                DispatchQueue.main.async {
+                    self.present(alertVC, animated: true)
+                }
             }
         }
     }
 }
 
 extension MainViewController: NewItemViewControllerDelegate {
-    func didSelect(_ vc: NewItemViewController, data: NewItemData) {
-        Task {
-            await getData()
-        }
+    func didSelect(_ vc: NewItemViewController) {
+        reloadData()
     }
 }

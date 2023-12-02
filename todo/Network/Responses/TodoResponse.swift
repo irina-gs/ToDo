@@ -16,8 +16,3 @@ struct TodoResponse: Decodable {
     let isCompleted: Bool
     let coordinate: Coordinate
 }
-
-struct Coordinate: Decodable, Encodable {
-    let longitude: String
-    let latitude: String
-}

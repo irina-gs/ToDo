@@ -30,6 +30,9 @@
 "new-item.deadline-label" = "Дедлайн";
 "new-item.create-button" = "Создать";
 
-"network-error.wrong-status-code" = "Упс! Что-то пошло не так.1";
-"network-error.wrong-url" = "Упс! Что-то пошло не так.2";
-"network-error.wrong-response" = "Упс! Что-то пошло не так.3";
+"network-error.wrong-status-code" = "Упс! Неверный статус код.";
+"network-error.wrong-url" = "Упс! Неверный url.";
+"network-error.wrong-response" = "Упс! Неверный ответ сервера.";
+
+"alert.title" = "Ошибка!";
+"alert.close-button" = "Закрыть";

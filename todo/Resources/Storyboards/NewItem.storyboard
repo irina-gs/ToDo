@@ -79,20 +79,20 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <keyboardLayoutGuide key="keyboard" id="OHi-lV-ArM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="nci-Z1-vnE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="4YJ-zK-5t4"/>
                             <constraint firstItem="nci-Z1-vnE" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="GqS-21-A5K"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="OZJ-ca-EEH" secondAttribute="trailing" constant="16" id="OcI-Tg-FjQ"/>
                             <constraint firstItem="nci-Z1-vnE" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="QS7-WO-sTU"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="OZJ-ca-EEH" secondAttribute="bottom" constant="16" id="mV6-48-2VM"/>
+                            <constraint firstItem="OHi-lV-ArM" firstAttribute="top" secondItem="OZJ-ca-EEH" secondAttribute="bottom" constant="16" id="mV6-48-2VM"/>
                             <constraint firstItem="OZJ-ca-EEH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="qwG-lC-ff9"/>
                             <constraint firstItem="OZJ-ca-EEH" firstAttribute="top" secondItem="nci-Z1-vnE" secondAttribute="bottom" constant="16" id="rPn-iC-VMx"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nci-Z1-vnE" secondAttribute="trailing" id="wAi-KO-kMf"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="mV6-48-2VM" id="xDB-Wr-fGb"/>
                         <outlet property="createButton" destination="OZJ-ca-EEH" id="6NZ-Nq-Pea"/>
                         <outlet property="datePickerView" destination="SFL-Lk-tCO" id="AOv-Li-VUY"/>
                         <outlet property="deadlineDatePicker" destination="6NS-L8-QeW" id="AdH-Kj-gIE"/>

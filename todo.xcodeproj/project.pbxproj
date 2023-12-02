@@ -24,6 +24,11 @@
 		848D86EE2B0FA6E2008FE7AB /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */; };
 		848D86F02B0FA710008FE7AB /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86EF2B0FA710008FE7AB /* DataResponse.swift */; };
 		8492060F2B17FF87005AB042 /* TodoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8492060E2B17FF87005AB042 /* TodoResponse.swift */; };
+		84927E912B1B5F4D004AAD0B /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E902B1B5F4D004AAD0B /* SignInRequest.swift */; };
+		84927E932B1B5F86004AAD0B /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E922B1B5F86004AAD0B /* SignUpRequest.swift */; };
+		84927E952B1B5FA6004AAD0B /* NewTodoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E942B1B5FA6004AAD0B /* NewTodoRequest.swift */; };
+		84927E972B1B6872004AAD0B /* EmptyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E962B1B6872004AAD0B /* EmptyRequest.swift */; };
+		84927E9B2B1B720D004AAD0B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E9A2B1B720D004AAD0B /* UserManager.swift */; };
 		849D675B2B1689B00080975D /* NewItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849D675A2B1689B00080975D /* NewItem.storyboard */; };
 		849EA6452B13E759003E0168 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EA6442B13E759003E0168 /* DateFormatter.swift */; };
 		84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */; };
@@ -83,6 +88,11 @@
 		848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		848D86EF2B0FA710008FE7AB /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		8492060E2B17FF87005AB042 /* TodoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoResponse.swift; sourceTree = "<group>"; };
+		84927E902B1B5F4D004AAD0B /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		84927E922B1B5F86004AAD0B /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		84927E942B1B5FA6004AAD0B /* NewTodoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoRequest.swift; sourceTree = "<group>"; };
+		84927E962B1B6872004AAD0B /* EmptyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequest.swift; sourceTree = "<group>"; };
+		84927E9A2B1B720D004AAD0B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		849D675A2B1689B00080975D /* NewItem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewItem.storyboard; sourceTree = "<group>"; };
 		849EA6442B13E759003E0168 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
@@ -234,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				848D86E42B0FA21D008FE7AB /* OSLog.swift */,
+				84927E9A2B1B720D004AAD0B /* UserManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -241,6 +252,7 @@
 		848D86E62B0FA262008FE7AB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				84927E8F2B1B5F01004AAD0B /* Requests */,
 				848D86EA2B0FA682008FE7AB /* Responses */,
 				848D86E72B0FA27A008FE7AB /* NetworkManager.swift */,
 			);
@@ -256,6 +268,17 @@
 				8492060E2B17FF87005AB042 /* TodoResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		84927E8F2B1B5F01004AAD0B /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				84927E902B1B5F4D004AAD0B /* SignInRequest.swift */,
+				84927E922B1B5F86004AAD0B /* SignUpRequest.swift */,
+				84927E942B1B5FA6004AAD0B /* NewTodoRequest.swift */,
+				84927E962B1B6872004AAD0B /* EmptyRequest.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		84BF23852AFD355A0085B7D0 /* Business */ = {
@@ -498,22 +521,27 @@
 				847F663A2AF1673F002E0C53 /* L10n.swift in Sources */,
 				84F9DCAA2B038F5D00F39E46 /* TextView.swift in Sources */,
 				84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */,
+				84927E972B1B6872004AAD0B /* EmptyRequest.swift in Sources */,
+				84927E932B1B5F86004AAD0B /* SignUpRequest.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
 				848D86E22B0FA1E8008FE7AB /* PlistFiles.swift in Sources */,
 				847F66462AF3F366002E0C53 /* TextField.swift in Sources */,
 				84F9DCB42B03DDCE00F39E46 /* MainItemCell.swift in Sources */,
+				84927E952B1B5FA6004AAD0B /* NewTodoRequest.swift in Sources */,
 				84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */,
 				843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */,
 				84D5C99B2AEAB8E30051BF6B /* AppDelegate.swift in Sources */,
 				848D86E52B0FA21D008FE7AB /* OSLog.swift in Sources */,
 				848D86EC2B0FA6BE008FE7AB /* EmptyResponse.swift in Sources */,
 				84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */,
+				84927E9B2B1B720D004AAD0B /* UserManager.swift in Sources */,
 				847F663E2AF1692C002E0C53 /* MainViewController.swift in Sources */,
 				84F9DCAF2B03DB6F00F39E46 /* EmptyViewController.swift in Sources */,
 				84F9DCB72B06686100F39E46 /* NewItemViewController.swift in Sources */,
 				848D86EE2B0FA6E2008FE7AB /* AuthResponse.swift in Sources */,
 				848D86F02B0FA710008FE7AB /* DataResponse.swift in Sources */,
+				84927E912B1B5F4D004AAD0B /* SignInRequest.swift in Sources */,
 				847F664B2AF3FE82002E0C53 /* TextInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
