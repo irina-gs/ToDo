@@ -112,9 +112,9 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let item = collectionView.dequeueReusableCell(withReuseIdentifier: MainItemCell.reuseID, for: indexPath) as? MainItemCell {
-            item.setup(item: data[indexPath.row])
-            return item
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainItemCell.reuseID, for: indexPath) as? MainItemCell {
+            cell.setup(item: data[indexPath.row])
+            return cell
         }
         fatalError("\(#function) error in cell creation")
     }
