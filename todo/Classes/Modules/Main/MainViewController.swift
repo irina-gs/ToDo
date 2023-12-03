@@ -97,10 +97,10 @@ final class MainViewController: ParentViewController {
                     self.newEntryButton.isHidden = true
                 }
                 
-//                emptyVC?.state = .error(error)
-//                emptyVC?.action = { [weak self] in
-//                    self?.reloadData()
-//                }
+                emptyVC?.state = .error(error)
+                emptyVC?.action = { [weak self] in
+                    self?.reloadData()
+                }
             }
         }
     }
