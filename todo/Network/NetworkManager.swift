@@ -53,9 +53,9 @@ enum PathURL {
             return "/api/todos"
         case .getTodos:
             return "/api/todos"
-        case .changeMark(let id):
+        case let .changeMark(id):
             return "/api/todos/mark/\(id)"
-        case .deleteTodo(let id):
+        case let .deleteTodo(id):
             return "/api/todos/\(id)"
         }
     }
@@ -105,6 +105,7 @@ final class NetworkManager {
         let (data, resp) = try await URLSession.shared.data(for: request)
         if let httpResponse = resp as? HTTPURLResponse {
             let response = String(data: data, encoding: .utf8) ?? ""
+            log.debug("\(response)")
             
             switch httpResponse.statusCode {
             case 200 ..< 400:
@@ -140,11 +141,11 @@ final class NetworkManager {
         return response
     }
     
-    func newTodo(title: String, description: String, date: Date) async throws -> TodoResponse {
+    func newTodo(title: String, description: String, date: Date) async throws -> MainDataItem {
         guard let accessToken = UserManager.shared.accessToken else {
             throw NetworkError.wrongStatusCode
         }
-        let response: TodoResponse = try await request(
+        let response: MainDataItem = try await request(
             path: PathURL.newTodo.path,
             httpMethod: HttpMethod.post.method,
             httpBody: NewTodoRequest(title: title, description: description, date: date),
@@ -153,11 +154,11 @@ final class NetworkManager {
         return response
     }
     
-    func getTodos() async throws -> [TodoResponse] {
+    func getTodos() async throws -> [MainDataItem] {
         guard let accessToken = UserManager.shared.accessToken else {
             throw NetworkError.wrongStatusCode
         }
-        let response: [TodoResponse] = try await request(
+        let response: [MainDataItem] = try await request(
             path: PathURL.getTodos.path,
             httpMethod: HttpMethod.get.method,
             accessToken: accessToken

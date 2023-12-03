@@ -53,23 +53,22 @@ final class NewItemViewController: ParentViewController {
         datePickerView.layer.shadowOffset = CGSize(width: 0, height: 10)
     }
     
-    @IBAction private func didTabCreateButton() {
-        if titleTVValidation() {
-            Task {
-                do {
-                    _ = try await NetworkManager.shared.newTodo(title: titleTextView.text ?? "", description: descriptionTextView.text ?? "", date: deadlineDatePicker.date)
-                    
-                    delegate?.didSelect(self)
-                    
-                    navigationController?.popViewController(animated: true)
-                    
-                } catch {
-                    let alertVC = UIAlertController(title: L10n.Alert.title, message: error.localizedDescription, preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: L10n.Alert.closeButton, style: .cancel))
-                    
-                    DispatchQueue.main.async {
-                        self.present(alertVC, animated: true)
-                    }
+    @IBAction private func didTapCreateButton() {
+        guard titleTVValidation(), let title = titleTextView.text, let description = descriptionTextView.text else {
+            return
+        }
+        
+        Task {
+            do {
+                _ = try await NetworkManager.shared.newTodo(title: title, description: description, date: deadlineDatePicker.date)
+                
+                delegate?.didSelect(self)
+                
+                navigationController?.popViewController(animated: true)
+                
+            } catch {
+                DispatchQueue.main.async {
+                    self.showAlertVC(massage: error.localizedDescription)
                 }
             }
         }

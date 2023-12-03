@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct MainDataItem {
+struct MainDataItem: Decodable {
     let id: String
     let title: String
-    let deadline: Date
+    let date: Date
     let isCompleted: Bool
 }
 
@@ -37,6 +37,7 @@ final class MainViewController: ParentViewController {
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
             section.interGroupSpacing = 16
             return section
         })
@@ -47,8 +48,12 @@ final class MainViewController: ParentViewController {
         reloadData()
     }
     
-    @IBAction private func didTapNewEntryButton() {
+    private func segueNewItemVC() {
         performSegue(withIdentifier: "new-item", sender: nil)
+    }
+    
+    @IBAction private func didTapNewEntryButton() {
+        segueNewItemVC()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,17 +71,7 @@ final class MainViewController: ParentViewController {
     private func reloadData() {
         Task {
             do {
-                let response = try await NetworkManager.shared.getTodos()
-                
-                data = []
-                for item in response {
-                    data.append(.init(
-                        id: item.id,
-                        title: item.title,
-                        deadline: item.date,
-                        isCompleted: item.isCompleted
-                    ))
-                }
+                data = try await NetworkManager.shared.getTodos()
                 
                 DispatchQueue.main.async {
                     self.emptyView.isHidden = !self.data.isEmpty
@@ -88,7 +83,7 @@ final class MainViewController: ParentViewController {
                 } else {
                     emptyVC?.state = .empty
                     emptyVC?.action = { [weak self] in
-                        self?.performSegue(withIdentifier: "new-item", sender: nil)
+                        self?.segueNewItemVC()
                     }
                 }
             } catch {
@@ -128,10 +123,8 @@ extension MainViewController: UICollectionViewDelegate {
                 _ = try await NetworkManager.shared.changeMark(id: selectedItem.id)
                 reloadData()
             } catch {
-                let alertVC = UIAlertController(title: L10n.Alert.title, message: error.localizedDescription, preferredStyle: .alert)
-                alertVC.addAction(UIAlertAction(title: L10n.Alert.closeButton, style: .cancel))
                 DispatchQueue.main.async {
-                    self.present(alertVC, animated: true)
+                    self.showAlertVC(massage: error.localizedDescription)
                 }
             }
         }

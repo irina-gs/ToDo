@@ -15,7 +15,7 @@ struct NewTodoRequest: Encodable {
     let coordinate: Coordinate = Coordinate(longitude: "0", latitude: "0")
 }
 
-struct Coordinate: Encodable, Decodable {
+struct Coordinate: Encodable {
     let longitude: String
     let latitude: String
 }

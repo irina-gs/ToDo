@@ -45,11 +45,8 @@ final class AuthViewController: ParentViewController {
                     let vc = storyboard.instantiateViewController(withIdentifier: "NavMainVC")
                     view.window?.rootViewController = vc
                 } catch {
-                    let alertVC = UIAlertController(title: L10n.Alert.title, message: error.localizedDescription, preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: L10n.Alert.closeButton, style: .cancel))
-                    
                     DispatchQueue.main.async {
-                        self.present(alertVC, animated: true)
+                        self.showAlertVC(massage: error.localizedDescription)
                     }
                 }
             }
