@@ -11,8 +11,10 @@ final class MainItemCell: UICollectionViewCell {
     static let reuseID = String(describing: MainItemCell.self)
     
     @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var iconView: UIImageView!
+    @IBOutlet private var markButton: UIButton!
     @IBOutlet private var deadlineLabel: UILabel!
+    
+    private var id: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,9 +41,23 @@ final class MainItemCell: UICollectionViewCell {
     }
         
     func setup(item: MainDataItem) {
+        id = item.id
         titleLabel.text = item.title
         deadlineLabel.text = DateFormatter.default.string(from: item.date)
         updateDeadlineTextColor(deadline: item.date)
-        iconView.image = item.isCompleted ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
+        
+        markButton.setTitle("", for: .normal)
+        setMark(isCompleted: item.isCompleted)
+    }
+    
+    func setMark(isCompleted: Bool) {
+        let markImage = isCompleted ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
+        markButton.setImage(markImage, for: .normal)
+    }
+    
+    var action: ((String) -> Void)?
+        
+    @IBAction private func didTapMarkButton() {
+        action?(id ?? "")
     }
 }

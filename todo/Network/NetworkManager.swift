@@ -177,4 +177,16 @@ final class NetworkManager {
         )
         return response
     }
+    
+    func deleteTodo(id: String) async throws -> EmptyResponse {
+        guard let accessToken = UserManager.shared.accessToken else {
+            throw NetworkError.wrongStatusCode
+        }
+        let response: EmptyResponse = try await request(
+            path: PathURL.deleteTodo(id: id).path,
+            httpMethod: HttpMethod.delete.method,
+            accessToken: accessToken
+        )
+        return response
+    }
 }

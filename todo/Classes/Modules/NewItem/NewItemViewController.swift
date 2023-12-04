@@ -23,10 +23,10 @@ final class NewItemViewController: ParentViewController {
     
     var selectedItem: MainDataItem?
     
+    private lazy var heightButtonConstraint = createButton.heightAnchor.constraint(equalToConstant: 0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.title = L10n.NewItem.title
         
         titleTextView.setupLabel(label: L10n.NewItem.titleTextViewLabel)
         descriptionTextView.setupLabel(label: L10n.NewItem.descriptionTextViewLabel)
@@ -34,10 +34,25 @@ final class NewItemViewController: ParentViewController {
         deadlineLabel.text = L10n.NewItem.deadlineLabel
         setupDatePicker()
         
-        createButton.setTitle(L10n.NewItem.createButton, for: .normal)
-        
         if let selectedItem {
+            navigationItem.title = L10n.EditItem.title
+            
+            let deleteButton = UIBarButtonItem(title: L10n.EditItem.deleteButton, style: .plain, target: self, action: #selector(didTapDeleteButton))
+            deleteButton.tintColor = UIColor.Color.error
+            navigationItem.rightBarButtonItem = deleteButton
+            
             titleTextView.setupTextView(text: selectedItem.title)
+            descriptionTextView.setupTextView(text: selectedItem.description)
+            deadlineDatePicker.date = selectedItem.date
+            
+            heightButtonConstraint.isActive = true
+            createButton.isHidden = true
+        } else {
+            navigationItem.title = L10n.NewItem.title
+            
+            heightButtonConstraint.isActive = false
+            createButton.isHidden = false
+            createButton.setTitle(L10n.NewItem.createButton, for: .normal)
         }
 
         addTapToHideKeyboardGesture()
@@ -67,11 +82,8 @@ final class NewItemViewController: ParentViewController {
         Task {
             do {
                 _ = try await NetworkManager.shared.newTodo(title: title, description: description, date: deadlineDatePicker.date)
-                
                 delegate?.didSelect(self)
-                
                 navigationController?.popViewController(animated: true)
-                
             } catch {
                 DispatchQueue.main.async {
                     self.showAlertVC(massage: error.localizedDescription)
@@ -86,6 +98,22 @@ final class NewItemViewController: ParentViewController {
         } else {
             titleTextView.show(error: L10n.ErrorValidation.emptyField)
             return false
+        }
+    }
+    
+    @objc
+    private func didTapDeleteButton() {
+        Task {
+            do {
+                _ = try await NetworkManager.shared.deleteTodo(id: selectedItem?.id ?? "")
+                delegate?.didSelect(self)
+                navigationController?.popViewController(animated: true)
+            } catch {
+                DispatchQueue.main.async {
+                    self.showAlertVC(massage: error.localizedDescription)
+                }
+                
+            }
         }
     }
 }

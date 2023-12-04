@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nci-Z1-vnE">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nci-Z1-vnE">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="751.66666666666663"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="361" placeholderIntrinsicHeight="86" translatesAutoresizingMaskIntoConstraints="NO" id="QkI-al-aNQ" customClass="TextView" customModule="todo" customModuleProvider="target">
@@ -58,7 +58,7 @@
                                     <constraint firstItem="QkI-al-aNQ" firstAttribute="top" secondItem="feW-gW-oaq" secondAttribute="top" constant="24" id="Qdg-Uw-7Kq"/>
                                     <constraint firstItem="cbc-8O-tSB" firstAttribute="leading" secondItem="feW-gW-oaq" secondAttribute="leading" constant="16" id="TMo-vE-Jwp"/>
                                     <constraint firstItem="QkI-al-aNQ" firstAttribute="width" secondItem="0mr-DE-RHu" secondAttribute="width" constant="-32" id="UMD-cL-hCO"/>
-                                    <constraint firstItem="SFL-Lk-tCO" firstAttribute="bottom" secondItem="feW-gW-oaq" secondAttribute="bottom" constant="16" id="WNh-k6-Jgz"/>
+                                    <constraint firstItem="SFL-Lk-tCO" firstAttribute="bottom" secondItem="feW-gW-oaq" secondAttribute="bottom" constant="-16" id="WNh-k6-Jgz"/>
                                     <constraint firstItem="cbc-8O-tSB" firstAttribute="width" secondItem="0mr-DE-RHu" secondAttribute="width" constant="-32" id="YNc-9h-n8T"/>
                                     <constraint firstItem="IfD-ak-DN0" firstAttribute="top" secondItem="QkI-al-aNQ" secondAttribute="bottom" constant="18" id="Yiq-4I-d5h"/>
                                     <constraint firstItem="SFL-Lk-tCO" firstAttribute="trailing" secondItem="feW-gW-oaq" secondAttribute="trailing" constant="-9" id="ehB-kb-TGL"/>

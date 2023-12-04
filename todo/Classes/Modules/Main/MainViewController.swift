@@ -10,8 +10,9 @@ import UIKit
 struct MainDataItem: Decodable {
     let id: String
     let title: String
+    let description: String
     let date: Date
-    let isCompleted: Bool
+    var isCompleted: Bool
 }
 
 final class MainViewController: ParentViewController {
@@ -43,6 +44,7 @@ final class MainViewController: ParentViewController {
         })
         
         newEntryButton.setTitle(L10n.Main.emptyButton, for: .normal)
+        newEntryButton.isHidden = true
 
         reloadData()
     }
@@ -70,6 +72,8 @@ final class MainViewController: ParentViewController {
     private func reloadData() {
         Task {
             do {
+                (view as? StatefullView)?.state = .loading
+                
                 data = try await NetworkManager.shared.getTodos()
                 
                 DispatchQueue.main.async {
@@ -77,28 +81,16 @@ final class MainViewController: ParentViewController {
                 }
                 
                 if !data.isEmpty {
-                    (view as? StatefullView)?.state = .loading
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                        (self?.view as? StatefullView)?.state = .data
-                    }
-                    
+                    (view as? StatefullView)?.state = .data
                     collectionView.reloadData()
                 } else {
-                    
-                    (view as? StatefullView)?.state = .loading
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                        (self?.view as? StatefullView)?.state = .empty()
-                    }
+                    (view as? StatefullView)?.state = .empty()
                 }
             } catch {
                 DispatchQueue.main.async {
                     self.newEntryButton.isHidden = true
                 }
-                
-                (view as? StatefullView)?.state = .loading
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                    (self?.view as? StatefullView)?.state = .empty(error: error)
-                }
+                (view as? StatefullView)?.state = .empty(error: error)
             }
         }
     }
@@ -112,6 +104,22 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainItemCell.reuseID, for: indexPath) as? MainItemCell {
             cell.setup(item: data[indexPath.row])
+            
+            cell.action = { [weak self] id in
+                Task {
+                    do {
+                        _ = try await NetworkManager.shared.changeMark(id: id)
+                        
+                        self?.data[indexPath.row].isCompleted.toggle()
+                        cell.setMark(isCompleted: self!.data[indexPath.row].isCompleted)
+                    } catch {
+                        DispatchQueue.main.async {
+                            self?.showAlertVC(massage: error.localizedDescription)
+                        }
+                    }
+                }
+            }
+            
             return cell
         }
         fatalError("\(#function) error in cell creation")
@@ -123,19 +131,6 @@ extension MainViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         selectedItem = data[indexPath.row]
         segueNewItemVC()
-//=======
-//        let selectedItem = data[indexPath.row]
-//        Task {
-//            do {
-//                _ = try await NetworkManager.shared.changeMark(id: selectedItem.id)
-//                reloadData()
-//            } catch {
-//                DispatchQueue.main.async {
-//                    self.showAlertVC(massage: error.localizedDescription)
-//                }
-//            }
-//        }
-//>>>>>>> feature/new-item-and-requests
     }
 }
 
@@ -146,8 +141,10 @@ extension MainViewController: NewItemViewControllerDelegate {
 }
 
 extension MainViewController: StatefullViewDelegate {
-    func statefullViewReloadData(_: StatefullView) {}
-
+    func statefullViewReloadData(_: StatefullView) {
+        reloadData()
+    }
+    
     func statefullViewDidTapEmptyButton(_: StatefullView) {
         segueNewItemVC()
     }
