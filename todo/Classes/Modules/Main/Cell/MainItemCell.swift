@@ -40,8 +40,8 @@ final class MainItemCell: UICollectionViewCell {
         
     func setup(item: MainDataItem) {
         titleLabel.text = item.title
-        deadlineLabel.text = DateFormatter.default.string(from: item.deadline)
-        updateDeadlineTextColor(deadline: item.deadline)
+        deadlineLabel.text = DateFormatter.default.string(from: item.date)
+        updateDeadlineTextColor(deadline: item.date)
         iconView.image = item.isCompleted ? UIImage.MainItemCell.iconTrue : UIImage.MainItemCell.iconFalse
     }
 }

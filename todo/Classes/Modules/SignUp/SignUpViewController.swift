@@ -37,9 +37,19 @@ final class SignUpViewController: ParentViewController {
         let passwordTFIsValid = passwordTFValidation()
         
         if usernameTFIsValid && emailTFIsValid && passwordTFIsValid {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateInitialViewController()
-            view.window?.rootViewController = vc
+            Task {
+                do {
+                    _ = try await NetworkManager.shared.signUp(name: usernameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateInitialViewController()
+                    view.window?.rootViewController = vc
+                } catch {
+                    DispatchQueue.main.async {
+                        self.showAlertVC(massage: error.localizedDescription)
+                    }
+                }
+            }
         }
     }
     

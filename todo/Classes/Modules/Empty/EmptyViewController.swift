@@ -8,6 +8,11 @@
 import UIKit
 
 final class EmptyViewController: ParentViewController {
+//    enum CustomError: Error {
+//        case noConnection
+//        case somethingWentWrong
+//    }
+    
     enum State {
         case empty, error(Error)
     }
@@ -22,8 +27,6 @@ final class EmptyViewController: ParentViewController {
         emptyLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         updateState()
     }
-    
-    var action: (() -> Void)?
     
     var state: State = .empty {
         didSet {
@@ -47,16 +50,18 @@ final class EmptyViewController: ParentViewController {
             emptyButton.isHidden = true
             updateButton.setTitle(L10n.Main.errorUpdateButton, for: .normal)
             updateButton.setMode(mode: .small)
-//            switch error {
-//            case .noConnection:
-//                emptyImageView.image = UIImage.Main.errorNoConnection
-//                emptyLabel.text = L10n.Main.errorNoConnectionLabel
-//            case .somethingWentWrong:
-//                emptyImageView.image = UIImage.Main.errorSomethingWentWrong
-//                emptyLabel.text = L10n.Main.errorSomethingWentWrongLabel
-//            }
+            
+            if (error as NSError).code == NSURLErrorNotConnectedToInternet {
+                emptyImageView.image = UIImage.Main.errorNoConnection
+                emptyLabel.text = L10n.Main.errorNoConnectionLabel
+            } else {
+                emptyImageView.image = UIImage.Main.errorSomethingWentWrong
+                emptyLabel.text = L10n.Main.errorSomethingWentWrongLabel
+            }
         }
     }
+    
+    var action: (() -> Void)?
     
     @IBAction private func didTapEmptyButton() {
         action?()

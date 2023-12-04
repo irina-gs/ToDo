@@ -25,5 +25,14 @@
 "main.error-update-button" = "Обновить";
 
 "new-item.title" = "Новая запись";
+"new-item.title-text-view-label" = "Что нужно сделать";
+"new-item.description-text-view-label" = "Описание";
 "new-item.deadline-label" = "Дедлайн";
 "new-item.create-button" = "Создать";
+
+"network-error.wrong-status-code" = "Упс! Неверный статус код.";
+"network-error.wrong-url" = "Упс! Неверный url.";
+"network-error.wrong-response" = "Упс! Неверный ответ сервера.";
+
+"alert.title" = "Ошибка!";
+"alert.close-button" = "Закрыть";

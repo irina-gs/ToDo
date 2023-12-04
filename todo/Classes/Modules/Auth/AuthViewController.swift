@@ -39,17 +39,15 @@ final class AuthViewController: ParentViewController {
         if emailTFIsValid && passwordTFIsValid {
             Task {
                 do {
-                    let response = try await NetworkManager.shared.signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
-                    log.debug("\(response.accessToken)")
-                    UserManager.shared.set(accessToken: response.accessToken)
+                    _ = try await NetworkManager.shared.signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateInitialViewController()
                     view.window?.rootViewController = vc
                 } catch {
-                    let alertVC = UIAlertController(title: "Ошибка!", message: error.localizedDescription, preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: "Закрыть", style: .cancel))
-                    present(alertVC, animated: true)
+                    DispatchQueue.main.async {
+                        self.showAlertVC(massage: error.localizedDescription)
+                    }
                 }
             }
         }

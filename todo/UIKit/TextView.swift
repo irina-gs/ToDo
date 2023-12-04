@@ -23,6 +23,7 @@ final class TextView: UIView, UITextViewDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.Color.black
         label.font = UIFont.systemFont(ofSize: 14)
+        label.numberOfLines = 2
         return label
     }()
     
@@ -59,6 +60,10 @@ final class TextView: UIView, UITextViewDelegate {
     
     func setupTextView(text: String?) {
         textView.text = text
+    }
+
+    var text: String? {
+        textView.text
     }
     
     override var intrinsicContentSize: CGSize {
