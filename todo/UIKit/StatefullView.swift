@@ -102,9 +102,9 @@ class StatefullView: UIView {
         [emptyView, loaderView].forEach { subview in
             NSLayoutConstraint.activate([
                 subview.leadingAnchor.constraint(equalTo: leadingAnchor),
-                subview.topAnchor.constraint(equalTo: topAnchor),
+                subview.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                 subview.trailingAnchor.constraint(equalTo: trailingAnchor),
-                subview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
+                subview.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             ])
         }
     }

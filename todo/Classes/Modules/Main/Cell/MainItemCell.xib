@@ -19,11 +19,11 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AWo-7v-ocF">
                         <rect key="frame" x="16" y="16" width="331" height="69"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4Z-1u-cVN">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="V4Z-1u-cVN">
                                 <rect key="frame" x="0.0" y="0.0" width="331" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xs7-Bn-GX2">
-                                        <rect key="frame" x="0.0" y="0.0" width="307" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="291" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                                             <constraint firstAttribute="height" constant="24" id="llj-WO-mvH"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
                                         <connections>
                                             <action selector="didTapMarkButton" destination="Rmz-DB-S7c" eventType="touchUpInside" id="Pk0-5m-r8j"/>
                                         </connections>

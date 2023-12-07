@@ -18,6 +18,8 @@ final class NewItemViewController: ParentViewController {
     @IBOutlet private var datePickerView: UIView!
     @IBOutlet private var deadlineDatePicker: UIDatePicker!
     @IBOutlet private var createButton: PrimaryButton!
+    
+    @IBOutlet private var buttonKeyboardConstraint: NSLayoutConstraint!
         
     weak var delegate: NewItemViewControllerDelegate?
     
@@ -45,11 +47,13 @@ final class NewItemViewController: ParentViewController {
             descriptionTextView.setupTextView(text: selectedItem.description)
             deadlineDatePicker.date = selectedItem.date
             
+            buttonKeyboardConstraint.constant = 0
             heightButtonConstraint.isActive = true
             createButton.isHidden = true
         } else {
             navigationItem.title = L10n.NewItem.title
             
+            buttonKeyboardConstraint.constant = 16
             heightButtonConstraint.isActive = false
             createButton.isHidden = false
             createButton.setTitle(L10n.NewItem.createButton, for: .normal)
@@ -57,6 +61,11 @@ final class NewItemViewController: ParentViewController {
 
         addTapToHideKeyboardGesture()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            view.endEditing(false)
+        }
     
     private func setupDatePicker() {
         deadlineDatePicker.tintColor = UIColor.Color.Default.SystemRed.light
@@ -103,16 +112,19 @@ final class NewItemViewController: ParentViewController {
     
     @objc
     private func didTapDeleteButton() {
+        guard let selectedItem else {
+            return
+        }
+        
         Task {
             do {
-                _ = try await NetworkManager.shared.deleteTodo(id: selectedItem?.id ?? "")
+                _ = try await NetworkManager.shared.deleteTodo(id: selectedItem.id)
                 delegate?.didSelect(self)
                 navigationController?.popViewController(animated: true)
             } catch {
                 DispatchQueue.main.async {
                     self.showAlertVC(massage: error.localizedDescription)
                 }
-                
             }
         }
     }

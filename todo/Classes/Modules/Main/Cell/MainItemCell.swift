@@ -46,7 +46,6 @@ final class MainItemCell: UICollectionViewCell {
         deadlineLabel.text = DateFormatter.default.string(from: item.date)
         updateDeadlineTextColor(deadline: item.date)
         
-        markButton.setTitle("", for: .normal)
         setMark(isCompleted: item.isCompleted)
     }
     

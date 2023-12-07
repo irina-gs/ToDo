@@ -111,7 +111,14 @@ extension MainViewController: UICollectionViewDataSource {
                         _ = try await NetworkManager.shared.changeMark(id: id)
                         
                         self?.data[indexPath.row].isCompleted.toggle()
-                        cell.setMark(isCompleted: self!.data[indexPath.row].isCompleted)
+                        
+                        guard let itemIsCompleted = self?.data[indexPath.row].isCompleted else {
+                            return
+                        }
+                        
+                        DispatchQueue.main.async {
+                            cell.setMark(isCompleted: itemIsCompleted)
+                        }
                     } catch {
                         DispatchQueue.main.async {
                             self?.showAlertVC(massage: error.localizedDescription)

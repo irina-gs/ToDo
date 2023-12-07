@@ -8,11 +8,6 @@
 import UIKit
 
 final class EmptyViewController: ParentViewController {
-//    enum CustomError: Error {
-//        case noConnection
-//        case somethingWentWrong
-//    }
-    
     enum State {
         case empty, error(Error)
     }
