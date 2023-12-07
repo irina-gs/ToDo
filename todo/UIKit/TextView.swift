@@ -60,6 +60,7 @@ final class TextView: UIView, UITextViewDelegate {
     
     func setupTextView(text: String?) {
         textView.text = text
+        textViewDidChange(textView)
     }
 
     var text: String? {
@@ -98,8 +99,8 @@ final class TextView: UIView, UITextViewDelegate {
             errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            ])
-        }
+        ])
+    }
     
     func textViewDidChange(_ textView: UITextView) {
         let size = CGSize(width: frame.width, height: .infinity)
