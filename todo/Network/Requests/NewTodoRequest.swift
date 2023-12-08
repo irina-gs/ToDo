@@ -12,7 +12,7 @@ struct NewTodoRequest: Encodable {
     let title: String
     let description: String
     let date: Date
-    let coordinate: Coordinate = Coordinate(longitude: "0", latitude: "0")
+    let coordinate: Coordinate = .init(longitude: "0", latitude: "0")
 }
 
 struct Coordinate: Encodable {

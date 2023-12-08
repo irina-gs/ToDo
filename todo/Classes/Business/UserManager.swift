@@ -9,14 +9,14 @@ import Foundation
 
 final class UserManager {
     static let shared = UserManager()
-    
+
     private init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
     }
-    
+
     private let userDefaults: UserDefaults
     private let accessTokenKey = "accessTokenKey"
-    
+
     private(set) var accessToken: String? {
         get {
             userDefaults.string(forKey: accessTokenKey)
@@ -25,11 +25,11 @@ final class UserManager {
             userDefaults.set(newValue, forKey: accessTokenKey)
         }
     }
-    
+
     func set(accessToken: String) {
         self.accessToken = accessToken
     }
-    
+
     func reset() {
         accessToken = nil
     }

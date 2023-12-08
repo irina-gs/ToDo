@@ -9,27 +9,27 @@ import UIKit
 
 final class PrimaryButton: MainButton {
     override init(frame: CGRect) {
-        super .init(frame: frame)
+        super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
-        super .init(coder: coder)
+        super.init(coder: coder)
         setup()
     }
-    
+
     enum Mode {
         case large
         case small
     }
-    
+
     private var mode: Mode = .large
-    
+
     func setMode(mode: Mode) {
         self.mode = mode
         setup()
     }
-    
+
     private func setup() {
         switch mode {
         case .large:

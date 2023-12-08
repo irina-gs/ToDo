@@ -12,7 +12,7 @@ enum ValidationManager {
         let emailParameters = ".+@.+\\..+"
         return NSPredicate(format: "SELF MATCHES %@", emailParameters).evaluate(with: email)
     }
-    
+
     static func isValid(commonText: String?, symbolsCount: Int) -> Bool {
         (commonText ?? "").count <= symbolsCount
     }

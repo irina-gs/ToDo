@@ -11,28 +11,30 @@
 		843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843090E42AF90B590098BEC6 /* SignUpViewController.swift */; };
 		843A95D12B1B476600B6D498 /* StatefullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A95D02B1B476600B6D498 /* StatefullView.swift */; };
 		847F66382AF166B2002E0C53 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 847F66372AF166B2002E0C53 /* Localizable.strings */; };
-		847F663A2AF1673F002E0C53 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66392AF1673F002E0C53 /* L10n.swift */; };
 		847F663C2AF168EB002E0C53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F663B2AF168EB002E0C53 /* Main.storyboard */; };
 		847F663E2AF1692C002E0C53 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F663D2AF1692C002E0C53 /* MainViewController.swift */; };
 		847F66402AF16D75002E0C53 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847F663F2AF16D75002E0C53 /* SignUp.storyboard */; };
 		847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66422AF3F27E002E0C53 /* ParentViewController.swift */; };
 		847F66462AF3F366002E0C53 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F66452AF3F366002E0C53 /* TextField.swift */; };
 		847F664B2AF3FE82002E0C53 /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F664A2AF3FE82002E0C53 /* TextInput.swift */; };
-		848D86E22B0FA1E8008FE7AB /* PlistFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86E12B0FA1E8008FE7AB /* PlistFiles.swift */; };
 		848D86E52B0FA21D008FE7AB /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86E42B0FA21D008FE7AB /* OSLog.swift */; };
 		848D86E82B0FA27A008FE7AB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86E72B0FA27A008FE7AB /* NetworkManager.swift */; };
 		848D86EC2B0FA6BE008FE7AB /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86EB2B0FA6BE008FE7AB /* EmptyResponse.swift */; };
 		848D86EE2B0FA6E2008FE7AB /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */; };
 		848D86F02B0FA710008FE7AB /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86EF2B0FA710008FE7AB /* DataResponse.swift */; };
 		849206132B18E5FF005AB042 /* LoadingIndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849206122B18E5FF005AB042 /* LoadingIndicatorImageView.swift */; };
-		849DF0BC2B164F66005FB822 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849DF0BB2B164F65005FB822 /* SplashScreen.storyboard */; };
-		849DF0BF2B164F87005FB822 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DF0BE2B164F87005FB822 /* SplashScreenViewController.swift */; };
-		849DF0C22B164FE7005FB822 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DF0C12B164FE7005FB822 /* UserManager.swift */; };
 		84927E912B1B5F4D004AAD0B /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E902B1B5F4D004AAD0B /* SignInRequest.swift */; };
 		84927E932B1B5F86004AAD0B /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E922B1B5F86004AAD0B /* SignUpRequest.swift */; };
 		84927E952B1B5FA6004AAD0B /* NewTodoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E942B1B5FA6004AAD0B /* NewTodoRequest.swift */; };
 		84927E972B1B6872004AAD0B /* EmptyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84927E962B1B6872004AAD0B /* EmptyRequest.swift */; };
+		84948E542B221BA6002F43B8 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84948E522B221BA6002F43B8 /* Strings.swift */; };
+		84948E552B221BA6002F43B8 /* Plist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84948E532B221BA6002F43B8 /* Plist.swift */; };
+		84948E582B222041002F43B8 /* MainDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84948E572B222041002F43B8 /* MainDateCell.swift */; };
+		84948E5A2B22275C002F43B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84948E592B22275C002F43B8 /* Date+.swift */; };
 		849D675B2B1689B00080975D /* NewItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849D675A2B1689B00080975D /* NewItem.storyboard */; };
+		849DF0BC2B164F66005FB822 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849DF0BB2B164F65005FB822 /* SplashScreen.storyboard */; };
+		849DF0BF2B164F87005FB822 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DF0BE2B164F87005FB822 /* SplashScreenViewController.swift */; };
+		849DF0C22B164FE7005FB822 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DF0C12B164FE7005FB822 /* UserManager.swift */; };
 		849EA6452B13E759003E0168 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EA6442B13E759003E0168 /* DateFormatter.swift */; };
 		84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */; };
 		84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF237F2AFD2BB90085B7D0 /* MainButton.swift */; };
@@ -77,14 +79,12 @@
 		843090E42AF90B590098BEC6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		843A95D02B1B476600B6D498 /* StatefullView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatefullView.swift; sourceTree = "<group>"; };
 		847F66372AF166B2002E0C53 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		847F66392AF1673F002E0C53 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		847F663B2AF168EB002E0C53 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		847F663D2AF1692C002E0C53 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		847F663F2AF16D75002E0C53 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		847F66422AF3F27E002E0C53 /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		847F66452AF3F366002E0C53 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		847F664A2AF3FE82002E0C53 /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
-		848D86E12B0FA1E8008FE7AB /* PlistFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistFiles.swift; sourceTree = "<group>"; };
 		848D86E42B0FA21D008FE7AB /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		848D86E72B0FA27A008FE7AB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		848D86E92B0FA34C008FE7AB /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
@@ -92,14 +92,18 @@
 		848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		848D86EF2B0FA710008FE7AB /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		849206122B18E5FF005AB042 /* LoadingIndicatorImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorImageView.swift; sourceTree = "<group>"; };
-		849DF0BB2B164F65005FB822 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
-		849DF0BE2B164F87005FB822 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
-		849DF0C12B164FE7005FB822 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		84927E902B1B5F4D004AAD0B /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		84927E922B1B5F86004AAD0B /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		84927E942B1B5FA6004AAD0B /* NewTodoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoRequest.swift; sourceTree = "<group>"; };
 		84927E962B1B6872004AAD0B /* EmptyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequest.swift; sourceTree = "<group>"; };
+		84948E522B221BA6002F43B8 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		84948E532B221BA6002F43B8 /* Plist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plist.swift; sourceTree = "<group>"; };
+		84948E572B222041002F43B8 /* MainDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDateCell.swift; sourceTree = "<group>"; };
+		84948E592B22275C002F43B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		849D675A2B1689B00080975D /* NewItem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewItem.storyboard; sourceTree = "<group>"; };
+		849DF0BB2B164F65005FB822 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
+		849DF0BE2B164F87005FB822 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		849DF0C12B164FE7005FB822 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		849EA6442B13E759003E0168 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		84BF237F2AFD2BB90085B7D0 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 		847F66332AF16565002E0C53 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				84948E562B22202B002F43B8 /* MainDateCell */,
 				84F9DCB02B03DD9900F39E46 /* Cell */,
 				847F663D2AF1692C002E0C53 /* MainViewController.swift */,
 			);
@@ -193,12 +198,10 @@
 		847F66352AF1658B002E0C53 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				848D86E12B0FA1E8008FE7AB /* PlistFiles.swift */,
 				84D5C9A32AEAB8E70051BF6B /* Assets.xcassets */,
 				84D5C9A82AEAB8E70051BF6B /* Info.plist */,
 				847F66362AF165AE002E0C53 /* Storyboards */,
 				847F66372AF166B2002E0C53 /* Localizable.strings */,
-				847F66392AF1673F002E0C53 /* L10n.swift */,
 				848D86E92B0FA34C008FE7AB /* Base.xcconfig */,
 			);
 			path = Resources;
@@ -212,7 +215,6 @@
 				847F663B2AF168EB002E0C53 /* Main.storyboard */,
 				847F663F2AF16D75002E0C53 /* SignUp.storyboard */,
 				84F9DCAB2B03DADC00F39E46 /* Empty.storyboard */,
-				84F9DCB82B06689000F39E46 /* NewItem.storyboard */,
 				849DF0BB2B164F65005FB822 /* SplashScreen.storyboard */,
 				849D675A2B1689B00080975D /* NewItem.storyboard */,
 			);
@@ -247,6 +249,7 @@
 			children = (
 				84ABA4742AFD7D5300B446A6 /* UIViewController+Keyboard.swift */,
 				849EA6442B13E759003E0168 /* DateFormatter.swift */,
+				84948E592B22275C002F43B8 /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -255,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				848D86E42B0FA21D008FE7AB /* OSLog.swift */,
-				84927E9A2B1B720D004AAD0B /* UserManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -280,14 +282,6 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
-		849DF0BD2B164F6C005FB822 /* SplashScreen */ = {
-			isa = PBXGroup;
-			children = (
-				849DF0BE2B164F87005FB822 /* SplashScreenViewController.swift */,
-			);
-			path = SplashScreen;
-            sourceTree = "<group>";
-        };
 		84927E8F2B1B5F01004AAD0B /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +291,31 @@
 				84927E962B1B6872004AAD0B /* EmptyRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		84948E512B221BA6002F43B8 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				84948E522B221BA6002F43B8 /* Strings.swift */,
+				84948E532B221BA6002F43B8 /* Plist.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		84948E562B22202B002F43B8 /* MainDateCell */ = {
+			isa = PBXGroup;
+			children = (
+				84948E572B222041002F43B8 /* MainDateCell.swift */,
+			);
+			path = MainDateCell;
+			sourceTree = "<group>";
+		};
+		849DF0BD2B164F6C005FB822 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				849DF0BE2B164F87005FB822 /* SplashScreenViewController.swift */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		84BF23852AFD355A0085B7D0 /* Business */ = {
@@ -363,6 +382,7 @@
 		84F703CE2AF163F800CFCC55 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				84948E512B221BA6002F43B8 /* Generated */,
 				84BF23852AFD355A0085B7D0 /* Business */,
 				847F66322AF1655C002E0C53 /* Modules */,
 			);
@@ -401,6 +421,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84D5C9C12AEAB8E80051BF6B /* Build configuration list for PBXNativeTarget "todo" */;
 			buildPhases = (
+				84948E4F2B221A76002F43B8 /* SwiftGen */,
+				84948E4E2B2217F8002F43B8 /* SwiftLint */,
 				84D5C9932AEAB8E30051BF6B /* Sources */,
 				84D5C9942AEAB8E30051BF6B /* Frameworks */,
 				84D5C9952AEAB8E30051BF6B /* Resources */,
@@ -527,27 +549,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		84948E4E2B2217F8002F43B8 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+		84948E4F2B221A76002F43B8 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/swiftgen-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+				"$(SRCROOT)/swiftgen-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"error: SwiftGen does not exist, download it from https://github.com/SwiftGen/SwiftGen\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84D5C9932AEAB8E30051BF6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84948E552B221BA6002F43B8 /* Plist.swift in Sources */,
 				849EA6452B13E759003E0168 /* DateFormatter.swift in Sources */,
 				84BF23872AFD357C0085B7D0 /* ValidationManager.swift in Sources */,
 				84ABA4752AFD7D5300B446A6 /* UIViewController+Keyboard.swift in Sources */,
 				849206132B18E5FF005AB042 /* LoadingIndicatorImageView.swift in Sources */,
 				8413485F2AFF6FAB00809876 /* TextButton.swift in Sources */,
 				848D86E82B0FA27A008FE7AB /* NetworkManager.swift in Sources */,
-				847F663A2AF1673F002E0C53 /* L10n.swift in Sources */,
+				84948E5A2B22275C002F43B8 /* Date+.swift in Sources */,
 				84F9DCAA2B038F5D00F39E46 /* TextView.swift in Sources */,
 				84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */,
 				84927E972B1B6872004AAD0B /* EmptyRequest.swift in Sources */,
 				84927E932B1B5F86004AAD0B /* SignUpRequest.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
+				84948E542B221BA6002F43B8 /* Strings.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
-				848D86E22B0FA1E8008FE7AB /* PlistFiles.swift in Sources */,
 				847F66462AF3F366002E0C53 /* TextField.swift in Sources */,
 				84F9DCB42B03DDCE00F39E46 /* MainItemCell.swift in Sources */,
+				84948E582B222041002F43B8 /* MainDateCell.swift in Sources */,
 				84927E952B1B5FA6004AAD0B /* NewTodoRequest.swift in Sources */,
 				84BF23802AFD2BB90085B7D0 /* MainButton.swift in Sources */,
 				843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */,
@@ -747,6 +813,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = todo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -773,6 +840,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = todo/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

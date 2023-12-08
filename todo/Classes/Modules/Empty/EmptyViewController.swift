@@ -11,18 +11,18 @@ final class EmptyViewController: ParentViewController {
     enum State {
         case empty, error(Error)
     }
-    
+
     @IBOutlet private var emptyImageView: UIImageView!
     @IBOutlet private var emptyLabel: UILabel!
     @IBOutlet private var emptyButton: PrimaryButton!
     @IBOutlet private var updateButton: PrimaryButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         emptyLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         updateState()
     }
-    
+
     var state: State = .empty {
         didSet {
             guard view.window != nil else {
@@ -31,7 +31,7 @@ final class EmptyViewController: ParentViewController {
             updateState()
         }
     }
-    
+
     private func updateState() {
         switch state {
         case .empty:
@@ -45,7 +45,7 @@ final class EmptyViewController: ParentViewController {
             emptyButton.isHidden = true
             updateButton.setTitle(L10n.Main.errorUpdateButton, for: .normal)
             updateButton.setMode(mode: .small)
-            
+
             if (error as NSError).code == NSURLErrorNotConnectedToInternet {
                 emptyImageView.image = UIImage.Main.errorNoConnection
                 emptyLabel.text = L10n.Main.errorNoConnectionLabel
@@ -55,13 +55,13 @@ final class EmptyViewController: ParentViewController {
             }
         }
     }
-    
+
     var action: (() -> Void)?
-    
+
     @IBAction private func didTapEmptyButton() {
         action?()
     }
-    
+
     @IBAction private func didTapUpdateButton() {
         action?()
     }

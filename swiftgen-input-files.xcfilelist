@@ -1,0 +1,5 @@
+# plist
+$(SRCROOT)/todo/Resources/Info.plist
+
+# strings
+$(SRCROOT)/todo/Resources/Localizable.strings

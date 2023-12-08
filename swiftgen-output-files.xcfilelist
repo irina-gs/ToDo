@@ -1,0 +1,5 @@
+# plist
+$(SRCROOT)/todo/Classes/Generated/Plist.swift
+
+# strings
+$(SRCROOT)/todo/Classes/Generated/Strings.swift

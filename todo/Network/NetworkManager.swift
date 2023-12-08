@@ -5,18 +5,18 @@
 //  Created by admin on 23.11.2023.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 enum NetworkError: LocalizedError {
     case wrongStatusCode, wrongURL, wrongResponse
-    
+
     var errorDescription: String? {
         switch self {
         case .wrongStatusCode:
             return L10n.NetworkError.wrongStatusCode
         case .wrongURL:
-            return L10n.NetworkError.wrongURL
+            return L10n.NetworkError.wrongUrl
         case .wrongResponse:
             return L10n.NetworkError.wrongResponse
         }
@@ -25,9 +25,9 @@ enum NetworkError: LocalizedError {
 
 enum HttpMethod {
     case get, post, put, delete
-    
+
     var method: String {
-        switch self{
+        switch self {
         case .get:
             return "GET"
         case .post:
@@ -42,9 +42,9 @@ enum HttpMethod {
 
 enum PathURL {
     case signIn, signUp, newTodo, getTodos, changeMark(id: String), deleteTodo(id: String)
-        
+
     var path: String {
-        switch self{
+        switch self {
         case .signIn:
             return "/api/auth/login"
         case .signUp:
@@ -63,28 +63,28 @@ enum PathURL {
 
 final class NetworkManager {
     static var shared = NetworkManager()
-    
+
     private init() {}
-    
+
     private lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .secondsSince1970
         return decoder
     }()
-    
+
     private lazy var encoder: JSONEncoder = {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .secondsSince1970
         return encoder
     }()
 
-    private func request<Response: Decodable> (path: String, httpMethod: String, accessToken: String? = nil) async throws -> Response {
-        try await request(path: path, httpMethod: httpMethod, httpBody: Optional<EmptyRequest>.none, accessToken: accessToken)
+    private func request<Response: Decodable>(path: String, httpMethod: String, accessToken: String? = nil) async throws -> Response {
+        try await request(path: path, httpMethod: httpMethod, httpBody: EmptyRequest?.none, accessToken: accessToken)
     }
 
     private func request<Request: Encodable, Response: Decodable>(path: String, httpMethod: String, httpBody: Request?, accessToken: String? = nil) async throws -> Response {
-        guard let url = URL(string: "\(PlistFiles.cfApiBaseUrl)\(path)") else {
+        guard let url = URL(string: "\(PlistFiles.apiBaseUrl)\(path)") else {
             throw NetworkError.wrongURL
         }
 
@@ -97,7 +97,7 @@ final class NetworkManager {
 
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
+
         if let accessToken {
             request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
@@ -106,7 +106,7 @@ final class NetworkManager {
         if let httpResponse = resp as? HTTPURLResponse {
             let response = String(data: data, encoding: .utf8) ?? ""
             log.debug("\(response)")
-            
+
             switch httpResponse.statusCode {
             case 200 ..< 400:
                 if data.isEmpty, let emptyData = "{}".data(using: .utf8) {
@@ -130,7 +130,7 @@ final class NetworkManager {
         UserManager.shared.set(accessToken: response.accessToken)
         return response
     }
-    
+
     func signUp(name: String, email: String, password: String) async throws -> AuthResponse {
         let response: AuthResponse = try await request(
             path: PathURL.signUp.path,
@@ -140,7 +140,7 @@ final class NetworkManager {
         UserManager.shared.set(accessToken: response.accessToken)
         return response
     }
-    
+
     func newTodo(title: String, description: String, date: Date) async throws -> MainDataItem {
         guard let accessToken = UserManager.shared.accessToken else {
             throw NetworkError.wrongStatusCode
@@ -153,7 +153,7 @@ final class NetworkManager {
         )
         return response
     }
-    
+
     func getTodos() async throws -> [MainDataItem] {
         guard let accessToken = UserManager.shared.accessToken else {
             throw NetworkError.wrongStatusCode
@@ -165,7 +165,7 @@ final class NetworkManager {
         )
         return response
     }
-    
+
     func changeMark(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
             throw NetworkError.wrongStatusCode
@@ -177,7 +177,7 @@ final class NetworkManager {
         )
         return response
     }
-    
+
     func deleteTodo(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
             throw NetworkError.wrongStatusCode

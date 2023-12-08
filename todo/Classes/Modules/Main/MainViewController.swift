@@ -17,46 +17,65 @@ struct MainDataItem: Decodable {
 
 final class MainViewController: ParentViewController {
     private var data: [MainDataItem] = []
+    private var sections: [(date: Date, items: [MainDataItem])] = []
     private var selectedItem: MainDataItem?
+    private var selectedDate: Date? {
+        didSet {
+            collectionView.reloadSections(IndexSet(integer: 1))
+        }
+    }
     
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var newEntryButton: PrimaryButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         (view as? StatefullView)?.delegate = self
-        
+
         navigationItem.title = L10n.Main.title
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Main.profileButton, style: .plain, target: self, action: nil)
         
+        collectionView.register(MainDateCell.self, forCellWithReuseIdentifier: MainDateCell.reuseID)
         collectionView.register(UINib(nibName: "MainItemCell", bundle: nil), forCellWithReuseIdentifier: MainItemCell.reuseID)
-        
-        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { _, _ in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(93))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-            section.interGroupSpacing = 16
-            return section
+        collectionView.allowsMultipleSelection = true
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { section, _ in
+            switch section {
+            case 0:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .absolute(32))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+                section.interGroupSpacing = 8
+                section.contentInsets = .init(top: 8, leading: 16, bottom: 8, trailing: 16)
+                return section
+            default:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(93))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+                section.interGroupSpacing = 16
+                return section
+            }
         })
         
         newEntryButton.setTitle(L10n.Main.emptyButton, for: .normal)
         newEntryButton.isHidden = true
-
+        
         reloadData()
     }
-    
+
     private func segueNewItemVC() {
         performSegue(withIdentifier: "new-item", sender: nil)
     }
-    
+
     @IBAction private func didTapNewEntryButton() {
         segueNewItemVC()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         switch segue.destination {
@@ -68,13 +87,23 @@ final class MainViewController: ParentViewController {
             break
         }
     }
-    
+
     private func reloadData() {
         Task {
             do {
                 (view as? StatefullView)?.state = .loading
-                
+
                 data = try await NetworkManager.shared.getTodos()
+                
+                sections = data
+                    .reduce(into: [(date: Date, items: [MainDataItem])](), { partialResult, item in
+                        if let index = partialResult.firstIndex(where: { $0.date.withoutTimeStamp == item.date.withoutTimeStamp }) {
+                            partialResult[index].items.append(item)
+                        } else {
+                            partialResult.append((date: item.date, items: [item]))
+                        }
+                    })
+                    .sorted(by: { $0.date <= $1.date })
                 
                 DispatchQueue.main.async {
                     self.newEntryButton.isHidden = self.data.isEmpty
@@ -97,52 +126,101 @@ final class MainViewController: ParentViewController {
 }
 
 extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.count
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
+    func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return sections.count
+        default:
+            if let selectedDate {
+                return sections.first(where: { $0.date == selectedDate })?.items.count ?? 0
+            }
+            return data.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainItemCell.reuseID, for: indexPath) as? MainItemCell {
-            cell.setup(item: data[indexPath.row])
-            
-            cell.action = { [weak self] id in
-                Task {
-                    do {
-                        _ = try await NetworkManager.shared.changeMark(id: id)
-                        
-                        self?.data[indexPath.row].isCompleted.toggle()
-                        
-                        guard let itemIsCompleted = self?.data[indexPath.row].isCompleted else {
-                            return
-                        }
-                        
-                        DispatchQueue.main.async {
-                            cell.setMark(isCompleted: itemIsCompleted)
-                        }
-                    } catch {
-                        DispatchQueue.main.async {
-                            self?.showAlertVC(massage: error.localizedDescription)
+        switch indexPath.section {
+        case 0:
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainDateCell.reuseID, for: indexPath) as? MainDateCell {
+                cell.setup(title: DateFormatter.dMMM.string(from: sections[indexPath.row].date))
+                return cell
+            }
+        default:
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainItemCell.reuseID, for: indexPath) as? MainItemCell {
+                let item: MainDataItem?
+                if let selectedDate {
+                    item = sections.first(where: { $0.date == selectedDate })?.items[indexPath.row]
+                } else {
+                    item = data[indexPath.row]
+                }
+                if let item {
+                    cell.setup(item: item)
+                }
+                
+                cell.action = { [weak self] id in
+                    Task {
+                        do {
+                            _ = try await NetworkManager.shared.changeMark(id: id)
+                            
+                            self?.data[indexPath.row].isCompleted.toggle()
+                            
+                            guard let itemIsCompleted = self?.data[indexPath.row].isCompleted else {
+                                return
+                            }
+                            
+                            DispatchQueue.main.async {
+                                cell.setMark(isCompleted: itemIsCompleted)
+                            }
+                        } catch {
+                            DispatchQueue.main.async {
+                                self?.showAlertVC(massage: error.localizedDescription)
+                            }
                         }
                     }
                 }
+                
+                return cell
             }
-            
-            return cell
         }
+        
         fatalError("\(#function) error in cell creation")
     }
 }
 
 extension MainViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        selectedItem = data[indexPath.row]
-        segueNewItemVC()
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let pathes = (0 ..< collectionView.numberOfItems(inSection: 0)).map { IndexPath(row: $0, section: 0) }
+            pathes.forEach { path in
+                if path != indexPath {
+                    collectionView.deselectItem(at: path, animated: true)
+                }
+            }
+            selectedDate = sections[indexPath.row].date
+        default:
+            collectionView.deselectItem(at: indexPath, animated: true)
+            selectedItem = data[indexPath.row]
+            segueNewItemVC()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            selectedDate = nil
+        default:
+            break
+        }
     }
 }
 
 extension MainViewController: NewItemViewControllerDelegate {
-    func didSelect(_ vc: NewItemViewController) {
+    func didSelect(_: NewItemViewController) {
         reloadData()
     }
 }
@@ -151,7 +229,7 @@ extension MainViewController: StatefullViewDelegate {
     func statefullViewReloadData(_: StatefullView) {
         reloadData()
     }
-    
+
     func statefullViewDidTapEmptyButton(_: StatefullView) {
         segueNewItemVC()
     }

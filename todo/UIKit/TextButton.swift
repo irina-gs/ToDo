@@ -17,19 +17,19 @@ final class TextButton: MainButton {
         super.init(coder: coder)
         setup()
     }
-    
+
     enum Mode {
         case normal
         case destructive
     }
-    
+
     private var mode: Mode = .normal
-    
+
     func setMode(mode: Mode) {
         self.mode = mode
         setup()
     }
-    
+
     private func setup() {
         switch mode {
         case .normal:

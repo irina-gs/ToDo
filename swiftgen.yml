@@ -1,0 +1,13 @@
+input_dir: todo/Resources/
+output_dir: todo/Classes/Generated
+strings:
+    inputs:
+        - Localizable.strings
+    outputs:
+        templateName: structured-swift5
+        output: Strings.swift
+plist:
+    inputs: Info.plist
+    outputs:
+        templateName: runtime-swift5
+        output: Plist.swift

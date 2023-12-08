@@ -12,12 +12,12 @@ final class TextView: UIView, UITextViewDelegate {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -26,9 +26,9 @@ final class TextView: UIView, UITextViewDelegate {
         label.numberOfLines = 2
         return label
     }()
-    
+
     private let insets = UIEdgeInsets(top: 18, left: 16, bottom: 16, right: 16)
-    
+
     private lazy var textView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ final class TextView: UIView, UITextViewDelegate {
         textView.delegate = self
         return textView
     }()
-    
+
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,11 +53,11 @@ final class TextView: UIView, UITextViewDelegate {
         label.numberOfLines = 2
         return label
     }()
-    
+
     func setupLabel(label: String?) {
         titleLabel.text = label
     }
-    
+
     func setupTextView(text: String?) {
         textView.text = text
         textViewDidChange(textView)
@@ -66,7 +66,7 @@ final class TextView: UIView, UITextViewDelegate {
     var text: String? {
         textView.text
     }
-    
+
     override var intrinsicContentSize: CGSize {
         let height: CGFloat = titleLabel.intrinsicContentSize.height + heightTVConstraint.constant + 8
         if errorLabel.isHidden {
@@ -75,7 +75,7 @@ final class TextView: UIView, UITextViewDelegate {
         let rect = errorLabel.textRect(forBounds: bounds, limitedToNumberOfLines: errorLabel.numberOfLines)
         return CGSize(width: UIView.noIntrinsicMetric, height: height + rect.height + 4)
     }
-        
+
     private lazy var bottomTVConstraint = textView.bottomAnchor.constraint(equalTo: bottomAnchor)
     private lazy var heightTVConstraint = textView.heightAnchor.constraint(equalToConstant: 56)
     private lazy var topErrorConstraint = errorLabel.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 4)
@@ -101,7 +101,7 @@ final class TextView: UIView, UITextViewDelegate {
             errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
-    
+
     func textViewDidChange(_ textView: UITextView) {
         let size = CGSize(width: frame.width, height: .infinity)
         let estimatedSize = textView.sizeThatFits(size)
@@ -110,7 +110,7 @@ final class TextView: UIView, UITextViewDelegate {
         textView.isScrollEnabled = (height == 200)
         invalidateIntrinsicContentSize()
     }
-    
+
     func show(error: String) {
         errorLabel.text = error
         errorLabel.isHidden = false
@@ -118,20 +118,20 @@ final class TextView: UIView, UITextViewDelegate {
         topErrorConstraint.isActive = true
         invalidateIntrinsicContentSize()
     }
-    
+
     func hideError() {
         errorLabel.isHidden = true
         topErrorConstraint.isActive = false
         bottomTVConstraint.isActive = true
         invalidateIntrinsicContentSize()
     }
-    
+
     @objc
     private func didBeginEditing() {
         hideError()
     }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
+
+    func textViewDidBeginEditing(_: UITextView) {
         didBeginEditing()
     }
 }

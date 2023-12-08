@@ -11,36 +11,36 @@ final class SignUpViewController: ParentViewController {
     @IBOutlet private var usernameTextField: TextInput!
     @IBOutlet private var emailTextField: TextInput!
     @IBOutlet private var passwordTextField: TextInput!
-    
+
     @IBOutlet private var signUpButton: PrimaryButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.title = L10n.SignUp.title
         navigationController?.navigationBar.prefersLargeTitles = true
 
         usernameTextField.setup(placeholder: L10n.SignUp.usernameTextField, text: nil)
         emailTextField.setup(placeholder: L10n.SignUp.emailTextField, text: nil)
         passwordTextField.setup(placeholder: L10n.SignUp.passwordTextField, text: nil)
-        
+
         signUpButton.setTitle(L10n.SignUp.signUpButton, for: .normal)
-        
+
         passwordTextField.enableSecurityMode()
-        
+
         addTapToHideKeyboardGesture()
     }
-    
+
     @IBAction private func didTabSignUp() {
         let usernameTFIsValid = usernameTFValidation()
         let emailTFIsValid = emailTFValidation()
         let passwordTFIsValid = passwordTFValidation()
-        
+
         if usernameTFIsValid && emailTFIsValid && passwordTFIsValid {
             Task {
                 do {
                     _ = try await NetworkManager.shared.signUp(name: usernameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
-                    
+
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateInitialViewController()
                     view.window?.rootViewController = vc
@@ -52,7 +52,7 @@ final class SignUpViewController: ParentViewController {
             }
         }
     }
-    
+
     private func usernameTFValidation() -> Bool {
         if !ValidationManager.isValid(commonText: usernameTextField.text, symbolsCount: 0) {
             if ValidationManager.isValid(commonText: usernameTextField.text, symbolsCount: 70) {
@@ -66,7 +66,7 @@ final class SignUpViewController: ParentViewController {
             return false
         }
     }
-    
+
     private func emailTFValidation() -> Bool {
         if !ValidationManager.isValid(commonText: emailTextField.text, symbolsCount: 0) {
             if ValidationManager.isValid(email: emailTextField.text) {
@@ -80,7 +80,7 @@ final class SignUpViewController: ParentViewController {
             return false
         }
     }
-    
+
     private func passwordTFValidation() -> Bool {
         if !ValidationManager.isValid(commonText: passwordTextField.text, symbolsCount: 0) {
             if ValidationManager.isValid(commonText: passwordTextField.text, symbolsCount: 256) {
