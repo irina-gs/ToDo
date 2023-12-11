@@ -14,10 +14,22 @@ extension DateFormatter {
         formatter.dateFormat = L10n.Main.dateFormat
         return formatter
     }()
-    
+
+    static let year: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        return formatter
+    }()
+
     static let dMMM: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMM"
+        return formatter
+    }()
+
+    static let dMMMyyyy: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM yyyy"
         return formatter
     }()
 }

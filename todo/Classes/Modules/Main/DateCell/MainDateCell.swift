@@ -5,7 +5,16 @@ final class MainDateCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
+    }
 
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private func setup() {
         contentView.backgroundColor = UIColor.Color.BackgroundAndSurfaces.surfaceSecondary
         contentView.layer.cornerRadius = 4
         contentView.addSubview(titleLabel)
@@ -16,12 +25,12 @@ final class MainDateCell: UICollectionViewCell {
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
         ])
     }
-    
+
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override var isSelected: Bool {
         didSet {
             contentView.backgroundColor = isSelected ? UIColor.Color.Text.textSecondary : UIColor.Color.BackgroundAndSurfaces.surfaceSecondary
@@ -31,10 +40,4 @@ final class MainDateCell: UICollectionViewCell {
     func setup(title: String) {
         titleLabel.text = title
     }
-
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
 }

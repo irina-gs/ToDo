@@ -22,4 +22,18 @@ class ParentViewController: UIViewController {
         alertVC.addAction(UIAlertAction(title: L10n.Alert.closeButton, style: .cancel))
         present(alertVC, animated: true)
     }
+
+    func showSnackBar() {
+        let snackBar = SnackBarView()
+        snackBar.setupMassage(massage: L10n.SnackBar.massage)
+        snackBar.show(view: view)
+    }
+
+    func logOutAccount() {
+        UserManager.shared.reset()
+
+        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        view.window?.rootViewController = vc
+    }
 }

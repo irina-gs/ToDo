@@ -24,7 +24,7 @@ final class MainViewController: ParentViewController {
             collectionView.reloadSections(IndexSet(integer: 1))
         }
     }
-    
+
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var newEntryButton: PrimaryButton!
 
@@ -35,8 +35,8 @@ final class MainViewController: ParentViewController {
 
         navigationItem.title = L10n.Main.title
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Main.profileButton, style: .plain, target: self, action: nil)
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Main.profileButton, style: .plain, target: self, action: #selector(didTapProfileButton))
+
         collectionView.register(MainDateCell.self, forCellWithReuseIdentifier: MainDateCell.reuseID)
         collectionView.register(UINib(nibName: "MainItemCell", bundle: nil), forCellWithReuseIdentifier: MainItemCell.reuseID)
         collectionView.allowsMultipleSelection = true
@@ -61,10 +61,10 @@ final class MainViewController: ParentViewController {
                 return section
             }
         })
-        
+
         newEntryButton.setTitle(L10n.Main.emptyButton, for: .normal)
         newEntryButton.isHidden = true
-        
+
         reloadData()
     }
 
@@ -74,6 +74,11 @@ final class MainViewController: ParentViewController {
 
     @IBAction private func didTapNewEntryButton() {
         segueNewItemVC()
+    }
+
+    @objc
+    private func didTapProfileButton() {
+        performSegue(withIdentifier: "profile", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,21 +99,21 @@ final class MainViewController: ParentViewController {
                 (view as? StatefullView)?.state = .loading
 
                 data = try await NetworkManager.shared.getTodos()
-                
+
                 sections = data
-                    .reduce(into: [(date: Date, items: [MainDataItem])](), { partialResult, item in
+                    .reduce(into: [(date: Date, items: [MainDataItem])]()) { partialResult, item in
                         if let index = partialResult.firstIndex(where: { $0.date.withoutTimeStamp == item.date.withoutTimeStamp }) {
                             partialResult[index].items.append(item)
                         } else {
                             partialResult.append((date: item.date, items: [item]))
                         }
-                    })
+                    }
                     .sorted(by: { $0.date <= $1.date })
-                
+
                 DispatchQueue.main.async {
                     self.newEntryButton.isHidden = self.data.isEmpty
                 }
-                
+
                 if !data.isEmpty {
                     (view as? StatefullView)?.state = .data
                     collectionView.reloadData()
@@ -119,17 +124,22 @@ final class MainViewController: ParentViewController {
                 DispatchQueue.main.async {
                     self.newEntryButton.isHidden = true
                 }
-                (view as? StatefullView)?.state = .empty(error: error)
+
+                if (error as NSError).code == 401 {
+                    logOutAccount()
+                } else {
+                    (view as? StatefullView)?.state = .empty(error: error)
+                }
             }
         }
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in _: UICollectionView) -> Int {
         2
     }
-    
+
     func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -141,12 +151,17 @@ extension MainViewController: UICollectionViewDataSource {
             return data.count
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainDateCell.reuseID, for: indexPath) as? MainDateCell {
-                cell.setup(title: DateFormatter.dMMM.string(from: sections[indexPath.row].date))
+                let dateCell = sections[indexPath.row].date
+                if DateFormatter.year.string(from: dateCell) == DateFormatter.year.string(from: Date()) {
+                    cell.setup(title: DateFormatter.dMMM.string(from: dateCell))
+                } else {
+                    cell.setup(title: DateFormatter.dMMMyyyy.string(from: dateCell))
+                }
                 return cell
             }
         default:
@@ -157,36 +172,52 @@ extension MainViewController: UICollectionViewDataSource {
                 } else {
                     item = data[indexPath.row]
                 }
+
                 if let item {
                     cell.setup(item: item)
-                }
-                
-                cell.action = { [weak self] id in
-                    Task {
-                        do {
-                            _ = try await NetworkManager.shared.changeMark(id: id)
-                            
-                            self?.data[indexPath.row].isCompleted.toggle()
-                            
-                            guard let itemIsCompleted = self?.data[indexPath.row].isCompleted else {
-                                return
-                            }
-                            
-                            DispatchQueue.main.async {
-                                cell.setMark(isCompleted: itemIsCompleted)
-                            }
-                        } catch {
-                            DispatchQueue.main.async {
-                                self?.showAlertVC(massage: error.localizedDescription)
+
+                    cell.action = { [weak self] itemId in
+                        Task {
+                            do {
+                                _ = try await NetworkManager.shared.changeMark(id: itemId)
+
+                                if let index = self?.data.firstIndex(where: { $0.id == item.id }) {
+                                    self?.data[index].isCompleted.toggle()
+
+                                    guard let itemIsCompleted = self?.data[index].isCompleted else {
+                                        return
+                                    }
+
+                                    DispatchQueue.main.async {
+                                        cell.setMark(isCompleted: itemIsCompleted)
+                                    }
+                                }
+
+                                guard let data = self?.data else {
+                                    return
+                                }
+
+                                self?.sections = (data
+                                    .reduce(into: [(date: Date, items: [MainDataItem])]()) { partialResult, item in
+                                        if let index = partialResult.firstIndex(where: { $0.date.withoutTimeStamp == item.date.withoutTimeStamp }) {
+                                            partialResult[index].items.append(item)
+                                        } else {
+                                            partialResult.append((date: item.date, items: [item]))
+                                        }
+                                    }
+                                    .sorted(by: { $0.date <= $1.date }))
+
+                            } catch {
+                                DispatchQueue.main.async {
+                                    self?.showSnackBar()
+                                }
                             }
                         }
                     }
                 }
-                
                 return cell
             }
         }
-        
         fatalError("\(#function) error in cell creation")
     }
 }
@@ -204,12 +235,22 @@ extension MainViewController: UICollectionViewDelegate {
             selectedDate = sections[indexPath.row].date
         default:
             collectionView.deselectItem(at: indexPath, animated: true)
-            selectedItem = data[indexPath.row]
-            segueNewItemVC()
+
+            let item: MainDataItem?
+            if let selectedDate {
+                item = sections.first(where: { $0.date == selectedDate })?.items[indexPath.row]
+            } else {
+                item = data[indexPath.row]
+            }
+
+            if let item {
+                selectedItem = item
+                segueNewItemVC()
+            }
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+
+    func collectionView(_: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             selectedDate = nil
@@ -221,6 +262,7 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension MainViewController: NewItemViewControllerDelegate {
     func didSelect(_: NewItemViewController) {
+        selectedDate = nil
         reloadData()
     }
 }

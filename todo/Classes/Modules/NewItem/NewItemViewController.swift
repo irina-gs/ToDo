@@ -95,7 +95,7 @@ final class NewItemViewController: ParentViewController {
                 navigationController?.popViewController(animated: true)
             } catch {
                 DispatchQueue.main.async {
-                    self.showAlertVC(massage: error.localizedDescription)
+                    self.showSnackBar()
                 }
             }
         }
@@ -123,7 +123,7 @@ final class NewItemViewController: ParentViewController {
                 navigationController?.popViewController(animated: true)
             } catch {
                 DispatchQueue.main.async {
-                    self.showAlertVC(massage: error.localizedDescription)
+                    self.showSnackBar()
                 }
             }
         }

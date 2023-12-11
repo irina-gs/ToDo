@@ -46,7 +46,7 @@ final class SignUpViewController: ParentViewController {
                     view.window?.rootViewController = vc
                 } catch {
                     DispatchQueue.main.async {
-                        self.showAlertVC(massage: error.localizedDescription)
+                        self.showSnackBar()
                     }
                 }
             }

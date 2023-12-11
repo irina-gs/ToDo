@@ -45,8 +45,8 @@ internal enum L10n {
     internal static let username = L10n.tr("Localizable", "error-validation.username", fallback: "Имя должно быть до 70 символов длиной")
   }
   internal enum Main {
-    /// Дедлайн: dd MMMM y в HH:mm
-    internal static let dateFormat = L10n.tr("Localizable", "main.date-format", fallback: "Дедлайн: dd MMMM y в HH:mm")
+    /// Дедлайн: dd MMMM yyyy в HH:mm
+    internal static let dateFormat = L10n.tr("Localizable", "main.date-format", fallback: "Дедлайн: dd MMMM yyyy в HH:mm")
     /// Новая запись
     internal static let emptyButton = L10n.tr("Localizable", "main.empty-button", fallback: "Новая запись")
     /// Пока здесь нет ни одной записи.
@@ -83,6 +83,18 @@ internal enum L10n {
     /// Что нужно сделать
     internal static let titleTextViewLabel = L10n.tr("Localizable", "new-item.title-text-view-label", fallback: "Что нужно сделать")
   }
+  internal enum Profile {
+    /// Отменить
+    internal static let alertCanselButton = L10n.tr("Localizable", "profile.alert-cansel-button", fallback: "Отменить")
+    /// Выйти
+    internal static let alertExitButton = L10n.tr("Localizable", "profile.alert-exit-button", fallback: "Выйти")
+    /// Выйти из профиля?
+    internal static let alertTitle = L10n.tr("Localizable", "profile.alert-title", fallback: "Выйти из профиля?")
+    /// Выход
+    internal static let exitButton = L10n.tr("Localizable", "profile.exit-button", fallback: "Выход")
+    /// Профиль
+    internal static let title = L10n.tr("Localizable", "profile.title", fallback: "Профиль")
+  }
   internal enum SignUp {
     /// E-mail
     internal static let emailTextField = L10n.tr("Localizable", "sign-up.email-text-field", fallback: "E-mail")
@@ -94,6 +106,10 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "sign-up.title", fallback: "Регистрация")
     /// Имя пользователя
     internal static let usernameTextField = L10n.tr("Localizable", "sign-up.username-text-field", fallback: "Имя пользователя")
+  }
+  internal enum SnackBar {
+    /// Не удалось завершить операцию
+    internal static let massage = L10n.tr("Localizable", "snack-bar.massage", fallback: "Не удалось завершить операцию")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

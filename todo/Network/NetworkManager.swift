@@ -41,7 +41,7 @@ enum HttpMethod {
 }
 
 enum PathURL {
-    case signIn, signUp, newTodo, getTodos, changeMark(id: String), deleteTodo(id: String)
+    case signIn, signUp, newTodo, getTodos, changeMark(id: String), deleteTodo(id: String), getUser
 
     var path: String {
         switch self {
@@ -57,6 +57,8 @@ enum PathURL {
             return "/api/todos/mark/\(id)"
         case let .deleteTodo(id):
             return "/api/todos/\(id)"
+        case .getUser:
+            return "/api/user"
         }
     }
 }
@@ -185,6 +187,18 @@ final class NetworkManager {
         let response: EmptyResponse = try await request(
             path: PathURL.deleteTodo(id: id).path,
             httpMethod: HttpMethod.delete.method,
+            accessToken: accessToken
+        )
+        return response
+    }
+
+    func getUser() async throws -> UserResponse {
+        guard let accessToken = UserManager.shared.accessToken else {
+            throw NetworkError.wrongStatusCode
+        }
+        let response: UserResponse = try await request(
+            path: PathURL.getUser.path,
+            httpMethod: HttpMethod.get.method,
             accessToken: accessToken
         )
         return response

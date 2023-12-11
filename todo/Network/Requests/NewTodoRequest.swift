@@ -7,15 +7,15 @@
 
 import Foundation
 
+struct Coordinate: Encodable {
+    let longitude: String
+    let latitude: String
+}
+
 struct NewTodoRequest: Encodable {
     let category: String = ""
     let title: String
     let description: String
     let date: Date
     let coordinate: Coordinate = .init(longitude: "0", latitude: "0")
-}
-
-struct Coordinate: Encodable {
-    let longitude: String
-    let latitude: String
 }

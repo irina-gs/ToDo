@@ -1,6 +1,6 @@
 //
-//  todoTests.swift
-//  todoTests
+//  TodoTests.swift
+//  TodoTests
 //
 //  Created by admin on 26.10.2023.
 //
