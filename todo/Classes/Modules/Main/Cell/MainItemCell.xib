@@ -28,7 +28,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79h-Ya-fIa">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79h-Ya-fIa" customClass="LargeButton" customModule="todo" customModuleProvider="target">
                                         <rect key="frame" x="307" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="0ad-4G-Q0J"/>
@@ -61,7 +61,7 @@
             <size key="customSize" width="363" height="101"/>
             <connections>
                 <outlet property="deadlineLabel" destination="9o7-FV-fK9" id="6NV-Gs-SP2"/>
-                <outlet property="markButton" destination="79h-Ya-fIa" id="YxX-uW-sNV"/>
+                <outlet property="markButton" destination="79h-Ya-fIa" id="wDI-lN-9D7"/>
                 <outlet property="titleLabel" destination="xs7-Bn-GX2" id="nHA-K9-NYX"/>
             </connections>
             <point key="canvasLocation" x="168.70229007633588" y="-63.028169014084511"/>
