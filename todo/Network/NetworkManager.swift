@@ -101,7 +101,7 @@ final class NetworkManager {
                 }
                 return try decoder.decode(DataResponse<Response>.self, from: data).data
             case 401:
-                AuthError.logOutAccount()
+                await ParentViewController.logOutAccount()
                 throw NetworkError.notAuthorized
             default:
                 throw NetworkError.wrongStatusCode

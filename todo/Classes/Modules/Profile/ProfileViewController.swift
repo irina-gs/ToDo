@@ -42,7 +42,7 @@ final class ProfileViewController: ParentViewController {
     @IBAction private func didTapExitButton() {
         let alertVC = UIAlertController(title: L10n.Profile.alertTitle, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: L10n.Profile.alertExitButton, style: .destructive, handler: { _ in
-            AuthError.logOutAccount()
+            ProfileViewController.logOutAccount()
         }))
         alertVC.addAction(UIAlertAction(title: L10n.Profile.alertCancelButton, style: .cancel))
         present(alertVC, animated: true)
