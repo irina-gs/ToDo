@@ -53,6 +53,9 @@
 		84D5C9B22AEAB8E80051BF6B /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C9B12AEAB8E80051BF6B /* TodoTests.swift */; };
 		84D5C9BC2AEAB8E80051BF6B /* TodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C9BB2AEAB8E80051BF6B /* TodoUITests.swift */; };
 		84D5C9BE2AEAB8E80051BF6B /* TodoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C9BD2AEAB8E80051BF6B /* TodoUITestsLaunchTests.swift */; };
+		84E9E8F02B2A016300CB51BB /* MainDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9E8EF2B2A016300CB51BB /* MainDataItem.swift */; };
+		84E9E8F22B2A269000CB51BB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9E8F12B2A269000CB51BB /* NetworkError.swift */; };
+		84E9E8F42B2A2CE700CB51BB /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9E8F32B2A2CE700CB51BB /* AuthError.swift */; };
 		84F9DCAA2B038F5D00F39E46 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCA92B038F5D00F39E46 /* TextView.swift */; };
 		84F9DCAC2B03DADC00F39E46 /* Empty.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F9DCAB2B03DADC00F39E46 /* Empty.storyboard */; };
 		84F9DCAF2B03DB6F00F39E46 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9DCAE2B03DB6F00F39E46 /* EmptyViewController.swift */; };
@@ -130,6 +133,9 @@
 		84D5C9B72AEAB8E80051BF6B /* todoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D5C9BB2AEAB8E80051BF6B /* TodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITests.swift; sourceTree = "<group>"; };
 		84D5C9BD2AEAB8E80051BF6B /* TodoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		84E9E8EF2B2A016300CB51BB /* MainDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataItem.swift; sourceTree = "<group>"; };
+		84E9E8F12B2A269000CB51BB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		84E9E8F32B2A2CE700CB51BB /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		84F9DCA92B038F5D00F39E46 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		84F9DCAB2B03DADC00F39E46 /* Empty.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Empty.storyboard; sourceTree = "<group>"; };
 		84F9DCAE2B03DB6F00F39E46 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
@@ -242,11 +248,11 @@
 		847F66442AF3F331002E0C53 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				84E9E8EE2B29FC6800CB51BB /* SnackBar */,
 				84A6C6342B232EA100B3817F /* Button */,
 				84A6C6352B232EE800B3817F /* Text */,
 				843A95D02B1B476600B6D498 /* StatefullView.swift */,
 				849206122B18E5FF005AB042 /* LoadingIndicatorImageView.swift */,
-				84AB05CC2B27CC5900434C2E /* SnackBarView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -272,9 +278,10 @@
 		848D86E62B0FA262008FE7AB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				848D86E72B0FA27A008FE7AB /* NetworkManager.swift */,
 				84927E8F2B1B5F01004AAD0B /* Requests */,
 				848D86EA2B0FA682008FE7AB /* Responses */,
-				848D86E72B0FA27A008FE7AB /* NetworkManager.swift */,
+				84E9E8F52B2A335A00CB51BB /* Error */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -286,6 +293,7 @@
 				848D86ED2B0FA6E2008FE7AB /* AuthResponse.swift */,
 				848D86EF2B0FA710008FE7AB /* DataResponse.swift */,
 				84A6C63B2B246FF500B3817F /* UserResponse.swift */,
+				84E9E8EF2B2A016300CB51BB /* MainDataItem.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -413,6 +421,23 @@
 				84D5C9BD2AEAB8E80051BF6B /* TodoUITestsLaunchTests.swift */,
 			);
 			path = TodoUITests;
+			sourceTree = "<group>";
+		};
+		84E9E8EE2B29FC6800CB51BB /* SnackBar */ = {
+			isa = PBXGroup;
+			children = (
+				84AB05CC2B27CC5900434C2E /* SnackBarView.swift */,
+			);
+			path = SnackBar;
+			sourceTree = "<group>";
+		};
+		84E9E8F52B2A335A00CB51BB /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				84E9E8F12B2A269000CB51BB /* NetworkError.swift */,
+				84E9E8F32B2A2CE700CB51BB /* AuthError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		84F703CE2AF163F800CFCC55 /* Classes */ = {
@@ -642,11 +667,13 @@
 				84A6C63A2B233C6900B3817F /* ProfileViewController.swift in Sources */,
 				848D86E82B0FA27A008FE7AB /* NetworkManager.swift in Sources */,
 				84948E5A2B22275C002F43B8 /* Date+.swift in Sources */,
+				84E9E8F22B2A269000CB51BB /* NetworkError.swift in Sources */,
 				84F9DCAA2B038F5D00F39E46 /* TextView.swift in Sources */,
 				84BF23822AFD323F0085B7D0 /* PrimaryButton.swift in Sources */,
 				84927E972B1B6872004AAD0B /* EmptyRequest.swift in Sources */,
 				84927E932B1B5F86004AAD0B /* SignUpRequest.swift in Sources */,
 				84D5C99F2AEAB8E30051BF6B /* AuthViewController.swift in Sources */,
+				84E9E8F42B2A2CE700CB51BB /* AuthError.swift in Sources */,
 				84948E542B221BA6002F43B8 /* Strings.swift in Sources */,
 				84A6C63C2B246FF500B3817F /* UserResponse.swift in Sources */,
 				847F66432AF3F27E002E0C53 /* ParentViewController.swift in Sources */,
@@ -667,6 +694,7 @@
 				84AB05CD2B27CC5900434C2E /* SnackBarView.swift in Sources */,
 				84F9DCAF2B03DB6F00F39E46 /* EmptyViewController.swift in Sources */,
 				84F9DCB72B06686100F39E46 /* NewItemViewController.swift in Sources */,
+				84E9E8F02B2A016300CB51BB /* MainDataItem.swift in Sources */,
 				848D86EE2B0FA6E2008FE7AB /* AuthResponse.swift in Sources */,
 				848D86F02B0FA710008FE7AB /* DataResponse.swift in Sources */,
 				84927E912B1B5F4D004AAD0B /* SignInRequest.swift in Sources */,

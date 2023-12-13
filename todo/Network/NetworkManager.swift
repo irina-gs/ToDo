@@ -8,21 +8,6 @@
 import Combine
 import Foundation
 
-enum NetworkError: LocalizedError {
-    case wrongStatusCode, wrongURL, wrongResponse
-
-    var errorDescription: String? {
-        switch self {
-        case .wrongStatusCode:
-            return L10n.NetworkError.wrongStatusCode
-        case .wrongURL:
-            return L10n.NetworkError.wrongUrl
-        case .wrongResponse:
-            return L10n.NetworkError.wrongResponse
-        }
-    }
-}
-
 enum HttpMethod {
     case get, post, put, delete
 
@@ -115,6 +100,9 @@ final class NetworkManager {
                     return try decoder.decode(Response.self, from: emptyData)
                 }
                 return try decoder.decode(DataResponse<Response>.self, from: data).data
+            case 401:
+                AuthError.logOutAccount()
+                throw NetworkError.notAuthorized
             default:
                 throw NetworkError.wrongStatusCode
             }
@@ -145,7 +133,7 @@ final class NetworkManager {
 
     func newTodo(title: String, description: String, date: Date) async throws -> MainDataItem {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            throw NetworkError.notAuthorized
         }
         let response: MainDataItem = try await request(
             path: PathURL.newTodo.path,
@@ -158,7 +146,7 @@ final class NetworkManager {
 
     func getTodos() async throws -> [MainDataItem] {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            throw NetworkError.notAuthorized
         }
         let response: [MainDataItem] = try await request(
             path: PathURL.getTodos.path,
@@ -170,7 +158,7 @@ final class NetworkManager {
 
     func changeMark(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            throw NetworkError.notAuthorized
         }
         let response: EmptyResponse = try await request(
             path: PathURL.changeMark(id: id).path,
@@ -182,7 +170,7 @@ final class NetworkManager {
 
     func deleteTodo(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            throw NetworkError.notAuthorized
         }
         let response: EmptyResponse = try await request(
             path: PathURL.deleteTodo(id: id).path,
@@ -194,7 +182,7 @@ final class NetworkManager {
 
     func getUser() async throws -> UserResponse {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            throw NetworkError.notAuthorized
         }
         let response: UserResponse = try await request(
             path: PathURL.getUser.path,

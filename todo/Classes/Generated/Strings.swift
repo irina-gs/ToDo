@@ -10,12 +10,6 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
-  internal enum Alert {
-    /// Закрыть
-    internal static let closeButton = L10n.tr("Localizable", "alert.close-button", fallback: "Закрыть")
-    /// Ошибка!
-    internal static let title = L10n.tr("Localizable", "alert.title", fallback: "Ошибка!")
-  }
   internal enum Auth {
     /// E-mail
     internal static let emailTextField = L10n.tr("Localizable", "auth.email-text-field", fallback: "E-mail")
@@ -85,7 +79,7 @@ internal enum L10n {
   }
   internal enum Profile {
     /// Отменить
-    internal static let alertCanselButton = L10n.tr("Localizable", "profile.alert-cansel-button", fallback: "Отменить")
+    internal static let alertCancelButton = L10n.tr("Localizable", "profile.alert-cancel-button", fallback: "Отменить")
     /// Выйти
     internal static let alertExitButton = L10n.tr("Localizable", "profile.alert-exit-button", fallback: "Выйти")
     /// Выйти из профиля?
@@ -106,10 +100,6 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "sign-up.title", fallback: "Регистрация")
     /// Имя пользователя
     internal static let usernameTextField = L10n.tr("Localizable", "sign-up.username-text-field", fallback: "Имя пользователя")
-  }
-  internal enum SnackBar {
-    /// Не удалось завершить операцию
-    internal static let massage = L10n.tr("Localizable", "snack-bar.massage", fallback: "Не удалось завершить операцию")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

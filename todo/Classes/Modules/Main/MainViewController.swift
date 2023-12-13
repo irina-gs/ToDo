@@ -7,14 +7,6 @@
 
 import UIKit
 
-struct MainDataItem: Decodable {
-    let id: String
-    let title: String
-    let description: String
-    let date: Date
-    var isCompleted: Bool
-}
-
 final class MainViewController: ParentViewController {
     private var data: [MainDataItem] = []
     private var sections: [(date: Date, items: [MainDataItem])] = []
@@ -117,6 +109,11 @@ final class MainViewController: ParentViewController {
                 if !data.isEmpty {
                     (view as? StatefullView)?.state = .data
                     collectionView.reloadData()
+
+                    if let selectedDate, let selectedDateIndex = sections.firstIndex(where: { $0.date == selectedDate }) {
+                        let dateIndexPath = IndexPath(row: selectedDateIndex, section: 0)
+                        collectionView.selectItem(at: dateIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+                    }
                 } else {
                     (view as? StatefullView)?.state = .empty()
                 }
@@ -124,12 +121,7 @@ final class MainViewController: ParentViewController {
                 DispatchQueue.main.async {
                     self.newEntryButton.isHidden = true
                 }
-
-                if (error as NSError).code == 401 {
-                    logOutAccount()
-                } else {
-                    (view as? StatefullView)?.state = .empty(error: error)
-                }
+                (view as? StatefullView)?.state = .empty(error: error)
             }
         }
     }
@@ -157,7 +149,7 @@ extension MainViewController: UICollectionViewDataSource {
         case 0:
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainDateCell.reuseID, for: indexPath) as? MainDateCell {
                 let dateCell = sections[indexPath.row].date
-                if DateFormatter.year.string(from: dateCell) == DateFormatter.year.string(from: Date()) {
+                if Calendar.current.isDate(dateCell, equalTo: Date(), toGranularity: .year) {
                     cell.setup(title: DateFormatter.dMMM.string(from: dateCell))
                 } else {
                     cell.setup(title: DateFormatter.dMMMyyyy.string(from: dateCell))
@@ -175,50 +167,53 @@ extension MainViewController: UICollectionViewDataSource {
 
                 if let item {
                     cell.setup(item: item)
+                }
 
-                    cell.action = { [weak self] itemId in
-                        Task {
-                            do {
-                                _ = try await NetworkManager.shared.changeMark(id: itemId)
-
-                                if let index = self?.data.firstIndex(where: { $0.id == item.id }) {
-                                    self?.data[index].isCompleted.toggle()
-
-                                    guard let itemIsCompleted = self?.data[index].isCompleted else {
-                                        return
-                                    }
-
-                                    DispatchQueue.main.async {
-                                        cell.setMark(isCompleted: itemIsCompleted)
-                                    }
-                                }
-
-                                guard let data = self?.data else {
-                                    return
-                                }
-
-                                self?.sections = (data
-                                    .reduce(into: [(date: Date, items: [MainDataItem])]()) { partialResult, item in
-                                        if let index = partialResult.firstIndex(where: { $0.date.withoutTimeStamp == item.date.withoutTimeStamp }) {
-                                            partialResult[index].items.append(item)
-                                        } else {
-                                            partialResult.append((date: item.date, items: [item]))
-                                        }
-                                    }
-                                    .sorted(by: { $0.date <= $1.date }))
-
-                            } catch {
-                                DispatchQueue.main.async {
-                                    self?.showSnackBar()
-                                }
-                            }
-                        }
-                    }
+                cell.action = { [weak self] id in
+                    self?.didTapMarkButton(cell: cell, id: id)
                 }
                 return cell
             }
         }
         fatalError("\(#function) error in cell creation")
+    }
+
+    private func didTapMarkButton(cell: MainItemCell, id: String) {
+        guard let index = data.firstIndex(where: { $0.id == id }) else {
+            return
+        }
+        let isCompleted = data[index].isCompleted
+
+        Task {
+            do {
+                _ = try await NetworkManager.shared.changeMark(id: id)
+
+                if let newIndex = data.firstIndex(where: { $0.id == id }) {
+                    data[newIndex].isCompleted = !isCompleted
+
+                    if selectedDate == nil {
+                        DispatchQueue.main.async {
+                            cell.setMark(isCompleted: self.data[newIndex].isCompleted)
+                        }
+                    }
+                }
+
+                for (index, section) in sections.enumerated() {
+                    if let newIndex = section.items.firstIndex(where: { $0.id == id }) {
+                        sections[index].items[newIndex].isCompleted = !isCompleted
+                        if selectedDate != nil {
+                            DispatchQueue.main.async {
+                                cell.setMark(isCompleted: self.sections[index].items[newIndex].isCompleted)
+                            }
+                        }
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.showSnackBar(message: error.localizedDescription)
+                }
+            }
+        }
     }
 }
 
@@ -262,7 +257,6 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension MainViewController: NewItemViewControllerDelegate {
     func didSelect(_: NewItemViewController) {
-        selectedDate = nil
         reloadData()
     }
 }

@@ -17,23 +17,9 @@ class ParentViewController: UIViewController {
         navigationItem.backButtonDisplayMode = .minimal
     }
 
-    func showAlertVC(massage: String) {
-        let alertVC = UIAlertController(title: L10n.Alert.title, message: massage, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: L10n.Alert.closeButton, style: .cancel))
-        present(alertVC, animated: true)
-    }
-
-    func showSnackBar() {
+    func showSnackBar(message: String) {
         let snackBar = SnackBarView()
-        snackBar.setupMassage(massage: L10n.SnackBar.massage)
+        snackBar.setupMessage(message: message)
         snackBar.show(view: view)
-    }
-
-    func logOutAccount() {
-        UserManager.shared.reset()
-
-        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
-        view.window?.rootViewController = vc
     }
 }

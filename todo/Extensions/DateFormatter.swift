@@ -15,20 +15,16 @@ extension DateFormatter {
         return formatter
     }()
 
-    static let year: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        return formatter
-    }()
-
     static let dMMM: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "d MMM"
         return formatter
     }()
 
     static let dMMMyyyy: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "d MMM yyyy"
         return formatter
     }()

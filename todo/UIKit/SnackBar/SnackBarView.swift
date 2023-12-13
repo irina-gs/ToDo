@@ -18,7 +18,7 @@ final class SnackBarView: UIView {
         setup()
     }
 
-    private lazy var massageLabel: UILabel = {
+    private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.Color.white
@@ -31,34 +31,35 @@ final class SnackBarView: UIView {
     private func setup() {
         backgroundColor = UIColor.Color.gray1
 
-        addSubview(massageLabel)
+        addSubview(messageLabel)
 
         NSLayoutConstraint.activate([
-            massageLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            massageLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            massageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50),
-            massageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50),
+            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
         ])
     }
 
-    func setupMassage(massage: String?) {
-        massageLabel.text = massage
+    func setupMessage(message: String?) {
+        messageLabel.text = message
     }
 
     func show(view: UIView) {
-        let height: CGFloat = 88
+        let height: CGFloat = (window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50) + messageLabel.sizeThatFits(CGSize(width: frame.width, height: .infinity)).height + 20
 
-        frame = CGRect(x: 0, y: -height, width: view.frame.size.width, height: height)
+        let startFrame = CGRect(x: 0, y: -height, width: view.frame.size.width, height: height)
+        frame = startFrame
 
-        view.addSubview(self)
+        view.window?.addSubview(self)
 
         UIView.animate(withDuration: 0.3, animations: {
             self.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: height)
         }, completion: { done in
             if done {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     UIView.animate(withDuration: 0.3, animations: {
-                        self.frame = CGRect(x: 0, y: -height, width: view.frame.size.width, height: height)
+                        self.frame = startFrame
                     }, completion: { finished in
                         if finished {
                             self.removeFromSuperview()

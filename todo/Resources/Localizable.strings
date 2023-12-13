@@ -37,13 +37,8 @@
 "profile.exit-button" = "Выход";
 "profile.alert-title" = "Выйти из профиля?";
 "profile.alert-exit-button" = "Выйти";
-"profile.alert-cansel-button" = "Отменить";
+"profile.alert-cancel-button" = "Отменить";
 
 "network-error.wrong-status-code" = "Упс! Неверный статус код.";
 "network-error.wrong-url" = "Упс! Неверный url.";
 "network-error.wrong-response" = "Упс! Неверный ответ сервера.";
-
-"alert.title" = "Ошибка!";
-"alert.close-button" = "Закрыть";
-
-"snack-bar.massage" = "Не удалось завершить операцию";
