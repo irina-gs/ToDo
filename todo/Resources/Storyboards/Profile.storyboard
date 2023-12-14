@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="ProfileViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="W0A-FV-Hxg">
+                                <rect key="frame" x="0.0" y="101" width="393" height="717"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Jbb-Ps-BE6">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="682.66666666666663"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vAT-EY-GR0">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="155"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BFp-A2-FET">
+                                                        <rect key="frame" x="127" y="0.0" width="139" height="139"/>
+                                                        <color key="backgroundColor" name="Color/BackgroundAndSurfaces/surfaceSecondary"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="139" id="deY-yS-PaU"/>
+                                                            <constraint firstAttribute="width" constant="139" id="oOw-yh-oZy"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0d-mm-Ami">
+                                                        <rect key="frame" x="196.66666666666666" y="155" width="0.0" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snh-rT-ni3" customClass="TextButton" customModule="todo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="682.66666666666663" width="393" height="34.333333333333371"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="didTapExitButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ueB-Az-DKa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W0A-FV-Hxg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="SF9-pG-9bD"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="W0A-FV-Hxg" secondAttribute="trailing" id="WdH-cX-sUs"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="W0A-FV-Hxg" secondAttribute="bottom" id="ajM-6i-mvY"/>
+                            <constraint firstItem="W0A-FV-Hxg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="42" id="fMe-3K-WDm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exitButton" destination="snh-rT-ni3" id="pm2-To-64w"/>
+                        <outlet property="profileImageView" destination="BFp-A2-FET" id="nuX-Xv-doe"/>
+                        <outlet property="usernameLabel" destination="a0d-mm-Ami" id="ftq-eX-G2Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="77" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="Color/BackgroundAndSurfaces/surfaceSecondary">
+            <color red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

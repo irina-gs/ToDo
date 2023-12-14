@@ -1,5 +1,5 @@
 //
-//  todoUITests.swift
+//  TodoUITests.swift
 //  todoUITests
 //
 //  Created by admin on 26.10.2023.
@@ -19,6 +19,7 @@ final class TodoUITests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
     }
 
     func testExample() throws {
@@ -30,7 +31,7 @@ final class TodoUITests: XCTestCase {
     }
 
     func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+        if #available(macOS 10.15, iOS 17.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()

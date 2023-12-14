@@ -7,5 +7,5 @@
 
 import OSLog
 
-//swiftlint:disable:next prefixed_toplevel_constant
+// swiftlint:disable:next prefixed_toplevel_constant
 let log = Logger(subsystem: Bundle.main.bundleIdentifier ?? "", category: "common")

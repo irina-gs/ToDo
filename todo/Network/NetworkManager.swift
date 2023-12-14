@@ -8,21 +8,6 @@
 import Combine
 import Foundation
 
-enum NetworkError: LocalizedError {
-    case wrongStatusCode, wrongURL, wrongResponse
-
-    var errorDescription: String? {
-        switch self {
-        case .wrongStatusCode:
-            return L10n.NetworkError.wrongStatusCode
-        case .wrongURL:
-            return L10n.NetworkError.wrongUrl
-        case .wrongResponse:
-            return L10n.NetworkError.wrongResponse
-        }
-    }
-}
-
 enum HttpMethod {
     case get, post, put, delete
 
@@ -41,7 +26,7 @@ enum HttpMethod {
 }
 
 enum PathURL {
-    case signIn, signUp, newTodo, getTodos, changeMark(id: String), deleteTodo(id: String)
+    case signIn, signUp, newTodo, getTodos, changeMark(id: String), deleteTodo(id: String), getUser
 
     var path: String {
         switch self {
@@ -57,6 +42,8 @@ enum PathURL {
             return "/api/todos/mark/\(id)"
         case let .deleteTodo(id):
             return "/api/todos/\(id)"
+        case .getUser:
+            return "/api/user"
         }
     }
 }
@@ -113,6 +100,9 @@ final class NetworkManager {
                     return try decoder.decode(Response.self, from: emptyData)
                 }
                 return try decoder.decode(DataResponse<Response>.self, from: data).data
+            case 401:
+                await ParentViewController.logOutAccount()
+                throw NetworkError.notAuthorized
             default:
                 throw NetworkError.wrongStatusCode
             }
@@ -143,7 +133,8 @@ final class NetworkManager {
 
     func newTodo(title: String, description: String, date: Date) async throws -> MainDataItem {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            await ParentViewController.logOutAccount()
+            throw NetworkError.notAuthorized
         }
         let response: MainDataItem = try await request(
             path: PathURL.newTodo.path,
@@ -156,7 +147,8 @@ final class NetworkManager {
 
     func getTodos() async throws -> [MainDataItem] {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            await ParentViewController.logOutAccount()
+            throw NetworkError.notAuthorized
         }
         let response: [MainDataItem] = try await request(
             path: PathURL.getTodos.path,
@@ -168,7 +160,8 @@ final class NetworkManager {
 
     func changeMark(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            await ParentViewController.logOutAccount()
+            throw NetworkError.notAuthorized
         }
         let response: EmptyResponse = try await request(
             path: PathURL.changeMark(id: id).path,
@@ -180,11 +173,25 @@ final class NetworkManager {
 
     func deleteTodo(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
-            throw NetworkError.wrongStatusCode
+            await ParentViewController.logOutAccount()
+            throw NetworkError.notAuthorized
         }
         let response: EmptyResponse = try await request(
             path: PathURL.deleteTodo(id: id).path,
             httpMethod: HttpMethod.delete.method,
+            accessToken: accessToken
+        )
+        return response
+    }
+
+    func getUser() async throws -> UserResponse {
+        guard let accessToken = UserManager.shared.accessToken else {
+            await ParentViewController.logOutAccount()
+            throw NetworkError.notAuthorized
+        }
+        let response: UserResponse = try await request(
+            path: PathURL.getUser.path,
+            httpMethod: HttpMethod.get.method,
             accessToken: accessToken
         )
         return response

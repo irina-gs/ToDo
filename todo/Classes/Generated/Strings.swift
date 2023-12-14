@@ -10,12 +10,6 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
-  internal enum Alert {
-    /// Закрыть
-    internal static let closeButton = L10n.tr("Localizable", "alert.close-button", fallback: "Закрыть")
-    /// Ошибка!
-    internal static let title = L10n.tr("Localizable", "alert.title", fallback: "Ошибка!")
-  }
   internal enum Auth {
     /// E-mail
     internal static let emailTextField = L10n.tr("Localizable", "auth.email-text-field", fallback: "E-mail")
@@ -45,8 +39,8 @@ internal enum L10n {
     internal static let username = L10n.tr("Localizable", "error-validation.username", fallback: "Имя должно быть до 70 символов длиной")
   }
   internal enum Main {
-    /// Дедлайн: dd MMMM y в HH:mm
-    internal static let dateFormat = L10n.tr("Localizable", "main.date-format", fallback: "Дедлайн: dd MMMM y в HH:mm")
+    /// Дедлайн: dd MMMM yyyy в HH:mm
+    internal static let dateFormat = L10n.tr("Localizable", "main.date-format", fallback: "Дедлайн: dd MMMM yyyy в HH:mm")
     /// Новая запись
     internal static let emptyButton = L10n.tr("Localizable", "main.empty-button", fallback: "Новая запись")
     /// Пока здесь нет ни одной записи.
@@ -82,6 +76,18 @@ internal enum L10n {
     internal static let title = L10n.tr("Localizable", "new-item.title", fallback: "Новая запись")
     /// Что нужно сделать
     internal static let titleTextViewLabel = L10n.tr("Localizable", "new-item.title-text-view-label", fallback: "Что нужно сделать")
+  }
+  internal enum Profile {
+    /// Отменить
+    internal static let alertCancelButton = L10n.tr("Localizable", "profile.alert-cancel-button", fallback: "Отменить")
+    /// Выйти
+    internal static let alertExitButton = L10n.tr("Localizable", "profile.alert-exit-button", fallback: "Выйти")
+    /// Выйти из профиля?
+    internal static let alertTitle = L10n.tr("Localizable", "profile.alert-title", fallback: "Выйти из профиля?")
+    /// Выход
+    internal static let exitButton = L10n.tr("Localizable", "profile.exit-button", fallback: "Выход")
+    /// Профиль
+    internal static let title = L10n.tr("Localizable", "profile.title", fallback: "Профиль")
   }
   internal enum SignUp {
     /// E-mail
