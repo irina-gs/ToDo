@@ -30,15 +30,7 @@ final class SnackBarView: UIView {
 
     private func setup() {
         backgroundColor = UIColor.Color.gray1
-
         addSubview(messageLabel)
-
-        NSLayoutConstraint.activate([
-            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50),
-            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-        ])
     }
 
     func setupMessage(message: String?) {
@@ -46,7 +38,14 @@ final class SnackBarView: UIView {
     }
 
     func show(view: UIView) {
-        let height: CGFloat = (window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50) + messageLabel.sizeThatFits(CGSize(width: frame.width, height: .infinity)).height + 20
+        NSLayoutConstraint.activate([
+            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50),
+            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+        ])
+
+        let height: CGFloat = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50) + messageLabel.sizeThatFits(CGSize(width: frame.width, height: .infinity)).height + 20
 
         let startFrame = CGRect(x: 0, y: -height, width: view.frame.size.width, height: height)
         frame = startFrame

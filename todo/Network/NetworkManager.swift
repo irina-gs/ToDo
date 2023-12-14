@@ -133,6 +133,7 @@ final class NetworkManager {
 
     func newTodo(title: String, description: String, date: Date) async throws -> MainDataItem {
         guard let accessToken = UserManager.shared.accessToken else {
+            await ParentViewController.logOutAccount()
             throw NetworkError.notAuthorized
         }
         let response: MainDataItem = try await request(
@@ -146,6 +147,7 @@ final class NetworkManager {
 
     func getTodos() async throws -> [MainDataItem] {
         guard let accessToken = UserManager.shared.accessToken else {
+            await ParentViewController.logOutAccount()
             throw NetworkError.notAuthorized
         }
         let response: [MainDataItem] = try await request(
@@ -158,6 +160,7 @@ final class NetworkManager {
 
     func changeMark(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
+            await ParentViewController.logOutAccount()
             throw NetworkError.notAuthorized
         }
         let response: EmptyResponse = try await request(
@@ -170,6 +173,7 @@ final class NetworkManager {
 
     func deleteTodo(id: String) async throws -> EmptyResponse {
         guard let accessToken = UserManager.shared.accessToken else {
+            await ParentViewController.logOutAccount()
             throw NetworkError.notAuthorized
         }
         let response: EmptyResponse = try await request(
@@ -182,6 +186,7 @@ final class NetworkManager {
 
     func getUser() async throws -> UserResponse {
         guard let accessToken = UserManager.shared.accessToken else {
+            await ParentViewController.logOutAccount()
             throw NetworkError.notAuthorized
         }
         let response: UserResponse = try await request(
