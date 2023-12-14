@@ -247,10 +247,14 @@
 			isa = PBXGroup;
 			children = (
 				84E9E8EE2B29FC6800CB51BB /* SnackBar */,
-				84A6C6342B232EA100B3817F /* Button */,
-				84A6C6352B232EE800B3817F /* Text */,
 				843A95D02B1B476600B6D498 /* StatefullView.swift */,
 				849206122B18E5FF005AB042 /* LoadingIndicatorImageView.swift */,
+				84BF237F2AFD2BB90085B7D0 /* MainButton.swift */,
+				84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */,
+				8413485E2AFF6FAB00809876 /* TextButton.swift */,
+				847F66452AF3F366002E0C53 /* TextField.swift */,
+				847F664A2AF3FE82002E0C53 /* TextInput.swift */,
+				84F9DCA92B038F5D00F39E46 /* TextView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -330,26 +334,6 @@
 				849DF0BE2B164F87005FB822 /* SplashScreenViewController.swift */,
 			);
 			path = SplashScreen;
-			sourceTree = "<group>";
-		};
-		84A6C6342B232EA100B3817F /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				84BF237F2AFD2BB90085B7D0 /* MainButton.swift */,
-				84BF23812AFD323F0085B7D0 /* PrimaryButton.swift */,
-				8413485E2AFF6FAB00809876 /* TextButton.swift */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
-		84A6C6352B232EE800B3817F /* Text */ = {
-			isa = PBXGroup;
-			children = (
-				847F66452AF3F366002E0C53 /* TextField.swift */,
-				847F664A2AF3FE82002E0C53 /* TextInput.swift */,
-				84F9DCA92B038F5D00F39E46 /* TextView.swift */,
-			);
-			path = Text;
 			sourceTree = "<group>";
 		};
 		84A6C6382B233C4B00B3817F /* Profile */ = {
