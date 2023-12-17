@@ -49,28 +49,43 @@ enum PathURL {
 }
 
 final class NetworkManager {
-    static var shared = NetworkManager()
-
-    private init() {}
-
-    private lazy var decoder: JSONDecoder = {
+    private let decoder: JSONDecoder
+    private let encoder: JSONEncoder
+    
+    static let shared = NetworkManager(decoder: {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .secondsSince1970
         return decoder
-    }()
-
-    private lazy var encoder: JSONEncoder = {
+    }(), encoder: {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .secondsSince1970
         return encoder
-    }()
+    }())
 
-    private func request<Response: Decodable>(path: String, httpMethod: String, accessToken: String? = nil) async throws -> Response {
+    init(decoder: JSONDecoder, encoder: JSONEncoder) {
+        self.decoder = decoder
+        self.encoder = encoder
+    }
+
+//    private lazy var decoder: JSONDecoder = {
+//        let decoder = JSONDecoder()
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+//        decoder.dateDecodingStrategy = .secondsSince1970
+//        return decoder
+//    }()
+//
+//    private lazy var encoder: JSONEncoder = {
+//        let encoder = JSONEncoder()
+//        encoder.dateEncodingStrategy = .secondsSince1970
+//        return encoder
+//    }()
+
+    func request<Response: Decodable>(path: String, httpMethod: String, accessToken: String? = nil) async throws -> Response {
         try await request(path: path, httpMethod: httpMethod, httpBody: EmptyRequest?.none, accessToken: accessToken)
     }
 
-    private func request<Request: Encodable, Response: Decodable>(path: String, httpMethod: String, httpBody: Request?, accessToken: String? = nil) async throws -> Response {
+    func request<Request: Encodable, Response: Decodable>(path: String, httpMethod: String, httpBody: Request?, accessToken: String? = nil) async throws -> Response {
         guard let url = URL(string: "\(PlistFiles.apiBaseUrl)\(path)") else {
             throw NetworkError.wrongURL
         }
@@ -111,15 +126,15 @@ final class NetworkManager {
         }
     }
 
-    func signIn(email: String, password: String) async throws -> AuthResponse {
-        let response: AuthResponse = try await request(
-            path: PathURL.signIn.path,
-            httpMethod: HttpMethod.post.method,
-            httpBody: SignInRequest(email: email, password: password)
-        )
-        UserManager.shared.set(accessToken: response.accessToken)
-        return response
-    }
+//    func signIn(email: String, password: String) async throws -> AuthResponse {
+//        let response: AuthResponse = try await request(
+//            path: PathURL.signIn.path,
+//            httpMethod: HttpMethod.post.method,
+//            httpBody: SignInRequest(email: email, password: password)
+//        )
+//        UserManager.shared.set(accessToken: response.accessToken)
+//        return response
+//    }
 
     func signUp(name: String, email: String, password: String) async throws -> AuthResponse {
         let response: AuthResponse = try await request(

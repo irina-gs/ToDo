@@ -6,9 +6,12 @@
 //
 
 import Combine
+import Dip
 import UIKit
 
 final class AuthViewController: ParentViewController {
+    @Injected private var networkManager: AuthManager!
+    
     @IBOutlet private var emailTextField: TextInput!
     @IBOutlet private var passwordTextField: TextInput!
 
@@ -39,7 +42,7 @@ final class AuthViewController: ParentViewController {
         if emailTFIsValid && passwordTFIsValid {
             Task {
                 do {
-                    _ = try await NetworkManager.shared.signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+                    _ = try await networkManager.signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
 
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateInitialViewController()

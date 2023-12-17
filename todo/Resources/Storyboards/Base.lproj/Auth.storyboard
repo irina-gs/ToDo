@@ -74,6 +74,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5TI-SZ-rQR"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="nil" keyPath="dipTag"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="emailTextField" destination="8bh-Ef-Egj" id="j5d-fv-3fZ"/>
                         <outlet property="passwordTextField" destination="ehj-Oe-BwC" id="dYc-GN-iao"/>

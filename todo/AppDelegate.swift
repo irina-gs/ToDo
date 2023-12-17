@@ -5,13 +5,15 @@
 //  Created by admin on 26.10.2023.
 //
 
+import Dip
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        true
+        DependencyContainer.uiContainers = [VCAssembly.container]
+        return true
     }
 
     // MARK: UISceneSession Lifecycle

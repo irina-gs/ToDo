@@ -53,6 +53,10 @@
 		84D5C9B22AEAB8E80051BF6B /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C9B12AEAB8E80051BF6B /* TodoTests.swift */; };
 		84D5C9BC2AEAB8E80051BF6B /* TodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C9BB2AEAB8E80051BF6B /* TodoUITests.swift */; };
 		84D5C9BE2AEAB8E80051BF6B /* TodoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5C9BD2AEAB8E80051BF6B /* TodoUITestsLaunchTests.swift */; };
+		84E70C912B2B511D00D406A0 /* Dip in Frameworks */ = {isa = PBXBuildFile; productRef = 84E70C902B2B511D00D406A0 /* Dip */; };
+		84E70C962B2B51BC00D406A0 /* ManagersAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E70C942B2B51BC00D406A0 /* ManagersAssembly.swift */; };
+		84E70C982B2B51E200D406A0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E70C972B2B51E200D406A0 /* AuthManager.swift */; };
+		84E70C9A2B2B552200D406A0 /* VCAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E70C992B2B552200D406A0 /* VCAssembly.swift */; };
 		84E9E8EB2B28C54D00CB51BB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 84E9E8EA2B28C54D00CB51BB /* Kingfisher */; };
 		84E9E8ED2B28CA4700CB51BB /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9E8EC2B28CA4700CB51BB /* LargeButton.swift */; };
 		84E9E8F02B2A016300CB51BB /* MainDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9E8EF2B2A016300CB51BB /* MainDataItem.swift */; };
@@ -134,6 +138,9 @@
 		84D5C9B72AEAB8E80051BF6B /* todoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D5C9BB2AEAB8E80051BF6B /* TodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITests.swift; sourceTree = "<group>"; };
 		84D5C9BD2AEAB8E80051BF6B /* TodoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		84E70C942B2B51BC00D406A0 /* ManagersAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagersAssembly.swift; sourceTree = "<group>"; };
+		84E70C972B2B51E200D406A0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		84E70C992B2B552200D406A0 /* VCAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCAssembly.swift; sourceTree = "<group>"; };
 		84E9E8EC2B28CA4700CB51BB /* LargeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		84E9E8EF2B2A016300CB51BB /* MainDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataItem.swift; sourceTree = "<group>"; };
 		84E9E8F12B2A269000CB51BB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -150,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E70C912B2B511D00D406A0 /* Dip in Frameworks */,
 				84E9E8EB2B28C54D00CB51BB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				848D86E42B0FA21D008FE7AB /* OSLog.swift */,
+				84E70C972B2B51E200D406A0 /* AuthManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -347,6 +356,7 @@
 		84BF23852AFD355A0085B7D0 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				84E70C922B2B519100D406A0 /* Factories */,
 				84BF23862AFD357C0085B7D0 /* ValidationManager.swift */,
 				849DF0C12B164FE7005FB822 /* UserManager.swift */,
 			);
@@ -426,6 +436,15 @@
 			path = Text;
 			sourceTree = "<group>";
 		};
+		84E70C922B2B519100D406A0 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				84E70C992B2B552200D406A0 /* VCAssembly.swift */,
+				84E70C942B2B51BC00D406A0 /* ManagersAssembly.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		84E9E8EE2B29FC6800CB51BB /* SnackBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +508,7 @@
 			name = todo;
 			packageProductDependencies = (
 				84E9E8EA2B28C54D00CB51BB /* Kingfisher */,
+				84E70C902B2B511D00D406A0 /* Dip */,
 			);
 			productName = todo;
 			productReference = 84D5C9972AEAB8E30051BF6B /* todo.app */;
@@ -564,6 +584,7 @@
 			mainGroup = 84D5C98E2AEAB8E30051BF6B;
 			packageReferences = (
 				84E9E8E92B28C54C00CB51BB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				84E70C8F2B2B511C00D406A0 /* XCRemoteSwiftPackageReference "Dip" */,
 			);
 			productRefGroup = 84D5C9982AEAB8E30051BF6B /* Products */;
 			projectDirPath = "";
@@ -684,10 +705,13 @@
 				843090E52AF90B590098BEC6 /* SignUpViewController.swift in Sources */,
 				84D5C99B2AEAB8E30051BF6B /* AppDelegate.swift in Sources */,
 				849DF0BF2B164F87005FB822 /* SplashScreenViewController.swift in Sources */,
+				84E70C982B2B51E200D406A0 /* AuthManager.swift in Sources */,
 				848D86E52B0FA21D008FE7AB /* OSLog.swift in Sources */,
 				849DF0C22B164FE7005FB822 /* UserManager.swift in Sources */,
 				848D86EC2B0FA6BE008FE7AB /* EmptyResponse.swift in Sources */,
 				84D5C99D2AEAB8E30051BF6B /* SceneDelegate.swift in Sources */,
+				84E70C962B2B51BC00D406A0 /* ManagersAssembly.swift in Sources */,
+				84E70C9A2B2B552200D406A0 /* VCAssembly.swift in Sources */,
 				843A95D12B1B476600B6D498 /* StatefullView.swift in Sources */,
 				847F663E2AF1692C002E0C53 /* MainViewController.swift in Sources */,
 				84AB05CD2B27CC5900434C2E /* SnackBarView.swift in Sources */,
@@ -1042,6 +1066,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		84E70C8F2B2B511C00D406A0 /* XCRemoteSwiftPackageReference "Dip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/Dip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.1;
+			};
+		};
 		84E9E8E92B28C54C00CB51BB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1053,6 +1085,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		84E70C902B2B511D00D406A0 /* Dip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84E70C8F2B2B511C00D406A0 /* XCRemoteSwiftPackageReference "Dip" */;
+			productName = Dip;
+		};
 		84E9E8EA2B28C54D00CB51BB /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 84E9E8E92B28C54C00CB51BB /* XCRemoteSwiftPackageReference "Kingfisher" */;
