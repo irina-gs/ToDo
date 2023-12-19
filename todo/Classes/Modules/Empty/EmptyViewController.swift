@@ -35,14 +35,15 @@ final class EmptyViewController: ParentViewController {
     private func updateState() {
         switch state {
         case .empty:
-            emptyButton.isHidden = false
             updateButton.isHidden = true
+            emptyButton.isHidden = false
             emptyImageView.image = UIImage.Main.empty
             emptyLabel.text = L10n.Main.emptyLabel
             emptyButton.setTitle(L10n.Main.emptyButton, for: .normal)
         case let .error(error):
-            updateButton.isHidden = false
             emptyButton.isHidden = true
+            updateButton.hideLoadingState()
+            updateButton.isHidden = false
             updateButton.setTitle(L10n.Main.errorUpdateButton, for: .normal)
             updateButton.setMode(mode: .small)
 
@@ -63,6 +64,7 @@ final class EmptyViewController: ParentViewController {
     }
 
     @IBAction private func didTapUpdateButton() {
+        updateButton.showLoadingState()
         action?()
     }
 }

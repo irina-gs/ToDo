@@ -334,7 +334,7 @@ extension MainViewController: NewItemViewControllerDelegate {
 
 extension MainViewController: StatefullViewDelegate {
     func statefullViewReloadData(_: StatefullView) {
-        reloadData()
+        getData()
     }
 
     func statefullViewDidTapEmptyButton(_: StatefullView) {

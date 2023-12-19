@@ -51,6 +51,36 @@ final class PrimaryButton: MainButton {
                 titleColor: .Color.white,
                 highlightedTitleColor: .Color.white
             )
+
+            addSubview(loader)
+
+            NSLayoutConstraint.activate([
+                loader.centerXAnchor.constraint(equalTo: centerXAnchor),
+                loader.centerYAnchor.constraint(equalTo: centerYAnchor),
+            ])
         }
+    }
+
+    private lazy var loader: LoadingIndicatorImageView = {
+        let loader = LoadingIndicatorImageView(image: UIImage.Common.loaderSmall)
+        loader.translatesAutoresizingMaskIntoConstraints = false
+        loader.isHidden = true
+        NSLayoutConstraint.activate([
+            loader.heightAnchor.constraint(equalTo: loader.widthAnchor),
+            loader.heightAnchor.constraint(equalToConstant: 16),
+        ])
+        return loader
+    }()
+
+    func showLoadingState() {
+        loader.isHidden = false
+        titleLabel?.isHidden = true
+        isUserInteractionEnabled = false
+    }
+
+    func hideLoadingState() {
+        loader.isHidden = true
+        titleLabel?.isHidden = false
+        isUserInteractionEnabled = true
     }
 }
