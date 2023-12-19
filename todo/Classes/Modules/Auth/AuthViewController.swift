@@ -11,7 +11,7 @@ import UIKit
 
 final class AuthViewController: ParentViewController {
     @Injected private var networkManager: AuthManager!
-    
+
     @IBOutlet private var emailTextField: TextInput!
     @IBOutlet private var passwordTextField: TextInput!
 

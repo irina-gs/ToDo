@@ -68,6 +68,9 @@
                             <constraint firstItem="SL7-3v-khX" firstAttribute="trailing" secondItem="svF-z5-fdl" secondAttribute="trailing" constant="16" id="oB2-it-1Qd"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="nil" keyPath="dipTag"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="emailTextField" destination="wPp-hD-uHX" id="jGP-xO-aKA"/>
                         <outlet property="passwordTextField" destination="Acy-xj-1ii" id="skX-30-bb8"/>

@@ -1,5 +1,5 @@
 //
-//  AurhManager.swift
+//  AuthManager.swift
 //  todo
 //
 //  Created by admin on 14.12.2023.

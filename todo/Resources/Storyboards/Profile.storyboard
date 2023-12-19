@@ -64,6 +64,9 @@
                             <constraint firstItem="W0A-FV-Hxg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="42" id="fMe-3K-WDm"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="nil" keyPath="dipTag"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="exitButton" destination="snh-rT-ni3" id="pm2-To-64w"/>
                         <outlet property="profileImageView" destination="BFp-A2-FET" id="nuX-Xv-doe"/>

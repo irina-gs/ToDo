@@ -69,5 +69,13 @@ final class SnackBarView: UIView {
                 }
             }
         })
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapSnackBar))
+        addGestureRecognizer(tap)
+    }
+
+    @objc
+    private func didTapSnackBar() {
+        isHidden = true
     }
 }

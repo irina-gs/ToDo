@@ -5,13 +5,17 @@
 //  Created by admin on 16.11.2023.
 //
 
+import Dip
 import UIKit
 
 protocol NewItemViewControllerDelegate: AnyObject {
-    func didSelect(_ vc: NewItemViewController)
+    func didSelect(_ vc: NewItemViewController, newItemData: MainDataItem)
+    func didSelect(_ vc: NewItemViewController, deleteItemId: String)
 }
 
 final class NewItemViewController: ParentViewController {
+    @Injected private var networkManager: NewItemManager!
+
     @IBOutlet private var titleTextView: TextView!
     @IBOutlet private var descriptionTextView: TextView!
     @IBOutlet private var deadlineLabel: UILabel!
@@ -90,8 +94,8 @@ final class NewItemViewController: ParentViewController {
 
         Task {
             do {
-                _ = try await NetworkManager.shared.newTodo(title: title, description: description, date: deadlineDatePicker.date)
-                delegate?.didSelect(self)
+                let newItemData = try await networkManager.newTodo(title: title, description: description, date: deadlineDatePicker.date)
+                delegate?.didSelect(self, newItemData: newItemData)
                 navigationController?.popViewController(animated: true)
             } catch {
                 DispatchQueue.main.async {
@@ -118,8 +122,8 @@ final class NewItemViewController: ParentViewController {
 
         Task {
             do {
-                _ = try await NetworkManager.shared.deleteTodo(id: selectedItem.id)
-                delegate?.didSelect(self)
+                _ = try await networkManager.deleteTodo(id: selectedItem.id)
+                delegate?.didSelect(self, deleteItemId: selectedItem.id)
                 navigationController?.popViewController(animated: true)
             } catch {
                 DispatchQueue.main.async {

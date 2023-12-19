@@ -32,6 +32,18 @@ enum ManagersAssembly {
         container.register {
             NetworkManager(decoder: $0, encoder: $1) as AuthManager
         }
+        container.register {
+            NetworkManager(decoder: $0, encoder: $1) as SignUpManager
+        }
+        container.register {
+            NetworkManager(decoder: $0, encoder: $1) as MainManager
+        }
+        container.register {
+            NetworkManager(decoder: $0, encoder: $1) as NewItemManager
+        }
+        container.register {
+            NetworkManager(decoder: $0, encoder: $1) as ProfileManager
+        }
 
         return container
     }()

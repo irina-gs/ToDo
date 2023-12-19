@@ -5,9 +5,12 @@
 //  Created by admin on 31.10.2023.
 //
 
+import Dip
 import UIKit
 
 final class MainViewController: ParentViewController {
+    @Injected private var networkManager: MainManager!
+
     private var data: [MainDataItem] = []
     private var sections: [(date: Date, items: [MainDataItem])] = []
     private var selectedItem: MainDataItem?
@@ -20,6 +23,12 @@ final class MainViewController: ParentViewController {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var newEntryButton: PrimaryButton!
 
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refreshControl
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +37,8 @@ final class MainViewController: ParentViewController {
         navigationItem.title = L10n.Main.title
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Main.profileButton, style: .plain, target: self, action: #selector(didTapProfileButton))
+
+        collectionView.refreshControl = refreshControl
 
         collectionView.register(MainDateCell.self, forCellWithReuseIdentifier: MainDateCell.reuseID)
         collectionView.register(UINib(nibName: "MainItemCell", bundle: nil), forCellWithReuseIdentifier: MainItemCell.reuseID)
@@ -86,11 +97,14 @@ final class MainViewController: ParentViewController {
     }
 
     private func reloadData() {
+        (view as? StatefullView)?.state = .loading
+        getData()
+    }
+
+    private func getData() {
         Task {
             do {
-                (view as? StatefullView)?.state = .loading
-
-                data = try await NetworkManager.shared.getTodos()
+                data = try await networkManager.getTodos()
 
                 sections = data
                     .reduce(into: [(date: Date, items: [MainDataItem])]()) { partialResult, item in
@@ -110,10 +124,7 @@ final class MainViewController: ParentViewController {
                     (view as? StatefullView)?.state = .data
                     collectionView.reloadData()
 
-                    if let selectedDate, let selectedDateIndex = sections.firstIndex(where: { $0.date == selectedDate }) {
-                        let dateIndexPath = IndexPath(row: selectedDateIndex, section: 0)
-                        collectionView.selectItem(at: dateIndexPath, animated: true, scrollPosition: [])
-                    }
+                    saveSelectedDate()
                 } else {
                     (view as? StatefullView)?.state = .empty()
                 }
@@ -124,6 +135,19 @@ final class MainViewController: ParentViewController {
                 (view as? StatefullView)?.state = .empty(error: error)
             }
         }
+    }
+
+    private func saveSelectedDate() {
+        if let selectedDate, let selectedDateIndex = sections.firstIndex(where: { $0.date == selectedDate }) {
+            let dateIndexPath = IndexPath(row: selectedDateIndex, section: 0)
+            collectionView.selectItem(at: dateIndexPath, animated: true, scrollPosition: [])
+        }
+    }
+
+    @objc
+    private func refreshData() {
+        getData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -186,7 +210,7 @@ extension MainViewController: UICollectionViewDataSource {
 
         Task {
             do {
-                _ = try await NetworkManager.shared.changeMark(id: id)
+                _ = try await networkManager.changeMark(id: id)
 
                 if let newIndex = data.firstIndex(where: { $0.id == id }) {
                     data[newIndex].isCompleted = !isCompleted
@@ -256,8 +280,55 @@ extension MainViewController: UICollectionViewDelegate {
 }
 
 extension MainViewController: NewItemViewControllerDelegate {
-    func didSelect(_: NewItemViewController) {
-        reloadData()
+    func didSelect(_: NewItemViewController, newItemData: MainDataItem) {
+        (view as? StatefullView)?.state = .data
+        newEntryButton.isHidden = false
+
+        data.append(newItemData)
+
+        if let index = sections.firstIndex(where: { $0.date.withoutTimeStamp == newItemData.date.withoutTimeStamp }) {
+            sections[index].items.append(newItemData)
+        } else {
+            sections.append((date: newItemData.date, items: [newItemData]))
+            sections = sections.sorted(by: { $0.date <= $1.date })
+        }
+
+        collectionView.reloadData()
+        saveSelectedDate()
+
+        let count: Int
+        if let selectedDate {
+            count = sections.first(where: { $0.date == selectedDate })?.items.count ?? 0
+        } else {
+            count = data.count
+        }
+
+        collectionView.scrollToItem(at: IndexPath(item: count - 1, section: 1), at: .bottom, animated: true)
+    }
+
+    func didSelect(_: NewItemViewController, deleteItemId: String) {
+        if let deleteIndex = data.firstIndex(where: { $0.id == deleteItemId }) {
+            data.remove(at: deleteIndex)
+        }
+
+        for (index, section) in sections.enumerated() {
+            if let deleteIndex = section.items.firstIndex(where: { $0.id == deleteItemId }) {
+                sections[index].items.remove(at: deleteIndex)
+
+                if sections[index].items.isEmpty {
+                    selectedDate = nil
+                    sections.remove(at: index)
+                }
+            }
+        }
+
+        collectionView.reloadData()
+        saveSelectedDate()
+
+        if data.isEmpty {
+            (view as? StatefullView)?.state = .empty()
+            newEntryButton.isHidden = true
+        }
     }
 }
 

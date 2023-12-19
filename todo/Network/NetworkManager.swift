@@ -26,7 +26,7 @@ enum HttpMethod {
 }
 
 enum PathURL {
-    case signIn, signUp, newTodo, getTodos, changeMark(id: String), deleteTodo(id: String), getUser
+    case signIn, signUp, newTodo, getTodos, changeMark(id: String), deleteTodo(id: String), getUser, uploadUserPhoto, getUserPhoto(fileId: String)
 
     var path: String {
         switch self {
@@ -44,6 +44,10 @@ enum PathURL {
             return "/api/todos/\(id)"
         case .getUser:
             return "/api/user"
+        case .uploadUserPhoto:
+            return "/api/user/photo"
+        case let .getUserPhoto(fileId):
+            return "/api/user/photo/\(fileId)"
         }
     }
 }
@@ -51,35 +55,11 @@ enum PathURL {
 final class NetworkManager {
     private let decoder: JSONDecoder
     private let encoder: JSONEncoder
-    
-    static let shared = NetworkManager(decoder: {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .secondsSince1970
-        return decoder
-    }(), encoder: {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .secondsSince1970
-        return encoder
-    }())
 
     init(decoder: JSONDecoder, encoder: JSONEncoder) {
         self.decoder = decoder
         self.encoder = encoder
     }
-
-//    private lazy var decoder: JSONDecoder = {
-//        let decoder = JSONDecoder()
-//        decoder.keyDecodingStrategy = .convertFromSnakeCase
-//        decoder.dateDecodingStrategy = .secondsSince1970
-//        return decoder
-//    }()
-//
-//    private lazy var encoder: JSONEncoder = {
-//        let encoder = JSONEncoder()
-//        encoder.dateEncodingStrategy = .secondsSince1970
-//        return encoder
-//    }()
 
     func request<Response: Decodable>(path: String, httpMethod: String, accessToken: String? = nil) async throws -> Response {
         try await request(path: path, httpMethod: httpMethod, httpBody: EmptyRequest?.none, accessToken: accessToken)
@@ -93,12 +73,19 @@ final class NetworkManager {
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
 
-        if let httpBody {
-            request.httpBody = try encoder.encode(httpBody)
-        }
+        if let imageJpg = httpBody as? Data {
+            let boundary = UUID().uuidString
 
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
+            request.httpBody = multipartFormDataBody(imageJpg: imageJpg, boundary: boundary)
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        } else {
+            if let httpBody {
+                request.httpBody = try encoder.encode(httpBody)
+            }
+
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+        }
 
         if let accessToken {
             request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
@@ -126,89 +113,13 @@ final class NetworkManager {
         }
     }
 
-//    func signIn(email: String, password: String) async throws -> AuthResponse {
-//        let response: AuthResponse = try await request(
-//            path: PathURL.signIn.path,
-//            httpMethod: HttpMethod.post.method,
-//            httpBody: SignInRequest(email: email, password: password)
-//        )
-//        UserManager.shared.set(accessToken: response.accessToken)
-//        return response
-//    }
-
-    func signUp(name: String, email: String, password: String) async throws -> AuthResponse {
-        let response: AuthResponse = try await request(
-            path: PathURL.signUp.path,
-            httpMethod: HttpMethod.post.method,
-            httpBody: SignUpRequest(name: name, email: email, password: password)
-        )
-        UserManager.shared.set(accessToken: response.accessToken)
-        return response
-    }
-
-    func newTodo(title: String, description: String, date: Date) async throws -> MainDataItem {
-        guard let accessToken = UserManager.shared.accessToken else {
-            await ParentViewController.logOutAccount()
-            throw NetworkError.notAuthorized
-        }
-        let response: MainDataItem = try await request(
-            path: PathURL.newTodo.path,
-            httpMethod: HttpMethod.post.method,
-            httpBody: NewTodoRequest(title: title, description: description, date: date),
-            accessToken: accessToken
-        )
-        return response
-    }
-
-    func getTodos() async throws -> [MainDataItem] {
-        guard let accessToken = UserManager.shared.accessToken else {
-            await ParentViewController.logOutAccount()
-            throw NetworkError.notAuthorized
-        }
-        let response: [MainDataItem] = try await request(
-            path: PathURL.getTodos.path,
-            httpMethod: HttpMethod.get.method,
-            accessToken: accessToken
-        )
-        return response
-    }
-
-    func changeMark(id: String) async throws -> EmptyResponse {
-        guard let accessToken = UserManager.shared.accessToken else {
-            await ParentViewController.logOutAccount()
-            throw NetworkError.notAuthorized
-        }
-        let response: EmptyResponse = try await request(
-            path: PathURL.changeMark(id: id).path,
-            httpMethod: HttpMethod.put.method,
-            accessToken: accessToken
-        )
-        return response
-    }
-
-    func deleteTodo(id: String) async throws -> EmptyResponse {
-        guard let accessToken = UserManager.shared.accessToken else {
-            await ParentViewController.logOutAccount()
-            throw NetworkError.notAuthorized
-        }
-        let response: EmptyResponse = try await request(
-            path: PathURL.deleteTodo(id: id).path,
-            httpMethod: HttpMethod.delete.method,
-            accessToken: accessToken
-        )
-        return response
-    }
-
-    func getUser() async throws -> UserResponse {
-        guard let accessToken = UserManager.shared.accessToken else {
-            await ParentViewController.logOutAccount()
-            throw NetworkError.notAuthorized
-        }
-        let response: UserResponse = try await request(
-            path: PathURL.getUser.path,
-            httpMethod: HttpMethod.get.method,
-            accessToken: accessToken
-        )
-        return response
+    private func multipartFormDataBody(imageJpg: Data, boundary: String) -> Data {
+        var body = Data()
+        body.append("\r\n--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"uploadedFile\"; filename=\"image.jpg\"\r\n")
+        body.append("Content-Type: image/jpeg\r\n\r\n")
+        body.append(imageJpg)
+        body.append("\r\n--\(boundary)--\r\n")
+        return body
     }
 }

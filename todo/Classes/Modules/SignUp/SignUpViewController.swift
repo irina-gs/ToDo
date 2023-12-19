@@ -5,9 +5,12 @@
 //  Created by admin on 06.11.2023.
 //
 
+import Dip
 import UIKit
 
 final class SignUpViewController: ParentViewController {
+    @Injected private var networkManager: SignUpManager!
+
     @IBOutlet private var usernameTextField: TextInput!
     @IBOutlet private var emailTextField: TextInput!
     @IBOutlet private var passwordTextField: TextInput!
@@ -39,7 +42,7 @@ final class SignUpViewController: ParentViewController {
         if usernameTFIsValid && emailTFIsValid && passwordTFIsValid {
             Task {
                 do {
-                    _ = try await NetworkManager.shared.signUp(name: usernameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+                    _ = try await networkManager.signUp(name: usernameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
 
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateInitialViewController()
