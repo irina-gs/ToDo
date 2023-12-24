@@ -92,6 +92,7 @@ final class NewItemViewController: ParentViewController {
             return
         }
 
+        createButton.showLoadingState()
         Task {
             do {
                 let newItemData = try await networkManager.newTodo(title: title, description: description, date: deadlineDatePicker.date)
@@ -99,6 +100,7 @@ final class NewItemViewController: ParentViewController {
                 navigationController?.popViewController(animated: true)
             } catch {
                 DispatchQueue.main.async {
+                    self.createButton.hideLoadingState()
                     self.showSnackBar(message: error.localizedDescription)
                 }
             }

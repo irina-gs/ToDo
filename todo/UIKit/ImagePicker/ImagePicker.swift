@@ -8,9 +8,9 @@
 import UIKit
 
 final class ImagePicker: NSObject {
-    var imagePickerController: UIImagePickerController?
+    private var imagePickerController: UIImagePickerController?
 
-    var completion: ((UIImage) -> Void)?
+    private var completion: ((UIImage) -> Void)?
 
     func show(in viewController: UIViewController, completion: ((UIImage) -> Void)?) {
         imagePickerController = UIImagePickerController()

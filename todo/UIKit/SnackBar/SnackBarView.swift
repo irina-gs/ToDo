@@ -38,7 +38,7 @@ final class SnackBarView: UIView {
     }
 
     func show(view: UIView) {
-        let heightStatusBar = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50
+        let heightStatusBar = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 50) + 6
 
         NSLayoutConstraint.activate([
             messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -76,6 +76,6 @@ final class SnackBarView: UIView {
 
     @objc
     private func didTapSnackBar() {
-        isHidden = true
+        removeFromSuperview()
     }
 }

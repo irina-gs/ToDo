@@ -33,8 +33,8 @@ extension NetworkManager: ProfileManager {
             throw NetworkError.notAuthorized
         }
 
-        guard let imageJpg = image.jpegData(compressionQuality: 0.99) else {
-            throw NetworkError.wrongStatusCode
+        guard let imageJpg = image.jpegData(compressionQuality: 0.9) else {
+            throw NetworkError.wrongSizeImage
         }
 
         let response: EmptyResponse = try await request(

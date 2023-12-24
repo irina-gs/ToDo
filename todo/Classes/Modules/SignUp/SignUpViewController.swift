@@ -40,6 +40,7 @@ final class SignUpViewController: ParentViewController {
         let passwordTFIsValid = passwordTFValidation()
 
         if usernameTFIsValid && emailTFIsValid && passwordTFIsValid {
+            signUpButton.showLoadingState()
             Task {
                 do {
                     _ = try await networkManager.signUp(name: usernameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
@@ -49,6 +50,7 @@ final class SignUpViewController: ParentViewController {
                     view.window?.rootViewController = vc
                 } catch {
                     DispatchQueue.main.async {
+                        self.signUpButton.hideLoadingState()
                         self.showSnackBar(message: error.localizedDescription)
                     }
                 }

@@ -29,6 +29,8 @@ final class MainViewController: ParentViewController {
         return refreshControl
     }()
 
+    private var refreshControlIsShown = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -134,20 +136,25 @@ final class MainViewController: ParentViewController {
                 }
                 (view as? StatefullView)?.state = .empty(error: error)
             }
+
+            if refreshControlIsShown {
+                refreshControl.endRefreshing()
+                refreshControlIsShown = false
+            }
         }
     }
 
     private func saveSelectedDate() {
         if let selectedDate, let selectedDateIndex = sections.firstIndex(where: { $0.date == selectedDate }) {
             let dateIndexPath = IndexPath(row: selectedDateIndex, section: 0)
-            collectionView.selectItem(at: dateIndexPath, animated: true, scrollPosition: [])
+            collectionView.selectItem(at: dateIndexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
     }
 
     @objc
     private func refreshData() {
+        refreshControlIsShown = true
         getData()
-        refreshControl.endRefreshing()
     }
 }
 
@@ -296,14 +303,11 @@ extension MainViewController: NewItemViewControllerDelegate {
         collectionView.reloadData()
         saveSelectedDate()
 
-        let count: Int
-        if let selectedDate {
-            count = sections.first(where: { $0.date == selectedDate })?.items.count ?? 0
-        } else {
-            count = data.count
+        guard let selectedDate, newItemData.date.withoutTimeStamp != selectedDate.withoutTimeStamp else {
+            let countCells = collectionView.numberOfItems(inSection: 1)
+            collectionView.scrollToItem(at: IndexPath(item: countCells - 1, section: 1), at: .bottom, animated: true)
+            return
         }
-
-        collectionView.scrollToItem(at: IndexPath(item: count - 1, section: 1), at: .bottom, animated: true)
     }
 
     func didSelect(_: NewItemViewController, deleteItemId: String) {

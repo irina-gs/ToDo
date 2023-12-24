@@ -60,6 +60,8 @@ internal enum L10n {
   internal enum NetworkError {
     /// Упс! Неверный ответ сервера.
     internal static let wrongResponse = L10n.tr("Localizable", "network-error.wrong-response", fallback: "Упс! Неверный ответ сервера.")
+    /// Упс! Не удалось загрузить фото.
+    internal static let wrongSizeImage = L10n.tr("Localizable", "network-error.wrong-size-image", fallback: "Упс! Не удалось загрузить фото.")
     /// Упс! Неверный статус код.
     internal static let wrongStatusCode = L10n.tr("Localizable", "network-error.wrong-status-code", fallback: "Упс! Неверный статус код.")
     /// Упс! Неверный url.
